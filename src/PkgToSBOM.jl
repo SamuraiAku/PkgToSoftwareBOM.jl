@@ -1,4 +1,4 @@
-module sbomGenerator
+module PkgToSBOM
 
 using Pkg
 using UUIDs

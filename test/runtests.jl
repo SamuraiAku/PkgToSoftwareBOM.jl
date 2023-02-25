@@ -1,6 +1,6 @@
-using sbomGenerator
+using Pkg2SBOM
 using Test
 
-@testset "sbomGenerator.jl" begin
+@testset "PkgToSBOM.jl" begin
     # Write your tests here.
 end
