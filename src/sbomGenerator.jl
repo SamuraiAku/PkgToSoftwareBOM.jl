@@ -1,5 +1,9 @@
 module sbomGenerator
 
-# Write your package code here.
+using Pkg
+using UUIDs
+using TOML
+
+include("Registry.jl")
 
 end
