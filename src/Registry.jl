@@ -1,21 +1,22 @@
-Base.@kwdef struct PackageRegistryInfo
-    registryName::String
-    registryURL::String
-    registryPath::String
-    registryDescription::String
-    packageUUID::UUID
-    packageName::String
-    packageVersion::VersionNumber
-    packageURL::String
-    packageTreeHash::String
-    
-    # It would be nice to add these fields, but first have to figure out how to resolve version ranges
-    #packageCompatibility::Dict{String, Any}
-    #PackageDependencies::Dict{String, Any}
-end
 
 # Think of a name that would be good fit for the Pkg API
-function registry_packagequery(packages::Dict{Base.UUID, Pkg.API.PackageInfo}; registry::AbstractString= "General")
+function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registries::Vector{String})
+    if length(registries) == 1
+        return registry_packagequery(packages, registries[1])
+    end
+
+    registry_pkg= Dict{UUID, Union{Nothing, Missing, PackageRegistryInfo}}()
+    querylist= packages
+    for reg in registries
+        reglist= registry_packagequery(querylist, reg)
+        registry_pkg= merge(registry_pkg, reglist)
+        emptykeys= keys(filter(p-> isnothing(p.second) || ismissing(p.second), registry_pkg))
+        querylist= Dict{UUID, Pkg.API.PackageInfo}(k => packages[k] for k in emptykeys)
+    end
+    return registry_pkg
+end
+
+function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registry::AbstractString)
     #Get the requested registry
     active_regs= Pkg.Registry.reachable_registries()
     selected_registry= nothing
@@ -41,15 +42,16 @@ function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registr
 
     if package.is_tracking_registry
         isnothing(package.version) && return nothing  # Typically this means the package is an stdlib
+        isnothing(package.tree_hash) && return nothing  # This is probably an stdlib which is also in the registry for some reason
 
         # Look up the package in the registry by UUID
         haskey(registry.pkgs, uuid) || return missing
         registryPkg= registry.pkgs[uuid]
     
-        # Validation checks
+        # Check package and the registry are using the same name
         (package.name == registryPkg.name) || error("Conflicting package names found: $(string(uuid))=> $(package.name)(environment) vs. $(registryPkg.name)(registry)")
     else
-        prinln("Error in packageInfo")  #TODO Work on this
+        println("Malformed PackageInfo:  $(string(uuid)) => $(package.name)")  #TODO Work on this
         return nothing
     end
     
@@ -65,8 +67,7 @@ function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registr
     haskey(Versions, string(package.version)) || return missing
 
     # Verify the tree hash in the registry matches the hash in the package
-    isnothing(package.tree_hash) && return nothing  # This is probably an stdlib which is also in the registry for some reason
-    Versions[string(package.version)]["git-tree-sha1"] == package.tree_hash || error("Tree hash of $(package.name) v$(string(package.version)) does not match registry:  $(string(package.tree_hash)) (Package) vs. $(Versions[string(package.version)]["git-tree-sha1"])")
+    Versions[string(package.version)]["git-tree-sha1"] == package.tree_hash || error("Tree hash of $(package.name) v$(string(package.version)) does not match registry:  $(string(package.tree_hash)) (Package) vs. $(Versions[string(package.version)]["git-tree-sha1"]) (Registry)")
 
     pkgRegInfo= PackageRegistryInfo(;
         registryName= registry.name,
