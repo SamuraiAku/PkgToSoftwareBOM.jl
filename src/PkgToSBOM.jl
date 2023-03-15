@@ -3,6 +3,9 @@ module PkgToSBOM
 using Pkg
 using UUIDs
 using TOML
+using SPDX
+
+export spdxCreationData
 
 Base.@kwdef struct PackageRegistryInfo
     registryName::String
@@ -21,11 +24,29 @@ Base.@kwdef struct PackageRegistryInfo
 end
 
 Base.@kwdef struct sbomData
-    packages::Dict{Base.UUID, Pkg.API.PackageInfo}
-    registrypackagedata::Dict{Base.UUID, Union{Nothing, Missing, PackageRegistryInfo}}
+    packages::Dict{UUID, Pkg.API.PackageInfo}
+    registrydata::Dict{UUID, Union{Nothing, Missing, PackageRegistryInfo}}
     packagesinsbom::Set{UUID}= Set{UUID}()
 end
 
+
+Base.@kwdef struct spdxCreationData
+    Name::String= "Julia Environment"
+    NamespaceURL::Union{AbstractString, Nothing}= nothing
+    Creators::Vector{<:AbstractString}= String[]
+    CreatorComment::Union{AbstractString, Nothing}= nothing
+    DocumentComment::Union{AbstractString, Nothing}= nothing
+end
+
 include("Registry.jl")
+include("sbomBuild.jl")
+
+function isstdlib(name::AbstractString)
+    ver= Base.VERSION
+    verdir= "v"*string(ver.major)*"."*string(ver.minor)
+    stdlist= readdir(joinpath(Sys.BINDIR, "../share/julia/stdlib", verdir))
+
+    return name in stdlist
+end
 
 end

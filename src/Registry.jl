@@ -1,6 +1,6 @@
 
 # Think of a name that would be good fit for the Pkg API
-function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registries::Vector{String})
+function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registries::Vector{<:AbstractString})
     if length(registries) == 1
         return registry_packagequery(packages, registries[1])
     end
@@ -37,7 +37,7 @@ function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, regist
     return registry_pkg
 end
 
-function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registry::Pkg.Registry.RegistryInstance; override::Bool= true)
+function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registry::Pkg.Registry.RegistryInstance)
     (package.is_tracking_path || package.is_tracking_repo) && return nothing
 
     if package.is_tracking_registry
