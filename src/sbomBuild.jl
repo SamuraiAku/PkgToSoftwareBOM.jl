@@ -1,7 +1,7 @@
 export generateSPDX
 
 # I suppose I should add test only dependencies as well? They're all downloaded. Would have to parse [extras] in Project and test/Project.toml? Or is there a better way?
-function generateSPDX(docData::spdxCreationData= spdxCreationData(), toplevel::Dict{String, Base.UUID}= Pkg.project().dependencies, sbomRegistries::Vector{<:AbstractString}= ["General"], envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= Pkg.dependencies())
+function generateSPDX(toplevel::Dict{String, Base.UUID}= Pkg.project().dependencies, docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"], envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= Pkg.dependencies())
     # Query the registries for package information
     registry_packages= registry_packagequery(envpkgs, sbomRegistries)
 
