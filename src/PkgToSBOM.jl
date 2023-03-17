@@ -34,8 +34,8 @@ Base.@kwdef struct spdxCreationData
     Name::String= "Julia Environment"
     NamespaceURL::Union{AbstractString, Nothing}= nothing
     Creators::Vector{<:AbstractString}= String[]
-    CreatorComment::Union{AbstractString, Nothing}= nothing
-    DocumentComment::Union{AbstractString, Nothing}= nothing
+    CreatorComment::Union{AbstractString, Missing}= missing
+    DocumentComment::Union{AbstractString, Missing}= missing
 end
 
 include("Registry.jl")
