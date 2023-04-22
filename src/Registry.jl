@@ -38,9 +38,9 @@ function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, regist
 end
 
 function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registry::Pkg.Registry.RegistryInstance)
-    (package.is_tracking_path || package.is_tracking_repo) && return nothing
+    package.is_tracking_repo && return nothing
 
-    if package.is_tracking_registry
+    if package.is_tracking_registry || package.is_tracking_path
         isnothing(package.version) && return nothing  # Typically this means the package is an stdlib
         isnothing(package.tree_hash) && return nothing  # This is probably an stdlib which is also in the registry for some reason
 
@@ -63,8 +63,8 @@ function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registr
 
     # TODO: Resolve the correct Compat and Deps for this version
 
-    # Verify that the version exists in this registry
-    haskey(Versions, string(package.version)) || return missing
+    # If actively tracking the registry, verify that the version exists in this registry
+    (package.is_tracking_registry && haskey(Versions, string(package.version))) || return missing
 
     # Verify the tree hash in the registry matches the hash in the package
     Versions[string(package.version)]["git-tree-sha1"] == package.tree_hash || error("Tree hash of $(package.name) v$(string(package.version)) does not match registry:  $(string(package.tree_hash)) (Package) vs. $(Versions[string(package.version)]["git-tree-sha1"]) (Registry)")

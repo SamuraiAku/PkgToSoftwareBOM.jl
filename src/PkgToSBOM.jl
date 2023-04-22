@@ -23,12 +23,20 @@ Base.@kwdef struct PackageRegistryInfo
     #PackageDependencies::Dict{String, Any}
 end
 
-Base.@kwdef struct sbomData
+Base.@kwdef struct spdxPackage_BuildInstructions
+    name::AbstractString
+    spdxfile_toexclude::Union{Nothing, AbstractString}
+    excluded_files::Vector{String}= String[]
+    excluded_dirs::Vector{String}= String[]
+    excluded_patterns::Vector{Regex}= Regex[]
+end
+
+Base.@kwdef struct spdxPackageData
     packages::Dict{UUID, Pkg.API.PackageInfo}
     registrydata::Dict{UUID, Union{Nothing, Missing, PackageRegistryInfo}}
     packagesinsbom::Set{UUID}= Set{UUID}()
+    packagebuildinstructions::Dict{UUID, spdxPackage_BuildInstructions}
 end
-
 
 Base.@kwdef struct spdxCreationData
     Name::String= "Julia Environment"
@@ -36,17 +44,15 @@ Base.@kwdef struct spdxCreationData
     Creators::Vector{<:AbstractString}= String[]
     CreatorComment::Union{AbstractString, Missing}= missing
     DocumentComment::Union{AbstractString, Missing}= missing
+    rootpackages::Dict{String, Base.UUID}= Pkg.project().dependencies
+    packagebuildinstructions::Dict{UUID, spdxPackage_BuildInstructions}= Dict{UUID, spdxPackage_BuildInstructions}()
 end
 
 include("Registry.jl")
 include("sbomBuild.jl")
 
-function isstdlib(name::AbstractString)
-    ver= Base.VERSION
-    verdir= "v"*string(ver.major)*"."*string(ver.minor)
-    stdlist= readdir(joinpath(Sys.BINDIR, "../share/julia/stdlib", verdir))
-
-    return name in stdlist
+function is_stdlib(uuid::UUID)
+    return Pkg.Types.is_stdlib(uuid)
 end
 
 end
