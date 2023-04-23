@@ -51,14 +51,6 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
 
     # Check if it's a standard library
     is_stdlib(uuid) && return nothing
-
-    # Build the SPDX package
-    # The contents of the SPDX package depend on whether Pkg is tracking the package via:
-    #   1) A package registry
-    #   2) Connecting directly with a git repository
-    #   3) Source code on a locally accessible storage device (i.e. no source control)
-    #   4) Is the package a package under development that will eventually be added to a registry
-    #       a) If marked as such, there should be a note saying so in the package
     
     package.Name= packagedata.name
     package.Version= string(packagedata.version)
@@ -101,28 +93,34 @@ end
 
 
 function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.PackageInfo, registrydata::Union{Nothing, Missing, PackageRegistryInfo})
+    # The location of the SPDX package's source code depend on whether Pkg is tracking the package via:
+    #   1) A package registry
+    #   2) Connecting directly with a git repository
+    #   3) Source code on a locally accessible storage device (i.e. no source control)
+    #   4) Is the locally stored code actually a registered package or code from a repository that is under development?
+
     if packagedata.is_tracking_registry
         # Simplest and most common case is if you are tracking a registered package
         package.DownloadLocation= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@v$(packagedata.version)")
         package.HomePage= registrydata.packageURL
-        package.SourceInfo= "Package Information is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
-        # Don't set FileName in this case.
+        package.SourceInfo= "Source Code Location is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
     elseif packagedata.is_tracking_repo
         # Next simplest case is if you are directly tracking a repository
         package.DownloadLocation= SpdxDownloadLocationV2("git+$(packagedata.git_source)@$(packagedata.git_revision)")
         package.HomePage= packagedata.git_source
         package.SourceInfo= "$(packagedata.name) is directly tracking a git repository."
-        # Don't set FileName in this case.
     elseif packagedata.is_tracking_path
         # The hard case is if you are working off a local file path.  Is it really just a path, or are you dev'ing a package?
-        # Use the registry data if it exists
         if registrydata isa PackageRegistryInfo
+            # Then this must be a registered package under development
             package.DownloadLocation= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@v$(packagedata.version)")
             package.HomePage= registrydata.packageURL
-            package.SourceInfo= "Package Information is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
+            package.SourceInfo= "Source Code Location is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
             # TODO: See if this version exists in the registry. If it already does, then that's an error/warning on this dev version
+            # TODO: Think of some additional note to source info to note this was made for a package under development?
         else
             # TODO: This may be a dev'ed version of a direct track from a repository. Figure out how to determine that
+            #        Until then......
             package.DownloadLocation= SpdxDownloadLocationV2("NOASSERTION")
             package.HomePage= "NOASSERTION"
             package.FileName= packagedata.source
