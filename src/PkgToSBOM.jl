@@ -49,7 +49,8 @@ Base.@kwdef struct spdxCreationData
 end
 
 include("Registry.jl")
-include("sbomBuild.jl")
+include("spdxBuild.jl")
+include("packageInfo.jl")
 
 function is_stdlib(uuid::UUID)
     return Pkg.Types.is_stdlib(uuid)
