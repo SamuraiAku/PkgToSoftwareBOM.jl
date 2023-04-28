@@ -4,7 +4,7 @@ function generateSPDX(docData::spdxCreationData, sbomRegistries::Vector{<:Abstra
     # Query the registries for package information
     registry_packages= registry_packagequery(envpkgs, sbomRegistries)
 
-    packagebuilddata= spdxPackageData(packages= envpkgs, registrydata= registry_packages, packagebuildinstructions= docData.packagebuildinstructions)
+    packagebuilddata= spdxPackageData(packages= envpkgs, registrydata= registry_packages, checksuminstructions= docData.checksuminstructions)
 
    # Create the SPDX Document
     spdxDoc= SpdxDocumentV2()
@@ -44,6 +44,7 @@ end
 function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxPackageData)
     packagedata= builddata.packages[uuid]
     registrydata= builddata.registrydata[uuid]
+    checksuminstructions= get(builddata.checksuminstructions, uuid, missing)
     package= SpdxPackageV2("SPDXRef-$(packagedata.name)-$(uuid)")
 
     # Check if this package already exists in the SBOM
@@ -55,21 +56,13 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     package.Name= packagedata.name
     package.Version= string(packagedata.version)
     package.Supplier= SpdxCreatorV2("NOASSERTION") # TODO: That would be the person/org who hosts package server?. Julialang would be the supplier for General registry but how would that be determined in generic case
-    package.Originator= SpdxCreatorV2("NOASSERTION")   # TODO: Use the person or group that hosts the repo on Github. Is there an API to query?
-    
+    package.Originator= SpdxCreatorV2("NOASSERTION")   # TODO: Use the person or group that hosts the repo on Github. Is there an API to query?    
     resolve_pkgsource!(package, packagedata, registrydata)
-
-    # TODO: Get the verification code/checksum correctly computed
-    #verifcode= spdxchecksum("SHA1", packagedata.source, 
-    #                        isnothing(dev_package_data)    ? builddata.excluded_files : append!(String[], builddata.excluded_files, [builddata.dev_package_data.spdxfile]),
-    #                        (packagedata.is_tracking_repo) ? append!(String[], builddata.excluded_dirs, [".git"]) : builddata.excluded_dirs, 
-    #                        builddata.excluded_patterns)
-    #package.VerificationCode= SpdxPkgVerificationCodeV2(bytes2hex(verifcode), String[developerSPDXfile])
-    
+    package.VerificationCode= spdxpkgverifcode(packagedata.source, checksuminstructions)
     package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
     push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
     package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") # TODO: Scan source for licenses and/or query Github API
-    package.Copyright= "NOASSERTION" # TODO:  Look for a copyright file and include the first 10k characters?  Would want a modificstion to SPDX so that's not all printed out.
+    package.Copyright= "NOASSERTION" # TODO:  Scan license files for the first line that says "Copyright"?  That would about work.
 
     # TODO: Populate Summary with something via a Github API query
     # TODO: Should DetailedDescription be populated with the README?  Or the first 10k characters? Or just a link or path to the README?
@@ -131,4 +124,16 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
     end
 
     return nothing
+end
+
+function spdxpkgverifcode(source::AbstractString, checksuminstructions::Union{Missing, spdxPackageChecksumInstructions})
+    if ismissing(checksuminstructions)
+        checksuminstructions= spdxPackageChecksumInstructions(name= "") # go with the defaults
+    end
+
+    excluded_files= checksuminstructions.excluded_files
+    ismissing(checksuminstructions.spdxfile_toexclude) || append!(excluded_files, checksuminstructions.spdxfile_toexclude)
+
+    verifcode= spdxchecksum("SHA1", source, excluded_files, checksuminstructions.excluded_dirs, checksuminstructions.excluded_patterns)
+    return SpdxPkgVerificationCodeV2(bytes2hex(verifcode), checksuminstructions.spdxfile_toexclude)
 end

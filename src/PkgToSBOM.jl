@@ -23,11 +23,11 @@ Base.@kwdef struct PackageRegistryInfo
     #PackageDependencies::Dict{String, Any}
 end
 
-Base.@kwdef struct spdxPackage_BuildInstructions
+Base.@kwdef struct spdxPackageChecksumInstructions
     name::AbstractString
-    spdxfile_toexclude::Union{Nothing, AbstractString}
+    spdxfile_toexclude::Union{Missing, Vector{String}}= missing
     excluded_files::Vector{String}= String[]
-    excluded_dirs::Vector{String}= String[]
+    excluded_dirs::Vector{String}= String[".git"]
     excluded_patterns::Vector{Regex}= Regex[]
 end
 
@@ -35,7 +35,7 @@ Base.@kwdef struct spdxPackageData
     packages::Dict{UUID, Pkg.API.PackageInfo}
     registrydata::Dict{UUID, Union{Nothing, Missing, PackageRegistryInfo}}
     packagesinsbom::Set{UUID}= Set{UUID}()
-    packagebuildinstructions::Dict{UUID, spdxPackage_BuildInstructions}
+    checksuminstructions::Dict{UUID, spdxPackageChecksumInstructions}
 end
 
 Base.@kwdef struct spdxCreationData
@@ -45,7 +45,7 @@ Base.@kwdef struct spdxCreationData
     CreatorComment::Union{AbstractString, Missing}= missing
     DocumentComment::Union{AbstractString, Missing}= missing
     rootpackages::Dict{String, Base.UUID}= Pkg.project().dependencies
-    packagebuildinstructions::Dict{UUID, spdxPackage_BuildInstructions}= Dict{UUID, spdxPackage_BuildInstructions}()
+    checksuminstructions::Dict{UUID, spdxPackageChecksumInstructions}= Dict{UUID, spdxPackageChecksumInstructions}()
 end
 
 include("Registry.jl")
