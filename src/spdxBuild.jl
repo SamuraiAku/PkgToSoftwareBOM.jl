@@ -89,9 +89,8 @@ function spdxpkgverifcode(source::AbstractString, packageInstructions::Union{Mis
         packageInstructions= spdxPackageInstructions(name= "") # go with the defaults
     end
 
-    excluded_files= packageInstructions.excluded_files
+    excluded_files= copy(packageInstructions.excluded_files)
     ismissing(packageInstructions.spdxfile_toexclude) || append!(excluded_files, packageInstructions.spdxfile_toexclude)
-
     verifcode= spdxchecksum("SHA1", source, excluded_files, packageInstructions.excluded_dirs, packageInstructions.excluded_patterns)
     return SpdxPkgVerificationCodeV2(bytes2hex(verifcode), packageInstructions.spdxfile_toexclude)
 end
