@@ -1,6 +1,6 @@
 export generateSPDX
 
-function generateSPDX(docData::spdxCreationData, sbomRegistries::Vector{<:AbstractString}= ["General"], envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= Pkg.dependencies())
+function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"], envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= Pkg.dependencies())
     # Query the registries for package information
     registry_packages= registry_packagequery(envpkgs, sbomRegistries)
 
