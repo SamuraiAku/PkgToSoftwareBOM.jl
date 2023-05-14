@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 export generateSPDX
 
 function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"], envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= Pkg.dependencies())

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 
 # Think of a name that would be good fit for the Pkg API
 function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registries::Vector{<:AbstractString})

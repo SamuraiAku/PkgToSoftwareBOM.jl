@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.PackageInfo, registrydata::Union{Nothing, Missing, PackageRegistryInfo})
     # The location of the SPDX package's source code depend on whether Pkg is tracking the package via:
     #   1) A package registry
