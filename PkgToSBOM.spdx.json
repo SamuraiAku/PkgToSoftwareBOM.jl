@@ -1,0 +1,735 @@
+{
+    "spdxVersion": "SPDX-2.3",
+    "dataLicense": "CC0-1.0",
+    "SPDXID": "SPDXRef-DOCUMENT",
+    "name": "PkgToSBOM.jl Developer SBOM",
+    "documentNamespace": "https://github.com/SamuraiAku/PkgToSBOM.jl/blob/main/PkgToSBOM.spdx.json-e0bb54f0-7ebd-43f0-b83c-a767f3e859d5",
+    "creationInfo": {
+        "creators": [
+            "Person:  Simon Avery  (savery@ieee.org)",
+            "Tool:  PkgToSBOM.jl  ()"
+        ],
+        "created": "2023-05-15T05:21:32Z"
+    },
+    "comment": "Registries used for populating Package data:\nGeneral registry: https://github.com/JuliaRegistries/General.git\nOfficial general Julia package registry where people can\nregister any package they want without too much debate about\nnaming and without enforced standards on documentation or\ntesting. We nevertheless encourage documentation, testing and\nsome amount of consideration when choosing package names.\n\n\n",
+    "packages": [
+        {
+            "name": "Preferences",
+            "SPDXID": "SPDXRef-Preferences-21216c6a-2e73-6563-6e65-726566657250",
+            "versionInfo": "1.4.0",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Preferences.jl.git@v1.4.0",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "d560e285ded90e89d90ed6730f3bb814c01065bf"
+            },
+            "homepage": "https://github.com/JuliaPackaging/Preferences.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "PrecompileTools",
+            "SPDXID": "SPDXRef-PrecompileTools-aea7be01-6a6a-4083-8856-8a6e6704d82a",
+            "versionInfo": "1.1.1",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaLang/PrecompileTools.jl.git@v1.1.1",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "8c8074a6b3f5098eaf72103aa81d5fd047d2f8de"
+            },
+            "homepage": "https://github.com/JuliaLang/PrecompileTools.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Parsers",
+            "SPDXID": "SPDXRef-Parsers-69de0a69-1ddd-5017-9359-2bf0b02dc9f0",
+            "versionInfo": "2.5.9",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaData/Parsers.jl.git@v2.5.9",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "a9eed41577a355326b78d24bfcdb0869a7657398"
+            },
+            "homepage": "https://github.com/JuliaData/Parsers.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "JSON",
+            "SPDXID": "SPDXRef-JSON-682c06a0-de6a-54ab-a142-c8b1cf79cde6",
+            "versionInfo": "0.21.4",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaIO/JSON.jl.git@v0.21.4",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "1e732661bc6eba946eb028983af28e622042e080"
+            },
+            "homepage": "https://github.com/JuliaIO/JSON.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Compat",
+            "SPDXID": "SPDXRef-Compat-34da2185-b29b-5c13-b0c7-acf172513d20",
+            "versionInfo": "4.6.1",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaLang/Compat.jl.git@v4.6.1",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "2ea161fef134a0ccc6a6d7375f62eb01e2bfe922"
+            },
+            "homepage": "https://github.com/JuliaLang/Compat.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "OrderedCollections",
+            "SPDXID": "SPDXRef-OrderedCollections-bac558e1-5e72-5ebc-8fee-abe8a469f55d",
+            "versionInfo": "1.6.0",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaCollections/OrderedCollections.jl.git@v1.6.0",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "cd9c2abd323e6b7b028067faf5062878eca9f2b1"
+            },
+            "homepage": "https://github.com/JuliaCollections/OrderedCollections.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "DataStructures",
+            "SPDXID": "SPDXRef-DataStructures-864edb3b-99cc-5e75-8d2d-829cb0a9cfe8",
+            "versionInfo": "0.18.13",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaCollections/DataStructures.jl.git@v0.18.13",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "f18b4a352c16b82fbe480e5b6ac2da6a5b47af9a"
+            },
+            "homepage": "https://github.com/JuliaCollections/DataStructures.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "ExprTools",
+            "SPDXID": "SPDXRef-ExprTools-e2ba6199-217a-4e67-a87a-7c52f15ade04",
+            "versionInfo": "0.1.9",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/invenia/ExprTools.jl.git@v0.1.9",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "1bd9cdd02b1ee6f3659796a7c72b67392530aaef"
+            },
+            "homepage": "https://github.com/invenia/ExprTools.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Mocking",
+            "SPDXID": "SPDXRef-Mocking-78c3b35d-d492-501b-9361-3d52fe80e533",
+            "versionInfo": "0.7.6",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaTesting/Mocking.jl.git@v0.7.6",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "c6a7d8c949c61654740b904c2fbafe581b6a2ac6"
+            },
+            "homepage": "https://github.com/JuliaTesting/Mocking.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "RecipesBase",
+            "SPDXID": "SPDXRef-RecipesBase-3cdcf5f2-1ef4-517c-9805-6587b60abb01",
+            "versionInfo": "1.3.4",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPlots/Plots.jl.git@v1.3.4",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "b9c9f36eaadb6574fa27d3c5378f86bd3e3ccebb"
+            },
+            "homepage": "https://github.com/JuliaPlots/Plots.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Scratch",
+            "SPDXID": "SPDXRef-Scratch-6c6a2e73-6563-6170-7368-637461726353",
+            "versionInfo": "1.2.0",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Scratch.jl.git@v1.2.0",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "0848deb154f38c7e53f2f9e20cd58ae609d014cf"
+            },
+            "homepage": "https://github.com/JuliaPackaging/Scratch.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "InlineStrings",
+            "SPDXID": "SPDXRef-InlineStrings-842dd82b-1e85-43dc-bf29-5d0ee9dffc48",
+            "versionInfo": "1.4.0",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaStrings/InlineStrings.jl.git@v1.4.0",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "acf633c6314d5c6f1efcd6fd05e5c76db187dea3"
+            },
+            "homepage": "https://github.com/JuliaStrings/InlineStrings.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "TimeZones",
+            "SPDXID": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53",
+            "versionInfo": "1.9.2",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaTime/TimeZones.jl.git@v1.9.2",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "b9073f0df39d5bf344388730b01a9f99378f8572"
+            },
+            "homepage": "https://github.com/JuliaTime/TimeZones.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Indexing",
+            "SPDXID": "SPDXRef-Indexing-313cdc1a-70c2-5d6a-ae34-0150d3930a38",
+            "versionInfo": "1.1.1",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/andyferris/Indexing.jl.git@v1.1.1",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "1a65b49265e3121b652164060e34466fef8b0ace"
+            },
+            "homepage": "https://github.com/andyferris/Indexing.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Dictionaries",
+            "SPDXID": "SPDXRef-Dictionaries-85a47980-9c8c-11e8-2b9f-f7ca1fa99fb4",
+            "versionInfo": "0.3.25",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/andyferris/Dictionaries.jl.git@v0.3.25",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "371064ef42e09157e23cec8e97e11d82296a91bc"
+            },
+            "homepage": "https://github.com/andyferris/Dictionaries.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "SplitApplyCombine",
+            "SPDXID": "SPDXRef-SplitApplyCombine-03a91e81-4c3e-53e1-a0a4-9c0c8f19dd66",
+            "versionInfo": "1.2.2",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaData/SplitApplyCombine.jl.git@v1.2.2",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "612b58f7f52d55708b09c57b495d92f275d73c91"
+            },
+            "homepage": "https://github.com/JuliaData/SplitApplyCombine.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "DataAPI",
+            "SPDXID": "SPDXRef-DataAPI-9a962f9c-6df0-11e9-0e5d-c546b8b5ee8a",
+            "versionInfo": "1.15.0",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaData/DataAPI.jl.git@v1.15.0",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "c314e384e7fa0b408a066b4f5e6219e789ec6645"
+            },
+            "homepage": "https://github.com/JuliaData/DataAPI.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "IteratorInterfaceExtensions",
+            "SPDXID": "SPDXRef-IteratorInterfaceExtensions-82899510-4779-5014-852e-03e436cf321d",
+            "versionInfo": "1.0.0",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/queryverse/IteratorInterfaceExtensions.jl.git@v1.0.0",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "96074337ea77e460a9aca6a0085e96a30d060af8"
+            },
+            "homepage": "https://github.com/queryverse/IteratorInterfaceExtensions.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "DataValueInterfaces",
+            "SPDXID": "SPDXRef-DataValueInterfaces-e2d170a0-9d28-54be-80f0-106bbe20a464",
+            "versionInfo": "1.0.0",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/queryverse/DataValueInterfaces.jl.git@v1.0.0",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "329b9fc4f1288d6a3342e8feb0483d7c68f12221"
+            },
+            "homepage": "https://github.com/queryverse/DataValueInterfaces.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "TableTraits",
+            "SPDXID": "SPDXRef-TableTraits-3783bdb8-4a98-5b6b-af9a-565f29a5fe9c",
+            "versionInfo": "1.0.1",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/queryverse/TableTraits.jl.git@v1.0.1",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "929a955146416467a0e5419faa2227c0efb2ee66"
+            },
+            "homepage": "https://github.com/queryverse/TableTraits.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Tables",
+            "SPDXID": "SPDXRef-Tables-bd369af6-aec1-5ad0-b16a-f7cc5008161c",
+            "versionInfo": "1.10.1",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaData/Tables.jl.git@v1.10.1",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "00fc38f6a0590390384f01b8b956f51a83a0c6ed"
+            },
+            "homepage": "https://github.com/JuliaData/Tables.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Requires",
+            "SPDXID": "SPDXRef-Requires-ae029012-a4dd-5104-9daa-d747884805df",
+            "versionInfo": "1.3.0",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Requires.jl.git@v1.3.0",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "a3422a00a1a18c68e8b332ad2ec22e8009c338ca"
+            },
+            "homepage": "https://github.com/JuliaPackaging/Requires.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Adapt",
+            "SPDXID": "SPDXRef-Adapt-79e6a3ab-5dfb-504d-930d-738a2a938a0e",
+            "versionInfo": "3.6.2",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaGPU/Adapt.jl.git@v3.6.2",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "f379a38110f95734b19783e901c17b2cf1c68f93"
+            },
+            "homepage": "https://github.com/JuliaGPU/Adapt.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "TypedTables",
+            "SPDXID": "SPDXRef-TypedTables-9d95f2ec-7b3d-5a63-8d20-e2491e220bb9",
+            "versionInfo": "1.4.3",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaData/TypedTables.jl.git@v1.4.3",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "253b949108a3545176fb585054001669f2ce01a8"
+            },
+            "homepage": "https://github.com/JuliaData/TypedTables.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "SPDX",
+            "SPDXID": "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540",
+            "versionInfo": "0.2.1",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/SamuraiAku/SPDX.jl.git@v0.2.1",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "76e07330a15adaf4a5a54478eac1d417574dd4b1"
+            },
+            "homepage": "https://github.com/SamuraiAku/SPDX.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "PkgToSBOM",
+            "SPDXID": "SPDXRef-PkgToSBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6",
+            "versionInfo": "0.1.0",
+            "supplier": "NOASSERTION",
+            "originator": "Person:  Simon Avery  (savery@ieee.org)",
+            "downloadLocation": "NOASSERTION",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "30ebb71fee98132a6ab1a851e3f052dd1877725b",
+                "packageVerificationCodeExcludedFiles": [
+                    "PkgToSBOM.spdx.json"
+                ]
+            },
+            "homepage": "NOASSERTION",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "MIT",
+            "copyrightText": "Copyright (c) 2023 Simon Avery <savery@ieee.org> and contributors",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        }
+    ],
+    "relationships": [
+        {
+            "spdxElementId": "SPDXRef-Preferences-21216c6a-2e73-6563-6e65-726566657250",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-PrecompileTools-aea7be01-6a6a-4083-8856-8a6e6704d82a"
+        },
+        {
+            "spdxElementId": "SPDXRef-PrecompileTools-aea7be01-6a6a-4083-8856-8a6e6704d82a",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-Parsers-69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
+        },
+        {
+            "spdxElementId": "SPDXRef-Parsers-69de0a69-1ddd-5017-9359-2bf0b02dc9f0",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-JSON-682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+        },
+        {
+            "spdxElementId": "SPDXRef-JSON-682c06a0-de6a-54ab-a142-c8b1cf79cde6",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540"
+        },
+        {
+            "spdxElementId": "SPDXRef-Compat-34da2185-b29b-5c13-b0c7-acf172513d20",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-DataStructures-864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
+        },
+        {
+            "spdxElementId": "SPDXRef-OrderedCollections-bac558e1-5e72-5ebc-8fee-abe8a469f55d",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-DataStructures-864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
+        },
+        {
+            "spdxElementId": "SPDXRef-DataStructures-864edb3b-99cc-5e75-8d2d-829cb0a9cfe8",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540"
+        },
+        {
+            "spdxElementId": "SPDXRef-Compat-34da2185-b29b-5c13-b0c7-acf172513d20",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-Mocking-78c3b35d-d492-501b-9361-3d52fe80e533"
+        },
+        {
+            "spdxElementId": "SPDXRef-ExprTools-e2ba6199-217a-4e67-a87a-7c52f15ade04",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-Mocking-78c3b35d-d492-501b-9361-3d52fe80e533"
+        },
+        {
+            "spdxElementId": "SPDXRef-Mocking-78c3b35d-d492-501b-9361-3d52fe80e533",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53"
+        },
+        {
+            "spdxElementId": "SPDXRef-PrecompileTools-aea7be01-6a6a-4083-8856-8a6e6704d82a",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-RecipesBase-3cdcf5f2-1ef4-517c-9805-6587b60abb01"
+        },
+        {
+            "spdxElementId": "SPDXRef-RecipesBase-3cdcf5f2-1ef4-517c-9805-6587b60abb01",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53"
+        },
+        {
+            "spdxElementId": "SPDXRef-Scratch-6c6a2e73-6563-6170-7368-637461726353",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53"
+        },
+        {
+            "spdxElementId": "SPDXRef-Parsers-69de0a69-1ddd-5017-9359-2bf0b02dc9f0",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-InlineStrings-842dd82b-1e85-43dc-bf29-5d0ee9dffc48"
+        },
+        {
+            "spdxElementId": "SPDXRef-InlineStrings-842dd82b-1e85-43dc-bf29-5d0ee9dffc48",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53"
+        },
+        {
+            "spdxElementId": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540"
+        },
+        {
+            "spdxElementId": "SPDXRef-Indexing-313cdc1a-70c2-5d6a-ae34-0150d3930a38",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-SplitApplyCombine-03a91e81-4c3e-53e1-a0a4-9c0c8f19dd66"
+        },
+        {
+            "spdxElementId": "SPDXRef-Indexing-313cdc1a-70c2-5d6a-ae34-0150d3930a38",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-Dictionaries-85a47980-9c8c-11e8-2b9f-f7ca1fa99fb4"
+        },
+        {
+            "spdxElementId": "SPDXRef-Dictionaries-85a47980-9c8c-11e8-2b9f-f7ca1fa99fb4",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-SplitApplyCombine-03a91e81-4c3e-53e1-a0a4-9c0c8f19dd66"
+        },
+        {
+            "spdxElementId": "SPDXRef-SplitApplyCombine-03a91e81-4c3e-53e1-a0a4-9c0c8f19dd66",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-TypedTables-9d95f2ec-7b3d-5a63-8d20-e2491e220bb9"
+        },
+        {
+            "spdxElementId": "SPDXRef-Indexing-313cdc1a-70c2-5d6a-ae34-0150d3930a38",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-TypedTables-9d95f2ec-7b3d-5a63-8d20-e2491e220bb9"
+        },
+        {
+            "spdxElementId": "SPDXRef-Dictionaries-85a47980-9c8c-11e8-2b9f-f7ca1fa99fb4",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-TypedTables-9d95f2ec-7b3d-5a63-8d20-e2491e220bb9"
+        },
+        {
+            "spdxElementId": "SPDXRef-DataAPI-9a962f9c-6df0-11e9-0e5d-c546b8b5ee8a",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-Tables-bd369af6-aec1-5ad0-b16a-f7cc5008161c"
+        },
+        {
+            "spdxElementId": "SPDXRef-OrderedCollections-bac558e1-5e72-5ebc-8fee-abe8a469f55d",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-Tables-bd369af6-aec1-5ad0-b16a-f7cc5008161c"
+        },
+        {
+            "spdxElementId": "SPDXRef-IteratorInterfaceExtensions-82899510-4779-5014-852e-03e436cf321d",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-Tables-bd369af6-aec1-5ad0-b16a-f7cc5008161c"
+        },
+        {
+            "spdxElementId": "SPDXRef-DataValueInterfaces-e2d170a0-9d28-54be-80f0-106bbe20a464",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-Tables-bd369af6-aec1-5ad0-b16a-f7cc5008161c"
+        },
+        {
+            "spdxElementId": "SPDXRef-IteratorInterfaceExtensions-82899510-4779-5014-852e-03e436cf321d",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-TableTraits-3783bdb8-4a98-5b6b-af9a-565f29a5fe9c"
+        },
+        {
+            "spdxElementId": "SPDXRef-TableTraits-3783bdb8-4a98-5b6b-af9a-565f29a5fe9c",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-Tables-bd369af6-aec1-5ad0-b16a-f7cc5008161c"
+        },
+        {
+            "spdxElementId": "SPDXRef-Tables-bd369af6-aec1-5ad0-b16a-f7cc5008161c",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-TypedTables-9d95f2ec-7b3d-5a63-8d20-e2491e220bb9"
+        },
+        {
+            "spdxElementId": "SPDXRef-Requires-ae029012-a4dd-5104-9daa-d747884805df",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-Adapt-79e6a3ab-5dfb-504d-930d-738a2a938a0e"
+        },
+        {
+            "spdxElementId": "SPDXRef-Adapt-79e6a3ab-5dfb-504d-930d-738a2a938a0e",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-TypedTables-9d95f2ec-7b3d-5a63-8d20-e2491e220bb9"
+        },
+        {
+            "spdxElementId": "SPDXRef-TypedTables-9d95f2ec-7b3d-5a63-8d20-e2491e220bb9",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540"
+        },
+        {
+            "spdxElementId": "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-PkgToSBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"
+        }
+    ],
+    "documentDescribes": [
+        "SPDXRef-PkgToSBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"
+    ]
+}
