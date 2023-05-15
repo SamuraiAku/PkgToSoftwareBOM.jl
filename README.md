@@ -37,9 +37,9 @@ To create an SBOM of your entire environment type:
 
 `sbom= generateSPDX()`
 
-If you wish to not include PkgToSBOM (or some other package) in your SBOM:
+If you wish to not include PkgToSBOM and SPDX (or some other package) in your SBOM:
 
-`sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> p.first !== "PkgToSBOM", Pkg.project().dependencies)));`
+`sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> !(p.first in ["PkgToSBOM", "SPDX"]), Pkg.project().dependencies)));`
 
 To write the SBOM to file:
 ```julia
