@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: MIT
 
-using PkgToSBOM
+using PkgToSoftwareBOM
 using SPDX
 using Pkg
 using UUIDs
 
-spdxFileName= "PkgToSBOM.spdx.json"
+spdxFileName= "PkgToSoftwareBOM.spdx.json"
 myName= SpdxCreatorV2("Person", "Simon Avery", "savery@ieee.org")
-myTool= SpdxCreatorV2("Tool", "PkgToSBOM.jl", "")
+myTool= SpdxCreatorV2("Tool", "PkgToSoftwareBOM.jl", "")
 myLicense= SpdxLicenseExpressionV2("MIT")
 
 myPackage_instr= spdxPackageInstructions(
@@ -15,7 +15,7 @@ myPackage_instr= spdxPackageInstructions(
               originator= myName,
               declaredLicense= myLicense,
               copyright= "Copyright (c) 2023 Simon Avery <savery@ieee.org> and contributors",
-              name= "PkgToSBOM")
+              name= "PkgToSoftwareBOM")
 
 devRoot= filter(p-> p.first == "PkgToSoftwareBOM", Pkg.project().dependencies)
 myNamespace= "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json"

@@ -2,14 +2,14 @@
     "spdxVersion": "SPDX-2.3",
     "dataLicense": "CC0-1.0",
     "SPDXID": "SPDXRef-DOCUMENT",
-    "name": "PkgToSBOM.jl Developer SBOM",
-    "documentNamespace": "https://github.com/SamuraiAku/PkgToSBOM.jl/blob/main/PkgToSBOM.spdx.json-e0bb54f0-7ebd-43f0-b83c-a767f3e859d5",
+    "name": "PkgToSoftwareBOM.jl Developer SBOM",
+    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-11b767e8-a866-4413-9f27-016dbf2b81f8",
     "creationInfo": {
         "creators": [
             "Person:  Simon Avery  (savery@ieee.org)",
-            "Tool:  PkgToSBOM.jl  ()"
+            "Tool:  PkgToSoftwareBOM.jl  ()"
         ],
-        "created": "2023-05-15T05:21:32Z"
+        "created": "2023-05-18T15:36:16Z"
     },
     "comment": "Registries used for populating Package data:\nGeneral registry: https://github.com/JuliaRegistries/General.git\nOfficial general Julia package registry where people can\nregister any package they want without too much debate about\nnaming and without enforced standards on documentation or\ntesting. We nevertheless encourage documentation, testing and\nsome amount of consideration when choosing package names.\n\n\n",
     "packages": [
@@ -539,17 +539,17 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
-            "name": "PkgToSBOM",
-            "SPDXID": "SPDXRef-PkgToSBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6",
+            "name": "PkgToSoftwareBOM",
+            "SPDXID": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6",
             "versionInfo": "0.1.0",
             "supplier": "NOASSERTION",
             "originator": "Person:  Simon Avery  (savery@ieee.org)",
             "downloadLocation": "NOASSERTION",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "30ebb71fee98132a6ab1a851e3f052dd1877725b",
+                "packageVerificationCodeValue": "a313b507862534f5bc85f987817dfd1c7a8b9c0e",
                 "packageVerificationCodeExcludedFiles": [
-                    "PkgToSBOM.spdx.json"
+                    "PkgToSoftwareBOM.spdx.json"
                 ]
             },
             "homepage": "NOASSERTION",
@@ -726,10 +726,10 @@
         {
             "spdxElementId": "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540",
             "relationshipType": "DEPENDENCY_OF",
-            "relatedSpdxElement": "SPDXRef-PkgToSBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"
+            "relatedSpdxElement": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"
         }
     ],
     "documentDescribes": [
-        "SPDXRef-PkgToSBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"
+        "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"
     ]
 }
