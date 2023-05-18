@@ -1,4 +1,4 @@
-name = "PkgToSBOM"
+name = "PkgToSoftwareBOM"
 uuid = "6254a0f9-6143-4104-aa2e-fd339a2830a6"
 authors = ["Simon Avery <savery@ieee.org> and contributors"]
 version = "0.1.0"

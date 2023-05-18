@@ -1,12 +1,12 @@
-# PkgToSBOM.jl
+# PkgToSoftwareBOM.jl
 
 This package produces a Software Bill of Materials (SBOM) describing your Julia environment. At this time, the SBOM produced is in the ([SPDX](https://github.com/SamuraiAku/SPDX.jl)) format.  Contributions to support other SBOM formats are welcome.
 
-I created PkgToSBOM.jl to help the Julia ecosystem get prepared for the emerging future of software supply chain security. If we want to see Julia adoption to continue to grow, then we need to be able to easily create SBOMs to supply to the organizations using Julia packages.
+I created PkgToSoftwareBOM.jl to help the Julia ecosystem get prepared for the emerging future of software supply chain security. If we want to see Julia adoption to continue to grow, then we need to be able to easily create SBOMs to supply to the organizations using Julia packages.
 
-PkgToSBOM interfaces with the standard library Pkg to fill in the SBOM data fields. Information filled out today includes a complete dependency list, versions in use, where the package can be downloaded from, and a checksum. Future versions may be able to fill in additional fields including copyright text and software license.
+PkgToSoftwareBOM interfaces with the standard library Pkg to fill in the SBOM data fields. Information filled out today includes a complete dependency list, versions in use, where the package can be downloaded from, and a checksum. Future versions may be able to fill in additional fields including copyright text and software license.
 
-PkgToSBOM defaults to using the General registry but can use other registries and even mutiple registries as the source(s) of package information.
+PkgToSoftwareBOM defaults to using the General registry but can use other registries and even mutiple registries as the source(s) of package information.
 
 ## What is an SBOM?
 
@@ -21,10 +21,10 @@ SBOMs are an important component of developing software security practices. US P
 
 ## Installation
 
-Type `] add PkgToSBOM` and then hit ⏎ Return at the REPL. You should see `pkg> add PkgToSBOM`.
+Type `] add PkgToSoftwareBOM` and then hit ⏎ Return at the REPL. You should see `pkg> add PkgToSoftwareBOM`.
 
 
-## How to I use PkgToSBOM.jl ?
+## How to I use PkgToSoftwareBOM.jl ?
 
 There are two use cases envisioned
 
@@ -37,9 +37,9 @@ To create an SBOM of your entire environment type:
 
 `sbom= generateSPDX()`
 
-If you wish to not include PkgToSBOM and SPDX (or some other package) in your SBOM:
+If you wish to not include PkgToSoftwareBOM and SPDX (or some other package) in your SBOM:
 
-`sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> !(p.first in ["PkgToSBOM", "SPDX"]), Pkg.project().dependencies)));`
+`sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> !(p.first in ["PkgToSoftwareBOM", "SPDX"]), Pkg.project().dependencies)));`
 
 To write the SBOM to file:
 ```julia
@@ -51,11 +51,11 @@ writespdx(sbom, "myEnvironmentSBOM.spdx.json")
 
 ### Developer SBOM
 
-A developer SBOM will contain information that PkgToSBOM cannot determine on its own, such as the package's license and the developer's name. To add this information to the SBOM requires calling generateSPDX() with non-default parameters.
+A developer SBOM will contain information that PkgToSoftwareBOM cannot determine on its own, such as the package's license and the developer's name. To add this information to the SBOM requires calling generateSPDX() with non-default parameters.
 
-The first thing a developer must determine is the name of their SBOM file. The reason is that PkgToSBOM computes a checksum of your source code and saves it in the SBOM file. Since the SBOM is included in the package's source tree PkgToSBOM must know what the file's name is so that it (and others who wish to re-compute the checksum themselves) can skip the file during the calculation. A suggested format for the SBOM filename is `MyPackageName.spdx.json`
+The first thing a developer must determine is the name of their SBOM file. The reason is that PkgToSoftwareBOM computes a checksum of your source code and saves it in the SBOM file. Since the SBOM is included in the package's source tree PkgToSoftwareBOM must know what the file's name is so that it (and others who wish to re-compute the checksum themselves) can skip the file during the calculation. A suggested format for the SBOM filename is `MyPackageName.spdx.json`
 
-By default, PkgToSBOM will exclude the `.git` folder in your package development directory from the checksum calcuclation. PkgToSBOM does not process the directions of `.gitignore' files nor does it ignore untracked files. It is recommended that you make sure to commit all your code and restore the repo to a pristine state before running PkgToSBOM
+By default, PkgToSoftwareBOM will exclude the `.git` folder in your package development directory from the checksum calcuclation. PkgToSoftwareBOM does not process the directions of `.gitignore' files nor does it ignore untracked files. It is recommended that you make sure to commit all your code and restore the repo to a pristine state before running PkgToSoftwareBOM
 ```
 % git clean -fdx
 % git status
@@ -103,16 +103,16 @@ using Pkg
 # Indicate who you wish to credit as creator of this SBOM, whether it is a single person 
 # or an organization or both. You may credit multiple people and organizations as necessary.
 # Including emails in the creator declaration is optional
-# Since PkgToSBOM is filling in most of the document, you can credit the tool as one of the creators as well 
+# Since PkgToSoftwareBOM is filling in most of the document, you can credit the tool as one of the creators as well 
 myName= SpdxCreatorV2("Person", "John Doe", "email@loopback.com")  # email may be an empty string if desired
 myOrg= SpdxCreatorV2("Organization", "Open-Source Org", "email2@loopback.com")
-myTool= SpdxCreatorV2("Tool", "PkgToSBOM.jl", "")
+myTool= SpdxCreatorV2("Tool", "PkgToSoftwareBOM.jl", "")
 
 devRoot= filter(p-> p.first == "MyPackageName", Pkg.project().dependencies) # A developer SBOM has a single package at its root
 
-# SPDX namespace provides a unique URI identifier for the SBOM. Best practice, which PkgToSBOM supports, is to
+# SPDX namespace provides a unique URI identifier for the SBOM. Best practice, which PkgToSoftwareBOM supports, is to
 # provide a URL to this SBOM in the package repository or to a project homepage.  
-# PkgToSBOM will append a unique UUID so that the namespace is truly unique.
+# PkgToSoftwareBOM will append a unique UUID so that the namespace is truly unique.
 myNamespace= "https://github.com/myUserName/myPackage.jl/myPackage.spdx.json"
 
 active_pkgs= Pkg.project().dependencies;
@@ -136,11 +136,11 @@ using SPDX
 writespdx(sbom, "path/to/package/source/MyPackageName.spdx.json")
 ```
 
-One case that PkgToSBOM does not support properly today is when a previous version of the developer's package does not exist in the registry. In that case, the SBOM will list the path to the local copy of the package code, instead of the URL of the repository. This may be fixed in a later version.
+One case that PkgToSoftwareBOM does not support properly today is when a previous version of the developer's package does not exist in the registry. In that case, the SBOM will list the path to the local copy of the package code, instead of the URL of the repository. This may be fixed in a later version.
 
-## How does PkgToSBOM support mulitple registries?
+## How does PkgToSoftwareBOM support mulitple registries?
 
-The majority of users and developers only ever use the General registry and that is what PkgToSBOM defaults to to find package information.
+The majority of users and developers only ever use the General registry and that is what PkgToSoftwareBOM defaults to to find package information.
 
 If you would like to use a different registry or search multiple registries, you just call `generateSPDX` with two arguments.
 
@@ -149,4 +149,4 @@ For example to create a User Environment SBOM using the General registry and ano
 sbom= generateSPDX(spdxCreationData(), ["PrivateRegistry", "General"]);
 ```
 
-The second argument is a list of all the registries you would like to use. If you have a package that exists in both registries (for example, you've cloned the respository to your local network and you want to list that as the download location), PkgToSBOM will use the information from the first registry in the list that has valid information and ignore all subsequent registires
+The second argument is a list of all the registries you would like to use. If you have a package that exists in both registries (for example, you've cloned the respository to your local network and you want to list that as the download location), PkgToSoftwareBOM will use the information from the first registry in the list that has valid information and ignore all subsequent registires

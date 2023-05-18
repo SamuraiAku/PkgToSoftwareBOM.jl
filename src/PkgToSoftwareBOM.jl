@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: MIT
 
-module PkgToSBOM
+module PkgToSoftwareBOM
 
 using Pkg
 using UUIDs
@@ -46,7 +46,7 @@ end
 Base.@kwdef struct spdxCreationData
     Name::String= "Julia Environment"
     NamespaceURL::Union{AbstractString, Nothing}= nothing
-    Creators::Vector{SpdxCreatorV2}= SpdxCreatorV2[SpdxCreatorV2("Tool", "PkgToSBOM.jl", "")]
+    Creators::Vector{SpdxCreatorV2}= SpdxCreatorV2[SpdxCreatorV2("Tool", "PkgToSoftwareBOM.jl", "")]
     CreatorComment::Union{AbstractString, Missing}= missing
     DocumentComment::Union{AbstractString, Missing}= missing
     rootpackages::Dict{String, Base.UUID}= Pkg.project().dependencies

@@ -17,12 +17,12 @@ myPackage_instr= spdxPackageInstructions(
               copyright= "Copyright (c) 2023 Simon Avery <savery@ieee.org> and contributors",
               name= "PkgToSBOM")
 
-devRoot= filter(p-> p.first == "PkgToSBOM", Pkg.project().dependencies)
-myNamespace= "https://github.com/SamuraiAku/PkgToSBOM.jl/blob/main/PkgToSBOM.spdx.json"
+devRoot= filter(p-> p.first == "PkgToSoftwareBOM", Pkg.project().dependencies)
+myNamespace= "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json"
 
 active_pkgs= Pkg.project().dependencies;
 SPDX_docCreation= spdxCreationData(
-              Name= "PkgToSBOM.jl Developer SBOM",
+              Name= "PkgToSoftwareBOM.jl Developer SBOM",
               Creators= [myName, myTool],
               NamespaceURL= myNamespace,
               rootpackages= devRoot,
