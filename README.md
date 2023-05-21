@@ -73,6 +73,17 @@ Your branch is up to date with 'origin/master'.
 nothing to commit, working tree clean
 ```
 
+Now we need to make sure that Pkg is aware that you have bumped the package version. Pkg does not detect the change to version in Project.toml automatically.  While you are developing you generally don't care about this, but it is necessary to get the correct version information into the SBOM
+
+```julia
+pkg> update myPackage
+    Updating registry at `~/.julia/registries/General.toml`
+    Updating `~/JuliaWork/myDevArea/Project.toml`
+  [6254a0f9] ~ myPackage v0.1.0 `~/.julia/dev/myPackage` ⇒ v0.1.1 `~/.julia/dev/myPackage`
+    Updating `~/JuliaWork/myDevArea/Manifest.toml`
+  [6254a0f9] ~ PkgToSoftwareBOM v0.1.0 `~/.julia/dev/myPackage` ⇒ v0.1.1 `~/.julia/dev/myPackage`
+```
+
 Once you have the filename chosen and your repository cleaned up, activate an environment that includes your under development package
 ```julia
 julia> cd("path/to/dev_area")
