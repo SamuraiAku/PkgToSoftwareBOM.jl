@@ -21,7 +21,7 @@ SBOMs are an important component of developing software security practices. US P
 ## What does an SBOM look like?
 The file `PkgToSoftwareBOM.spdx.json` at the root of this package is a Developer SBOM of this package.
 
-See examples of User Environment SBOMs in the folder `Examples`
+See examples of User Environment SBOMs in the folder `examples`
 
 ## Installation
 
