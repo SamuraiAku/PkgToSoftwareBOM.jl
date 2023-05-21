@@ -81,7 +81,7 @@ pkg> update myPackage
     Updating `~/JuliaWork/myDevArea/Project.toml`
   [6254a0f9] ~ myPackage v0.1.0 `~/.julia/dev/myPackage` ⇒ v0.1.1 `~/.julia/dev/myPackage`
     Updating `~/JuliaWork/myDevArea/Manifest.toml`
-  [6254a0f9] ~ PkgToSoftwareBOM v0.1.0 `~/.julia/dev/myPackage` ⇒ v0.1.1 `~/.julia/dev/myPackage`
+  [6254a0f9] ~ myPackage v0.1.0 `~/.julia/dev/myPackage` ⇒ v0.1.1 `~/.julia/dev/myPackage`
 ```
 
 Once you have the filename chosen and your repository cleaned up, activate an environment that includes your under development package
