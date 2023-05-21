@@ -18,6 +18,10 @@ For a further information about SBOMs, their importance and how they can be used
 
 SBOMs are an important component of developing software security practices. US Presidential Executive Order [EO 14028](https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/) established SBOMs as one method by which the federal government will establish the provenence of software in use. Commercial organizations are also using SBOMs for the same reason.
 
+## What does an SBOM look like?
+The file `PkgToSoftwareBOM.spdx.json` at the root of this package is a Developer SBOM of this package.
+
+See examples of User Environment SBOMs in the folder `Examples`
 
 ## Installation
 
