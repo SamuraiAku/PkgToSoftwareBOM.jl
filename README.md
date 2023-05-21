@@ -21,7 +21,10 @@ SBOMs are an important component of developing software security practices. US P
 
 ## Installation
 
-Type `] add PkgToSoftwareBOM` and then hit ⏎ Return at the REPL. You should see `pkg> add PkgToSoftwareBOM`.
+Type `] add PkgToSoftwareBOM` and then hit ⏎ Return at the REPL. You should see 
+```julia
+pkg> add PkgToSoftwareBOM
+```
 
 
 ## How to I use PkgToSoftwareBOM.jl ?
@@ -39,7 +42,9 @@ To create an SBOM of your entire environment type:
 
 If you wish to not include PkgToSoftwareBOM and SPDX (or some other package) in your SBOM:
 
-`sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> !(p.first in ["PkgToSoftwareBOM", "SPDX"]), Pkg.project().dependencies)));`
+```julia
+sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> !(p.first in ["PkgToSoftwareBOM", "SPDX"]), Pkg.project().dependencies)));
+```
 
 To write the SBOM to file:
 ```julia
