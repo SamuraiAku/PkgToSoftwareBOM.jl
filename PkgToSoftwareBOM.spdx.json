@@ -3,13 +3,13 @@
     "dataLicense": "CC0-1.0",
     "SPDXID": "SPDXRef-DOCUMENT",
     "name": "PkgToSoftwareBOM.jl Developer SBOM",
-    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-11b767e8-a866-4413-9f27-016dbf2b81f8",
+    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-7b087e62-8b75-4ed0-8425-32d3b6ad2378",
     "creationInfo": {
         "creators": [
             "Person:  Simon Avery  (savery@ieee.org)",
             "Tool:  PkgToSoftwareBOM.jl  ()"
         ],
-        "created": "2023-05-18T15:36:16Z"
+        "created": "2023-05-21T21:27:42Z"
     },
     "comment": "Registries used for populating Package data:\nGeneral registry: https://github.com/JuliaRegistries/General.git\nOfficial general Julia package registry where people can\nregister any package they want without too much debate about\nnaming and without enforced standards on documentation or\ntesting. We nevertheless encourage documentation, testing and\nsome amount of consideration when choosing package names.\n\n\n",
     "packages": [
@@ -58,13 +58,13 @@
         {
             "name": "Parsers",
             "SPDXID": "SPDXRef-Parsers-69de0a69-1ddd-5017-9359-2bf0b02dc9f0",
-            "versionInfo": "2.5.9",
+            "versionInfo": "2.5.10",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaData/Parsers.jl.git@v2.5.9",
+            "downloadLocation": "git+https://github.com/JuliaData/Parsers.jl.git@v2.5.10",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "a9eed41577a355326b78d24bfcdb0869a7657398"
+                "packageVerificationCodeValue": "15e6fa2ebcf28bc1723ece0e680a176547d45f96"
             },
             "homepage": "https://github.com/JuliaData/Parsers.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -541,18 +541,19 @@
         {
             "name": "PkgToSoftwareBOM",
             "SPDXID": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6",
-            "versionInfo": "0.1.0",
+            "versionInfo": "0.1.1",
             "supplier": "NOASSERTION",
             "originator": "Person:  Simon Avery  (savery@ieee.org)",
-            "downloadLocation": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.1",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "a313b507862534f5bc85f987817dfd1c7a8b9c0e",
+                "packageVerificationCodeValue": "f22ac1f894d2a1ee11592232e30218b2a2e50abd",
                 "packageVerificationCodeExcludedFiles": [
                     "PkgToSoftwareBOM.spdx.json"
                 ]
             },
-            "homepage": "NOASSERTION",
+            "homepage": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
             "licenseConcluded": "NOASSERTION",
             "licenseInfoFromFiles": [
                 "NOASSERTION"
