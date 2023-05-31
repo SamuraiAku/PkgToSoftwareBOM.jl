@@ -3,13 +3,13 @@
 # Think of a name that would be good fit for the Pkg API
 function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registries::Vector{<:AbstractString})
     if length(registries) == 1
-        return registry_packagequery(packages, registries[1])
+        return _registry_packagequery(packages, registries[1])
     end
 
     registry_pkg= Dict{UUID, Union{Nothing, Missing, PackageRegistryInfo}}()
     querylist= packages
     for reg in registries
-        reglist= registry_packagequery(querylist, reg)
+        reglist= _registry_packagequery(querylist, reg)
         registry_pkg= merge(registry_pkg, reglist)
         emptykeys= keys(filter(p-> isnothing(p.second) || ismissing(p.second), registry_pkg))
         querylist= Dict{UUID, Pkg.API.PackageInfo}(k => packages[k] for k in emptykeys)
@@ -17,7 +17,7 @@ function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, regist
     return registry_pkg
 end
 
-function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registry::AbstractString)
+function _registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registry::AbstractString)
     #Get the requested registry
     active_regs= Pkg.Registry.reachable_registries()
     selected_registry= nothing
@@ -38,6 +38,21 @@ function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, regist
     return registry_pkg
 end
 
+function get_registry_data(registryPkg::Pkg.Registry.PkgEntry, filename::AbstractString)
+    registryPath= registryPkg.registry_path
+    if isfile(registryPath)
+        # Compressed registry (ex. the General Registry) that has been read into memory
+        return TOML.parse(registryPkg.in_memory_registry[joinpath(registryPkg.path, filename)])
+    elseif isdir(registryPath)
+        data= open(joinpath(registryPath, registryPkg.path, filename)) do f
+            TOML.parse(f)
+        end
+        return data
+    else
+        error("get_registry_data(): Apparent breaking change to Pkg data structures")
+    end
+end
+
 function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registry::Pkg.Registry.RegistryInstance)
     package.is_tracking_repo && return nothing
     is_stdlib(uuid) && return nothing
@@ -54,11 +69,8 @@ function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registr
         return nothing
     end
     
-    registryPath= registryPkg.path
-    #Compat= TOML.parse(registry.in_memory_registry[registryPath*"/Compat.toml"])
-    #Deps= TOML.parse(registry.in_memory_registry[registryPath*"/Deps.toml"])
-    Package= TOML.parse(registry.in_memory_registry[registryPath*"/Package.toml"])
-    Versions= TOML.parse(registry.in_memory_registry[registryPath*"/Versions.toml"])
+    Package= get_registry_data(registryPkg, "Package.toml")
+    Versions= get_registry_data(registryPkg, "Versions.toml")
 
     # TODO: Resolve the correct Compat and Deps for this version
 
