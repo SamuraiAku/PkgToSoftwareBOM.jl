@@ -42,9 +42,9 @@ function get_registry_data(registryPkg::Pkg.Registry.PkgEntry, filename::Abstrac
     registryPath= registryPkg.registry_path
     if isfile(registryPath)
         # Compressed registry (ex. the General Registry) that has been read into memory
-        return TOML.parse(registryPkg.in_memory_registry[joinpath(registryPkg.path, filename)])
+        return TOML.parse(registryPkg.in_memory_registry[join([registryPkg.path, filename], "/")])
     elseif isdir(registryPath)
-        data= open(joinpath(registryPath, registryPkg.path, filename)) do f
+        data= open(normpath(joinpath(registryPath, registryPkg.path, filename))) do f
             TOML.parse(f)
         end
         return data
