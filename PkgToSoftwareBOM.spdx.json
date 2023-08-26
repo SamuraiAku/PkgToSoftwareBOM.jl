@@ -3,13 +3,13 @@
     "dataLicense": "CC0-1.0",
     "SPDXID": "SPDXRef-DOCUMENT",
     "name": "PkgToSoftwareBOM.jl Developer SBOM",
-    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-dc290582-9eef-40a3-9391-ccf362d54ed5",
+    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-b9306fda-9ed2-4f5a-81b5-898af51cc688",
     "creationInfo": {
         "creators": [
             "Person:  Simon Avery  (savery@ieee.org)",
             "Tool:  PkgToSoftwareBOM.jl  ()"
         ],
-        "created": "2023-05-30T05:31:54Z"
+        "created": "2023-08-26T16:56:46Z"
     },
     "comment": "Registries used for populating Package data:\nGeneral registry: https://github.com/JuliaRegistries/General.git\nOfficial general Julia package registry where people can\nregister any package they want without too much debate about\nnaming and without enforced standards on documentation or\ntesting. We nevertheless encourage documentation, testing and\nsome amount of consideration when choosing package names.\n\n\n",
     "packages": [
@@ -37,13 +37,13 @@
         {
             "name": "PrecompileTools",
             "SPDXID": "SPDXRef-PrecompileTools-aea7be01-6a6a-4083-8856-8a6e6704d82a",
-            "versionInfo": "1.1.1",
+            "versionInfo": "1.2.0",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaLang/PrecompileTools.jl.git@v1.1.1",
+            "downloadLocation": "git+https://github.com/JuliaLang/PrecompileTools.jl.git@v1.2.0",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "8c8074a6b3f5098eaf72103aa81d5fd047d2f8de"
+                "packageVerificationCodeValue": "243d9436f32d0aeb8ddd8ee0bcfc2f44f5133ac7"
             },
             "homepage": "https://github.com/JuliaLang/PrecompileTools.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -58,13 +58,13 @@
         {
             "name": "Parsers",
             "SPDXID": "SPDXRef-Parsers-69de0a69-1ddd-5017-9359-2bf0b02dc9f0",
-            "versionInfo": "2.5.10",
+            "versionInfo": "2.7.2",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaData/Parsers.jl.git@v2.5.10",
+            "downloadLocation": "git+https://github.com/JuliaData/Parsers.jl.git@v2.7.2",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "15e6fa2ebcf28bc1723ece0e680a176547d45f96"
+                "packageVerificationCodeValue": "9656cba54acdb22cad8e42e7fbd4e92771e48c94"
             },
             "homepage": "https://github.com/JuliaData/Parsers.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -100,13 +100,13 @@
         {
             "name": "Compat",
             "SPDXID": "SPDXRef-Compat-34da2185-b29b-5c13-b0c7-acf172513d20",
-            "versionInfo": "4.6.1",
+            "versionInfo": "4.9.0",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaLang/Compat.jl.git@v4.6.1",
+            "downloadLocation": "git+https://github.com/JuliaLang/Compat.jl.git@v4.9.0",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "2ea161fef134a0ccc6a6d7375f62eb01e2bfe922"
+                "packageVerificationCodeValue": "5ee5d1906819286d758ce6441dd51114a1620173"
             },
             "homepage": "https://github.com/JuliaLang/Compat.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -121,13 +121,13 @@
         {
             "name": "OrderedCollections",
             "SPDXID": "SPDXRef-OrderedCollections-bac558e1-5e72-5ebc-8fee-abe8a469f55d",
-            "versionInfo": "1.6.0",
+            "versionInfo": "1.6.2",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaCollections/OrderedCollections.jl.git@v1.6.0",
+            "downloadLocation": "git+https://github.com/JuliaCollections/OrderedCollections.jl.git@v1.6.2",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "cd9c2abd323e6b7b028067faf5062878eca9f2b1"
+                "packageVerificationCodeValue": "912e63332343a9a8c2329c90bfabd9e15af4dc2b"
             },
             "homepage": "https://github.com/JuliaCollections/OrderedCollections.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -142,13 +142,13 @@
         {
             "name": "DataStructures",
             "SPDXID": "SPDXRef-DataStructures-864edb3b-99cc-5e75-8d2d-829cb0a9cfe8",
-            "versionInfo": "0.18.13",
+            "versionInfo": "0.18.15",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaCollections/DataStructures.jl.git@v0.18.13",
+            "downloadLocation": "git+https://github.com/JuliaCollections/DataStructures.jl.git@v0.18.15",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "f18b4a352c16b82fbe480e5b6ac2da6a5b47af9a"
+                "packageVerificationCodeValue": "bdaac673e4117bf2a8a5d9d013d4bfaa99870b34"
             },
             "homepage": "https://github.com/JuliaCollections/DataStructures.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -163,13 +163,13 @@
         {
             "name": "ExprTools",
             "SPDXID": "SPDXRef-ExprTools-e2ba6199-217a-4e67-a87a-7c52f15ade04",
-            "versionInfo": "0.1.9",
+            "versionInfo": "0.1.10",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/invenia/ExprTools.jl.git@v0.1.9",
+            "downloadLocation": "git+https://github.com/invenia/ExprTools.jl.git@v0.1.10",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "1bd9cdd02b1ee6f3659796a7c72b67392530aaef"
+                "packageVerificationCodeValue": "e6116c921b6377622706c543417d8c7489b15ec6"
             },
             "homepage": "https://github.com/invenia/ExprTools.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -184,57 +184,15 @@
         {
             "name": "Mocking",
             "SPDXID": "SPDXRef-Mocking-78c3b35d-d492-501b-9361-3d52fe80e533",
-            "versionInfo": "0.7.6",
+            "versionInfo": "0.7.7",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaTesting/Mocking.jl.git@v0.7.6",
+            "downloadLocation": "git+https://github.com/JuliaTesting/Mocking.jl.git@v0.7.7",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "c6a7d8c949c61654740b904c2fbafe581b6a2ac6"
+                "packageVerificationCodeValue": "5c4af71196d3603ce3f837b8be55bd4e5f424efd"
             },
             "homepage": "https://github.com/JuliaTesting/Mocking.jl.git",
-            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
-            "licenseConcluded": "NOASSERTION",
-            "licenseInfoFromFiles": [
-                "NOASSERTION"
-            ],
-            "licenseDeclared": "NOASSERTION",
-            "copyrightText": "NOASSERTION",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
-        },
-        {
-            "name": "RecipesBase",
-            "SPDXID": "SPDXRef-RecipesBase-3cdcf5f2-1ef4-517c-9805-6587b60abb01",
-            "versionInfo": "1.3.4",
-            "supplier": "NOASSERTION",
-            "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaPlots/Plots.jl.git@v1.3.4",
-            "filesAnalyzed": true,
-            "packageVerificationCode": {
-                "packageVerificationCodeValue": "b9c9f36eaadb6574fa27d3c5378f86bd3e3ccebb"
-            },
-            "homepage": "https://github.com/JuliaPlots/Plots.jl.git",
-            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
-            "licenseConcluded": "NOASSERTION",
-            "licenseInfoFromFiles": [
-                "NOASSERTION"
-            ],
-            "licenseDeclared": "NOASSERTION",
-            "copyrightText": "NOASSERTION",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
-        },
-        {
-            "name": "Scratch",
-            "SPDXID": "SPDXRef-Scratch-6c6a2e73-6563-6170-7368-637461726353",
-            "versionInfo": "1.2.0",
-            "supplier": "NOASSERTION",
-            "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaPackaging/Scratch.jl.git@v1.2.0",
-            "filesAnalyzed": true,
-            "packageVerificationCode": {
-                "packageVerificationCodeValue": "0848deb154f38c7e53f2f9e20cd58ae609d014cf"
-            },
-            "homepage": "https://github.com/JuliaPackaging/Scratch.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
             "licenseConcluded": "NOASSERTION",
             "licenseInfoFromFiles": [
@@ -266,15 +224,78 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
-            "name": "TimeZones",
-            "SPDXID": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53",
-            "versionInfo": "1.10.0",
+            "name": "TZJData",
+            "SPDXID": "SPDXRef-TZJData-dc5dba14-91b3-4cab-a142-028a31da12f7",
+            "versionInfo": "1.0.0+2023c",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaTime/TimeZones.jl.git@v1.10.0",
+            "downloadLocation": "git+https://github.com/JuliaTime/TZJData.jl.git@v1.0.0+2023c",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "1428f0177840d19789630946a7efd71b887d1d7f"
+                "packageVerificationCodeValue": "9313f532184fe590758bb429f903d55ee62bf48b"
+            },
+            "homepage": "https://github.com/JuliaTime/TZJData.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Scratch",
+            "SPDXID": "SPDXRef-Scratch-6c6a2e73-6563-6170-7368-637461726353",
+            "versionInfo": "1.2.0",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Scratch.jl.git@v1.2.0",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "0848deb154f38c7e53f2f9e20cd58ae609d014cf"
+            },
+            "homepage": "https://github.com/JuliaPackaging/Scratch.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "RecipesBase",
+            "SPDXID": "SPDXRef-RecipesBase-3cdcf5f2-1ef4-517c-9805-6587b60abb01",
+            "versionInfo": "1.3.4",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPlots/Plots.jl.git@v1.3.4",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "b9c9f36eaadb6574fa27d3c5378f86bd3e3ccebb"
+            },
+            "homepage": "https://github.com/JuliaPlots/Plots.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "TimeZones",
+            "SPDXID": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53",
+            "versionInfo": "1.12.0",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaTime/TimeZones.jl.git@v1.12.0",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "baa658058c30e2883b970902e40a5d8fb93e43b1"
             },
             "homepage": "https://github.com/JuliaTime/TimeZones.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -541,13 +562,13 @@
         {
             "name": "PkgToSoftwareBOM",
             "SPDXID": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6",
-            "versionInfo": "0.1.2",
+            "versionInfo": "0.1.3",
             "supplier": "NOASSERTION",
             "originator": "Person:  Simon Avery  (savery@ieee.org)",
-            "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.2",
+            "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.3",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "a6365940f3335c0ccbdc95f01fedb143fcd52fd7",
+                "packageVerificationCodeValue": "70beaa7bfad315429572cfdcd3aa5c6f45f4a620",
                 "packageVerificationCodeExcludedFiles": [
                     "PkgToSoftwareBOM.spdx.json"
                 ]
@@ -615,12 +636,17 @@
             "relatedSpdxElement": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53"
         },
         {
-            "spdxElementId": "SPDXRef-PrecompileTools-aea7be01-6a6a-4083-8856-8a6e6704d82a",
+            "spdxElementId": "SPDXRef-Parsers-69de0a69-1ddd-5017-9359-2bf0b02dc9f0",
             "relationshipType": "DEPENDENCY_OF",
-            "relatedSpdxElement": "SPDXRef-RecipesBase-3cdcf5f2-1ef4-517c-9805-6587b60abb01"
+            "relatedSpdxElement": "SPDXRef-InlineStrings-842dd82b-1e85-43dc-bf29-5d0ee9dffc48"
         },
         {
-            "spdxElementId": "SPDXRef-RecipesBase-3cdcf5f2-1ef4-517c-9805-6587b60abb01",
+            "spdxElementId": "SPDXRef-InlineStrings-842dd82b-1e85-43dc-bf29-5d0ee9dffc48",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53"
+        },
+        {
+            "spdxElementId": "SPDXRef-TZJData-dc5dba14-91b3-4cab-a142-028a31da12f7",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53"
         },
@@ -630,12 +656,12 @@
             "relatedSpdxElement": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53"
         },
         {
-            "spdxElementId": "SPDXRef-Parsers-69de0a69-1ddd-5017-9359-2bf0b02dc9f0",
+            "spdxElementId": "SPDXRef-PrecompileTools-aea7be01-6a6a-4083-8856-8a6e6704d82a",
             "relationshipType": "DEPENDENCY_OF",
-            "relatedSpdxElement": "SPDXRef-InlineStrings-842dd82b-1e85-43dc-bf29-5d0ee9dffc48"
+            "relatedSpdxElement": "SPDXRef-RecipesBase-3cdcf5f2-1ef4-517c-9805-6587b60abb01"
         },
         {
-            "spdxElementId": "SPDXRef-InlineStrings-842dd82b-1e85-43dc-bf29-5d0ee9dffc48",
+            "spdxElementId": "SPDXRef-RecipesBase-3cdcf5f2-1ef4-517c-9805-6587b60abb01",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53"
         },
