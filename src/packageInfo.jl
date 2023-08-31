@@ -9,19 +9,19 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
 
     if packagedata.is_tracking_registry
         # Simplest and most common case is if you are tracking a registered package
-        package.DownloadLocation= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@v$(packagedata.version)")
+        package.DownloadLocation= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@v$(packagedata.version)$(isempty(registrydata.packageSubdir) ? "" : "#"*registrydata.packageSubdir)")
         package.HomePage= registrydata.packageURL
         package.SourceInfo= "Source Code Location is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
     elseif packagedata.is_tracking_repo
         # Next simplest case is if you are directly tracking a repository
-        package.DownloadLocation= SpdxDownloadLocationV2("git+$(packagedata.git_source)@$(packagedata.git_revision)")
+        package.DownloadLocation= SpdxDownloadLocationV2("git+$(packagedata.git_source)@$(packagedata.git_revision)$(isempty(registrydata.packageSubdir) ? "" : "#"*registrydata.packageSubdir)")
         package.HomePage= packagedata.git_source
         package.SourceInfo= "$(packagedata.name) is directly tracking a git repository."
     elseif packagedata.is_tracking_path
         # The hard case is if you are working off a local file path.  Is it really just a path, or are you dev'ing a package?
         if registrydata isa PackageRegistryInfo
             # Then this must be a registered package under development
-            package.DownloadLocation= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@v$(packagedata.version)")
+            package.DownloadLocation= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@v$(packagedata.version)$(isempty(registrydata.packageSubdir) ? "" : "#"*registrydata.packageSubdir)")
             package.HomePage= registrydata.packageURL
             package.SourceInfo= "Source Code Location is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
             # TODO: See if this version exists in the registry. If it already does, then that's an error/warning on this dev version

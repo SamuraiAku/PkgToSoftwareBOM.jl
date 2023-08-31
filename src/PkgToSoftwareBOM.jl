@@ -18,6 +18,7 @@ Base.@kwdef struct PackageRegistryInfo
     packageName::String
     packageVersion::VersionNumber
     packageURL::String
+    packageSubdir::String
     packageTreeHash::Union{String, Nothing}
     
     # It would be nice to add these fields, but first have to figure out how to resolve version ranges

@@ -90,6 +90,7 @@ function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registr
         packageName= registryPkg.name,
         packageVersion= package.version,
         packageURL= Package["repo"],
+        packageSubdir= get(Package, "subdir", ""),
         packageTreeHash= tree_hash
     )
     
