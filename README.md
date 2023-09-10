@@ -1,5 +1,8 @@
 # PkgToSoftwareBOM.jl
 
+[![GitHub Actions](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/workflows/CI/badge.svg)](https://github.com/SamuraiAku/SPDX.jl/actions/workflows/CI.yml)
+[![codecov](https://codecov.io/gh/SamuraiAku/PkgToSoftwareBOM.jl/branch/master/graph/badge.svg?token=TODO)](https://codecov.io/gh/SamuraiAku/PkgToSoftwareBOM.jl)
+
 This package produces a Software Bill of Materials (SBOM) describing your Julia environment. At this time, the SBOM produced is in the ([SPDX](https://github.com/SamuraiAku/SPDX.jl)) format.  Contributions to support other SBOM formats are welcome.
 
 I created PkgToSoftwareBOM.jl to help the Julia ecosystem get prepared for the emerging future of software supply chain security. If we want to see Julia adoption to continue to grow, then we need to be able to easily create SBOMs to supply to the organizations using Julia packages.
@@ -25,7 +28,7 @@ See examples of User Environment SBOMs in the folder `examples`
 
 ## Installation
 
-Type `] add PkgToSoftwareBOM` and then hit ⏎ Return at the REPL. You should see 
+Type `] add PkgToSoftwareBOM` and then hit ⏎ Return at the REPL. You should see
 ```julia
 pkg> add PkgToSoftwareBOM
 ```
@@ -120,10 +123,10 @@ The next step is to create an `spdxCreationData` object which contains data for 
 using SPDX
 using UUIDs
 using Pkg
-# Indicate who you wish to credit as creator of this SBOM, whether it is a single person 
+# Indicate who you wish to credit as creator of this SBOM, whether it is a single person
 # or an organization or both. You may credit multiple people and organizations as necessary.
 # Including emails in the creator declaration is optional
-# Since PkgToSoftwareBOM is filling in most of the document, you can credit the tool as one of the creators as well 
+# Since PkgToSoftwareBOM is filling in most of the document, you can credit the tool as one of the creators as well
 myName= SpdxCreatorV2("Person", "John Doe", "email@loopback.com")  # email may be an empty string if desired
 myOrg= SpdxCreatorV2("Organization", "Open-Source Org", "email2@loopback.com")
 myTool= SpdxCreatorV2("Tool", "PkgToSoftwareBOM.jl", "")
@@ -131,7 +134,7 @@ myTool= SpdxCreatorV2("Tool", "PkgToSoftwareBOM.jl", "")
 devRoot= filter(p-> p.first == "MyPackageName", Pkg.project().dependencies) # A developer SBOM has a single package at its root
 
 # SPDX namespace provides a unique URI identifier for the SBOM. Best practice, which PkgToSoftwareBOM supports, is to
-# provide a URL to this SBOM in the package repository or to a project homepage.  
+# provide a URL to this SBOM in the package repository or to a project homepage.
 # PkgToSoftwareBOM will append a unique UUID so that the namespace is truly unique.
 myNamespace= "https://github.com/myUserName/myPackage.jl/myPackage.spdx.json"
 
