@@ -1,7 +1,7 @@
 # PkgToSoftwareBOM.jl
 
 [![GitHub Actions](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/workflows/CI/badge.svg)](https://github.com/SamuraiAku/SPDX.jl/actions/workflows/CI.yml)
-[![codecov](https://codecov.io/gh/SamuraiAku/PkgToSoftwareBOM.jl/branch/master/graph/badge.svg?token=TODO)](https://codecov.io/gh/SamuraiAku/PkgToSoftwareBOM.jl)
+[![codecov](https://codecov.io/gh/SamuraiAku/PkgToSoftwareBOM.jl/graph/badge.svg?token=A1GLEJG7LW)](https://codecov.io/gh/SamuraiAku/PkgToSoftwareBOM.jl)
 
 This package produces a Software Bill of Materials (SBOM) describing your Julia environment. At this time, the SBOM produced is in the ([SPDX](https://github.com/SamuraiAku/SPDX.jl)) format.  Contributions to support other SBOM formats are welcome.
 
