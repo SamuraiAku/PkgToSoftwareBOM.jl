@@ -3,13 +3,13 @@
     "dataLicense": "CC0-1.0",
     "SPDXID": "SPDXRef-DOCUMENT",
     "name": "PkgToSoftwareBOM.jl Developer SBOM",
-    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-50abb45d-c150-449b-9b27-19ae15b03a2c",
+    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-84d4a33e-fd1f-42b6-80c9-7aa5a26896b7",
     "creationInfo": {
         "creators": [
             "Person:  Simon Avery  (savery@ieee.org)",
             "Tool:  PkgToSoftwareBOM.jl"
         ],
-        "created": "2023-08-31T05:50:49Z"
+        "created": "2023-09-14T05:19:07Z"
     },
     "comment": "Registries used for populating Package data:\nGeneral registry: https://github.com/JuliaRegistries/General.git\nOfficial general Julia package registry where people can\nregister any package they want without too much debate about\nnaming and without enforced standards on documentation or\ntesting. We nevertheless encourage documentation, testing and\nsome amount of consideration when choosing package names.\n\n\n",
     "packages": [
@@ -289,13 +289,13 @@
         {
             "name": "SPDX",
             "SPDXID": "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540",
-            "versionInfo": "0.3.0",
+            "versionInfo": "0.3.1",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/SamuraiAku/SPDX.jl.git@v0.3.0",
+            "downloadLocation": "git+https://github.com/SamuraiAku/SPDX.jl.git@v0.3.1",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "6487838dd8d8cf1b45561674c0d9869ae87afcb5"
+                "packageVerificationCodeValue": "ebd87063248d13e9b559a3ef01d91798fa5834bf"
             },
             "homepage": "https://github.com/SamuraiAku/SPDX.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -316,7 +316,7 @@
             "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.5",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "f7463fed52ae31e5c9058cd66642156fda30fe2e",
+                "packageVerificationCodeValue": "feec97271ea92f765e8d60ccf2e3b378b1adf40b",
                 "packageVerificationCodeExcludedFiles": [
                     "PkgToSoftwareBOM.spdx.json"
                 ]
