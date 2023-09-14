@@ -4,13 +4,6 @@ using SPDX
 using Test
 using UUIDs
 
-# Can remove once https://github.com/SamuraiAku/SPDX.jl/pull/35 is merged
-for pred in (:(==), :(isequal))
-    @eval function Base.$pred(x::AbstractSpdx, y::AbstractSpdx)
-        return all(f -> $pred(getproperty(x, f), getproperty(y, f)), fieldnames(typeof(x)))
-    end
-end
-
 @testset "PkgToSoftwareBOM.jl" begin
     @testset "README.md examples: Environment" begin
         sbom = generateSPDX()
