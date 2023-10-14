@@ -5,9 +5,10 @@ using Test
 using UUIDs
 
 @testset "PkgToSoftwareBOM.jl" begin
+    testdir= mktempdir()
     @testset "README.md examples: Environment" begin
         sbom = generateSPDX()
-        path = mktempdir() * "myEnvironmentSBOM.spdx.json"
+        path = joinpath(testdir , "myEnvironmentSBOM.spdx.json")
         writespdx(sbom, path)
         rt_sbom = readspdx(path)
 
@@ -24,7 +25,7 @@ using UUIDs
         rootpackages = filter(p -> !(p.first in ["PkgToSoftwareBOM", "SPDX"]),
                               Pkg.project().dependencies)
         sbom_with_exclusions = generateSPDX(spdxCreationData(; rootpackages))
-        path2 = mktempdir() * "myEnvironmentSBOM.spdx.json"
+        path2 = joinpath(testdir,  "myEnvironmentSBOM.spdx.json")
         writespdx(sbom_with_exclusions, path2)
         rt_sbom_with_exclusions = readspdx(path2)
 
@@ -63,7 +64,7 @@ using UUIDs
                                                                      spdxPackageInstructions}(active_pkgs[myPackage_instr.name] => myPackage_instr))
 
         sbom = generateSPDX(SPDX_docCreation)
-        path = mktempdir() * "myEnvironmentSBOM.spdx.json"
+        path = joinpath(testdir, "myEnvironmentSBOM.spdx.json")
         writespdx(sbom, path)
         rt_sbom = readspdx(path)
         @test SPDX.compare(rt_sbom, sbom; skipproperties=[:DocumentComment]).bval
