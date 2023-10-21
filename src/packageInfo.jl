@@ -14,7 +14,8 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
         package.SourceInfo= "Source Code Location is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
     elseif packagedata.is_tracking_repo
         # Next simplest case is if you are directly tracking a repository
-        package.DownloadLocation= SpdxDownloadLocationV2("git+$(packagedata.git_source)@$(packagedata.git_revision)$(isempty(registrydata.packageSubdir) ? "" : "#"*registrydata.packageSubdir)")
+        # TODO: Extract the subdirectory information if it exists. Can't find it in packagedata.
+        package.DownloadLocation= SpdxDownloadLocationV2("git+$(packagedata.git_source)@$(packagedata.git_revision)")
         package.HomePage= packagedata.git_source
         package.SourceInfo= "$(packagedata.name) is directly tracking a git repository."
     elseif packagedata.is_tracking_path
