@@ -24,7 +24,7 @@ version = "1.0.0"
 [[deps.Dummy4]]
 deps = ["Dummy1"]
 git-tree-sha1 = "0311ff4323db3b0d6c0554af0bacf1c8f5900cb8"
-repo-rev = "main"
+repo-rev = "v1.0.0"
 repo-url = "https://github.com/SamuraiAku/Dummy4.git"
 uuid = "bd21c0da-0f63-47d8-a8d0-2a7f3678fd80"
 version = "1.0.0"
