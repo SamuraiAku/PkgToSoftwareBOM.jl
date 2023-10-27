@@ -1,0 +1,30 @@
+# This file is machine-generated - editing it directly is not advised
+
+julia_version = "1.9.2"
+manifest_format = "2.0"
+project_hash = "3082e0c9f1ff2bb098e578061254cb31ba5afbbb"
+
+[[deps.Dummy1]]
+deps = ["Dummy2", "Dummy3"]
+git-tree-sha1 = "008576972fec29599db48c93f85350c4a266c877"
+uuid = "f7bc0a32-b501-410f-a5e3-5d2b3b8c0e6f"
+version = "1.0.1"
+
+[[deps.Dummy2]]
+deps = ["Dummy3"]
+git-tree-sha1 = "322507efe9c377be703d1788305e481cfd0b9be7"
+uuid = "fb23cc6c-415b-4b10-a7ae-91d1f24ce4a7"
+version = "1.0.1"
+
+[[deps.Dummy3]]
+git-tree-sha1 = "c45b219b60c32061a31194f5093610aab3d3bd93"
+uuid = "a15f9a99-31c9-401d-87e4-3fe0ccb07a31"
+version = "1.0.0"
+
+[[deps.Dummy4]]
+deps = ["Dummy1"]
+git-tree-sha1 = "0311ff4323db3b0d6c0554af0bacf1c8f5900cb8"
+repo-rev = "main"
+repo-url = "https://github.com/SamuraiAku/Dummy4.git"
+uuid = "bd21c0da-0f63-47d8-a8d0-2a7f3678fd80"
+version = "1.0.0"

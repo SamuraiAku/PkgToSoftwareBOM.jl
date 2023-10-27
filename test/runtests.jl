@@ -83,7 +83,7 @@ using UUIDs
             return true
         end
 
-        Pkg.add(url= "https://github.com/SamuraiAku/Dummy4.git")
+        Pkg.activate("./test_environment")
         sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies)), ["DummyRegistry", "General"]);
         # Dummy4 and all its dependencies were created by the author for testing purposes. They have no functional code, just the dependencies
         # Therefore we know exactly what the SBOM should look like and can test for this.
