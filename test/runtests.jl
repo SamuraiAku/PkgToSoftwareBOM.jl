@@ -159,7 +159,7 @@ using UUIDs
             "Dummy1" => (Version= "1.0.1", DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy1.git@v1.0.1"), HomePage= "https://github.com/SamuraiAku/Dummy1.git")
             "Dummy2" => (Version= "1.0.1", DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy2.git@v1.0.1"), HomePage= "https://github.com/SamuraiAku/Dummy2.git")
             "Dummy3" => (Version= "1.0.0", DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy3.git@v1.0.0"), HomePage= "https://github.com/SamuraiAku/Dummy3.git")
-            "Dummy4" => (Version= "1.0.0", DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy4.git@main"), HomePage= "https://github.com/SamuraiAku/Dummy4.git")
+            "Dummy4" => (Version= "1.0.0", DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy4.git@v1.0.0"), HomePage= "https://github.com/SamuraiAku/Dummy4.git")
         ]
         for p in package_info
             idx= findfirst(isequal(p.first), getproperty.(sbom.Packages, :Name))
