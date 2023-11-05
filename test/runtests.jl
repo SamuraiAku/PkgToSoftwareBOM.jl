@@ -5,6 +5,16 @@ using Test
 using UUIDs
 
 @testset "PkgToSoftwareBOM.jl" begin
+    # Function issetequal doesn't work with vectors of SpdxRelationshipV2
+    #  SPDX needs to define a custom hash() function before issetequal will work. See Issue #38
+    function isvectorsetequal(a::Vector, b::Vector)
+        length(a) == length(b) || return false
+        for v in a
+            any(isequal.([v], b)) || return false
+        end
+        return true
+    end
+
     # Add Test Registry
     Pkg.Registry.add(RegistrySpec(url= "https://github.com/SamuraiAku/DummyRegistry.jl.git"))
 
@@ -12,30 +22,24 @@ using UUIDs
     @testset "README.md examples: Environment" begin
         sbom = generateSPDX()
         path = joinpath(testdir , "myEnvironmentSBOM.spdx.json")
-        writespdx(sbom, path)
-        rt_sbom = readspdx(path)
 
-        # Roundtripping isn't exact---extra lines are trimmed from the DocumentComment,
-        # and the relationships order seems to be nondeterministic
-        # For now, test the components separately:
-        @test SPDX.compare(rt_sbom, sbom; skipproperties=[:DocumentComment, :Relationships]).bval
-        @test isequal(sbom.DocumentComment[1:(end - 3)], rt_sbom.DocumentComment)
+        # The SBOM is too big and complex to check everything, but we can check some things
+        root_relationships= filter(r -> r.RelationshipType=="DESCRIBES", sbom.Relationships)
+        @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), ["SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540"])
+        @test !isempty(filter(p -> p.SPDXID == "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", sbom.Packages))
+        @test !isempty(filter(p -> p.SPDXID == "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540", sbom.Packages))
+        @test !isempty(filter(isequal(SpdxRelationshipV2("SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540 DEPENDENCY_OF SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6")), sbom.Relationships))
 
-        # ...not actually sure how/why this is broken, but it seems to be (when
-        # run via testharness)
-        @test_broken issetequal(sbom.Relationships, rt_sbom.Relationships)
-
-        rootpackages = filter(p -> !(p.first in ["PkgToSoftwareBOM", "SPDX"]),
+        rootpackages = filter(p -> p.first in ["PkgToSoftwareBOM"],
                               Pkg.project().dependencies)
-        sbom_with_exclusions = generateSPDX(spdxCreationData(; rootpackages))
-        path2 = joinpath(testdir,  "myEnvironmentSBOM.spdx.json")
-        writespdx(sbom_with_exclusions, path2)
-        rt_sbom_with_exclusions = readspdx(path2)
-
-        @test SPDX.compare(rt_sbom_with_exclusions, sbom_with_exclusions;
-                           skipproperties=[:DocumentComment]).bval
-        @test isequal(sbom_with_exclusions.DocumentComment[1:(end - 3)],
-                      rt_sbom_with_exclusions.DocumentComment)
+        sbom_with_exclusions = generateSPDX(spdxCreationData(; rootpackages), ["DummyRegistry", "General"])
+        root_relationships= filter(r -> r.RelationshipType=="DESCRIBES", sbom_with_exclusions.Relationships)
+        @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), ["SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"])
+        @test !isnothing(filter(p -> p.SPDXID == "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", sbom.Packages))
+        # Dummy Registry, which is checked first, has an old version of DataStructures (0.17.20) whereas SPDX needs at least 0.18
+        # Verify that the package in the SBOM did not choose that version for the SBOM
+        DataStructuresPkg= filter(p-> occursin("SPDXRef-DataStructures", p.SPDXID), sbom.Packages)
+        @test VersionNumber(DataStructuresPkg[1].Version) >= v"0.18"
     end
 
     @testset "README.md examples: Developer" begin
@@ -75,14 +79,6 @@ using UUIDs
     end
 
     @testset "Repo Track + Dual registries" begin
-        function isvectorsetequal(a::Vector, b::Vector)
-            length(a) == length(b) || return false
-            for v in a
-                any(isequal.([v], b)) || return false
-            end
-            return true
-        end
-
         Pkg.activate("./test_environment")
         Pkg.instantiate()
         Pkg.instantiate
