@@ -20,9 +20,9 @@ using UUIDs
 
     testdir= mktempdir()
     @testset "README.md examples: Environment" begin
-        sbom = generateSPDX()
-        path = joinpath(testdir , "myEnvironmentSBOM.spdx.json")
 
+        ## Example #1
+        sbom = generateSPDX()
         # The SBOM is too big and complex to check everything, but we can check some things
         root_relationships= filter(r -> r.RelationshipType=="DESCRIBES", sbom.Relationships)
         @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), ["SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540"])
@@ -30,20 +30,22 @@ using UUIDs
         @test !isempty(filter(p -> p.SPDXID == "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540", sbom.Packages))
         @test !isempty(filter(isequal(SpdxRelationshipV2("SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540 DEPENDENCY_OF SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6")), sbom.Relationships))
 
+
+        ## Example #2 + Check dual registries
         rootpackages = filter(p -> p.first in ["PkgToSoftwareBOM"],
                               Pkg.project().dependencies)
         sbom_with_exclusions = generateSPDX(spdxCreationData(; rootpackages), ["DummyRegistry", "General"])
         root_relationships= filter(r -> r.RelationshipType=="DESCRIBES", sbom_with_exclusions.Relationships)
         @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), ["SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"])
         @test !isnothing(filter(p -> p.SPDXID == "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", sbom.Packages))
-        # Dummy Registry, which is checked first, has an old version of DataStructures (0.17.20) whereas SPDX needs at least 0.18
+        # Dummy Registry, which is checked first, has only an old version of DataStructures (0.17.20) whereas SPDX needs at least 0.18
         # Verify that the package in the SBOM did not choose that version for the SBOM
         DataStructuresPkg= filter(p-> occursin("SPDXRef-DataStructures", p.SPDXID), sbom.Packages)
         @test VersionNumber(DataStructuresPkg[1].Version) >= v"0.18"
     end
 
     @testset "README.md examples: Developer" begin
-        # So that we're working with a real package here, instead of "MyPackageName.jl" use "SPDX.jl"
+        # So that we're working with a real package here, instead of "MyPackageName.jl" use "SPDX"
         package_name = "SPDX"
 
         myName = SpdxCreatorV2("Person", "John Doe", "email@loopback.com")
@@ -68,20 +70,31 @@ using UUIDs
                                             NamespaceURL=myNamespace,
                                             rootpackages=devRoot,
                                             packageInstructions=Dict{UUID,
-                                                                     spdxPackageInstructions}(active_pkgs[myPackage_instr.name] => myPackage_instr))
-
+                                                                     spdxPackageInstructions}(active_pkgs[myPackage_instr.name] => myPackage_instr)) 
         sbom = generateSPDX(SPDX_docCreation)
-        path = joinpath(testdir, "myEnvironmentSBOM.spdx.json")
-        writespdx(sbom, path)
-        rt_sbom = readspdx(path)
-        @test SPDX.compare(rt_sbom, sbom; skipproperties=[:DocumentComment]).bval
-        @test isequal(sbom.DocumentComment[1:(end - 3)], rt_sbom.DocumentComment)
+
+        root_relationships= filter(r -> r.RelationshipType=="DESCRIBES", sbom.Relationships)
+        @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), ["SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540"])
+        @test !isempty(filter(p -> p.SPDXID == "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540", sbom.Packages))
+
+        @test sbom.Name == SPDX_docCreation.Name
+        @test isvectorsetequal(sbom.CreationInfo.Creator, SPDX_docCreation.Creators)
+        @test sbom.CreationInfo.CreatorComment == SPDX_docCreation.CreatorComment
+        @test occursin(SPDX_docCreation.DocumentComment, sbom.DocumentComment)
+        @test sbom.Namespace.URI == SPDX_docCreation.NamespaceURL
+
+        SPDX_pkg= filter(p -> p.Name == myPackage_instr.name, sbom.Packages)[1]
+        @test SPDX_pkg.Originator== myName
+        @test SPDX_pkg.LicenseDeclared== myLicense
+        @test SPDX_pkg.Copyright== myPackage_instr.copyright
+        @test SPDX_pkg.Name== package_name
+
+
     end
 
     @testset "Repo Track + Dual registries" begin
         Pkg.activate("./test_environment")
         Pkg.instantiate()
-        Pkg.instantiate
         sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies)), ["DummyRegistry", "General"]);
         # Dummy4 and all its dependencies were created by the author for testing purposes. They have no functional code, just the dependencies
         # Therefore we know exactly what the SBOM should look like and can test for this.
