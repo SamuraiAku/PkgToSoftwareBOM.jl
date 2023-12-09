@@ -6,6 +6,7 @@ using Pkg
 using UUIDs
 using TOML
 using SPDX
+using RegistryInstances
 
 export spdxCreationData, spdxPackageInstructions
 

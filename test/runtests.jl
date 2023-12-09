@@ -18,14 +18,13 @@ using UUIDs
     # Add Test Registry
     Pkg.Registry.add(RegistrySpec(url= "https://github.com/SamuraiAku/DummyRegistry.jl.git"))
 
-    testdir= mktempdir()
     @testset "README.md examples: Environment" begin
 
         ## Example #1
         sbom = generateSPDX()
         # The SBOM is too big and complex to check everything, but we can check some things
         root_relationships= filter(r -> r.RelationshipType=="DESCRIBES", sbom.Relationships)
-        @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), ["SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540"])
+        @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), ["SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540", "SPDXRef-RegistryInstances-2792f1a3-b283-48e8-9a74-f99dce5104f3"])
         @test !isempty(filter(p -> p.SPDXID == "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", sbom.Packages))
         @test !isempty(filter(p -> p.SPDXID == "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540", sbom.Packages))
         @test !isempty(filter(isequal(SpdxRelationshipV2("SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540 DEPENDENCY_OF SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6")), sbom.Relationships))
@@ -88,8 +87,6 @@ using UUIDs
         @test SPDX_pkg.LicenseDeclared== myLicense
         @test SPDX_pkg.Copyright== myPackage_instr.copyright
         @test SPDX_pkg.Name== package_name
-
-
     end
 
     @testset "Repo Track + Dual registries" begin
