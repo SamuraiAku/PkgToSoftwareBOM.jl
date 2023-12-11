@@ -19,7 +19,7 @@ end
 
 function _registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registry::AbstractString)
     #Get the requested registry
-    active_regs= Pkg.Registry.reachable_registries()
+    active_regs= reachable_registries()
     selected_registry= nothing
     for reg in active_regs
         if reg.name == registry
@@ -38,22 +38,7 @@ function _registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, regis
     return registry_pkg
 end
 
-function get_registry_data(registryPkg::Pkg.Registry.PkgEntry, filename::AbstractString)
-    registryPath= registryPkg.registry_path
-    if isfile(registryPath)
-        # Compressed registry (ex. the General Registry) that has been read into memory
-        return TOML.parse(registryPkg.in_memory_registry[join([registryPkg.path, filename], "/")])
-    elseif isdir(registryPath)
-        data= open(normpath(joinpath(registryPath, registryPkg.path, filename))) do f
-            TOML.parse(f)
-        end
-        return data
-    else
-        error("get_registry_data(): Apparent breaking change to Pkg data structures")
-    end
-end
-
-function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registry::Pkg.Registry.RegistryInstance)
+function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registry::RegistryInstance)
     package.is_tracking_repo && return nothing
     is_stdlib(uuid) && return nothing
 
@@ -69,17 +54,18 @@ function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registr
         return nothing
     end
     
-    Package= get_registry_data(registryPkg, "Package.toml")
-    Versions= get_registry_data(registryPkg, "Versions.toml")
+    registryPkgData= registry_info(registryPkg)
 
     # TODO: Resolve the correct Compat and Deps for this version
 
     # If actively tracking the registry, verify that the version exists in this registry
-    package.is_tracking_registry && !haskey(Versions, string(package.version)) && return missing
+    package.is_tracking_registry && !haskey(registryPkgData.version_info, package.version) && return missing
+
+    packageSubdir= isnothing(registryPkgData.subdir) ? "" : registryPkgData.subdir
 
     # Verify the tree hash in the registry matches the hash in the package
-    tree_hash= haskey(Versions, string(package.version)) ? Versions[string(package.version)]["git-tree-sha1"] : nothing
-    package.is_tracking_registry && tree_hash !== package.tree_hash && error("Tree hash of $(package.name) v$(string(package.version)) does not match registry:  $(string(package.tree_hash)) (Package) vs. $(Versions[string(package.version)]["git-tree-sha1"]) (Registry)")
+    tree_hash= haskey(registryPkgData.version_info, package.version) ? treehash(registryPkgData, package.version) : nothing
+    package.is_tracking_registry && string(tree_hash) !== package.tree_hash && error("Tree hash of $(package.name) v$(string(package.version)) does not match registry:  $(string(package.tree_hash)) (Package) vs. $(treehash(registryPkgData, package.version)) (Registry)")
 
     pkgRegInfo= PackageRegistryInfo(;
         registryName= registry.name,
@@ -89,9 +75,9 @@ function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registr
         packageUUID= uuid,
         packageName= registryPkg.name,
         packageVersion= package.version,
-        packageURL= Package["repo"],
-        packageSubdir= get(Package, "subdir", ""),
-        packageTreeHash= tree_hash
+        packageURL= registryPkgData.repo,
+        packageSubdir= packageSubdir,
+        packageTreeHash= string(tree_hash)
     )
     
     return pkgRegInfo
