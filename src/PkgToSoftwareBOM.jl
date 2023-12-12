@@ -5,7 +5,8 @@ module PkgToSoftwareBOM
 using Pkg
 using UUIDs
 using TOML
-using SPDX
+using Reexport
+@reexport using SPDX
 using RegistryInstances
 
 export spdxCreationData, spdxPackageInstructions

@@ -37,7 +37,15 @@ pkg> add PkgToSoftwareBOM
 
 ## How to I use PkgToSoftwareBOM.jl ?
 
-There are two use cases envisioned
+To use this package, just type
+
+```julia
+using PkgToSoftwareBOM
+```
+
+PkgToSofwareBOM automatically exports the package [SPDX](https://github.com/SamuraiAku/SPDX.jl) which defines the SBOM datatypes and functions for reading and writing. Please see the `SPDX` documentation for full documentation.
+
+There are two use cases envisioned:
 
 - Users: Create an SBOM of your current environment. Submit this file to your organization
 - Developers: Create an SBOM to be included with your package source code. This becomes your official declaration of what your package dependencies, copyright, license, and download location.
@@ -56,7 +64,6 @@ sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> !(p.first in ["PkgT
 
 To write the SBOM to file:
 ```julia
-using SPDX
 writespdx(sbom, "myEnvironmentSBOM.spdx.json")
 ```
 
@@ -97,7 +104,6 @@ julia> cd("path/to/dev_area")
 To create your SBOM, start by creating an `spdxPackageInstructions` object which contains SBOM data specific to the package
 
 ```julia
-using SPDX
 # Indicate who you wish to credit as the Originator of the package. For Julia developers, this is generally
 # whoever controls the repository the released code is downloaded from. The originator may be a person or an organization
 myName= SpdxCreatorV2("Person", "John Doe", "email@loopback.com")  # email may be an empty string if desired
@@ -121,7 +127,6 @@ myPackage_instr= spdxPackageInstructions(
 
 The next step is to create an `spdxCreationData` object which contains data for the top-level SBOM structure
 ```julia
-using SPDX
 using UUIDs
 using Pkg
 # Indicate who you wish to credit as creator of this SBOM, whether it is a single person
@@ -156,7 +161,6 @@ Now you can create the SBOM and write it to your development directory.
 
 ```julia
 sbom= generateSPDX(SPDX_docCreation)
-using SPDX
 writespdx(sbom, "path/to/package/source/MyPackageName.spdx.json")
 ```
 
