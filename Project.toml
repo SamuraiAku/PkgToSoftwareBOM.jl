@@ -1,7 +1,7 @@
 name = "PkgToSoftwareBOM"
 uuid = "6254a0f9-6143-4104-aa2e-fd339a2830a6"
 authors = ["Simon Avery <savery@ieee.org> and contributors"]
-version = "0.1.6"
+version = "0.1.7"
 
 [deps]
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"

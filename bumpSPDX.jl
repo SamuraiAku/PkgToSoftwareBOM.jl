@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: MIT
 
 using PkgToSoftwareBOM
-using SPDX
 using Pkg
 using UUIDs
 

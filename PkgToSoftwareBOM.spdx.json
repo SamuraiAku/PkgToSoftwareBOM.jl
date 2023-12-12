@@ -3,16 +3,58 @@
     "dataLicense": "CC0-1.0",
     "SPDXID": "SPDXRef-DOCUMENT",
     "name": "PkgToSoftwareBOM.jl Developer SBOM",
-    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-3f400c4f-77be-43d7-92f3-0f9d93188cbe",
+    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-5bc08470-3bc7-4254-8968-20b9f317d1c6",
     "creationInfo": {
         "creators": [
             "Person:  Simon Avery  (savery@ieee.org)",
             "Tool:  PkgToSoftwareBOM.jl"
         ],
-        "created": "2023-10-22T20:06:38Z"
+        "created": "2023-12-12T05:55:53Z"
     },
     "comment": "Registries used for populating Package data:\nGeneral registry: https://github.com/JuliaRegistries/General.git\nOfficial general Julia package registry where people can\nregister any package they want without too much debate about\nnaming and without enforced standards on documentation or\ntesting. We nevertheless encourage documentation, testing and\nsome amount of consideration when choosing package names.\n\n\n",
     "packages": [
+        {
+            "name": "LazilyInitializedFields",
+            "SPDXID": "SPDXRef-LazilyInitializedFields-0e77f7df-68c5-4e49-93ce-4cd80f5598bf",
+            "versionInfo": "1.2.2",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/KristofferC/LazilyInitializedFields.jl.git@v1.2.2",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "00f12286761386da7b68d5d22a3b08a8f88ac05d"
+            },
+            "homepage": "https://github.com/KristofferC/LazilyInitializedFields.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "RegistryInstances",
+            "SPDXID": "SPDXRef-RegistryInstances-2792f1a3-b283-48e8-9a74-f99dce5104f3",
+            "versionInfo": "0.1.0",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/GunnarFarneback/RegistryInstances.jl.git@v0.1.0",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "0fa8af41375e9a84be86e1a639864b3b50329af8"
+            },
+            "homepage": "https://github.com/GunnarFarneback/RegistryInstances.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
         {
             "name": "Preferences",
             "SPDXID": "SPDXRef-Preferences-21216c6a-2e73-6563-6e65-726566657250",
@@ -58,13 +100,13 @@
         {
             "name": "Parsers",
             "SPDXID": "SPDXRef-Parsers-69de0a69-1ddd-5017-9359-2bf0b02dc9f0",
-            "versionInfo": "2.7.2",
+            "versionInfo": "2.8.0",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaData/Parsers.jl.git@v2.7.2",
+            "downloadLocation": "git+https://github.com/JuliaData/Parsers.jl.git@v2.8.0",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "9656cba54acdb22cad8e42e7fbd4e92771e48c94"
+                "packageVerificationCodeValue": "9c7b52227bda1474cd70708031576371ddb034f9"
             },
             "homepage": "https://github.com/JuliaData/Parsers.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -100,13 +142,13 @@
         {
             "name": "Compat",
             "SPDXID": "SPDXRef-Compat-34da2185-b29b-5c13-b0c7-acf172513d20",
-            "versionInfo": "4.10.0",
+            "versionInfo": "4.10.1",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaLang/Compat.jl.git@v4.10.0",
+            "downloadLocation": "git+https://github.com/JuliaLang/Compat.jl.git@v4.10.1",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "333a5cfcacb8e70101d42842963253d3cf5f2da3"
+                "packageVerificationCodeValue": "6e8746a0b5631a46908eb140105b8ee20f8ccc80"
             },
             "homepage": "https://github.com/JuliaLang/Compat.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -121,13 +163,13 @@
         {
             "name": "OrderedCollections",
             "SPDXID": "SPDXRef-OrderedCollections-bac558e1-5e72-5ebc-8fee-abe8a469f55d",
-            "versionInfo": "1.6.2",
+            "versionInfo": "1.6.3",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaCollections/OrderedCollections.jl.git@v1.6.2",
+            "downloadLocation": "git+https://github.com/JuliaCollections/OrderedCollections.jl.git@v1.6.3",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "912e63332343a9a8c2329c90bfabd9e15af4dc2b"
+                "packageVerificationCodeValue": "b4c77ae026565dad5b95179d347a957cb1c164a7"
             },
             "homepage": "https://github.com/JuliaCollections/OrderedCollections.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -247,13 +289,13 @@
         {
             "name": "Scratch",
             "SPDXID": "SPDXRef-Scratch-6c6a2e73-6563-6170-7368-637461726353",
-            "versionInfo": "1.2.0",
+            "versionInfo": "1.2.1",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaPackaging/Scratch.jl.git@v1.2.0",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Scratch.jl.git@v1.2.1",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "0848deb154f38c7e53f2f9e20cd58ae609d014cf"
+                "packageVerificationCodeValue": "871d28464add07fe83fa4dc485efc5ba458b764b"
             },
             "homepage": "https://github.com/JuliaPackaging/Scratch.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -308,15 +350,36 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
-            "name": "PkgToSoftwareBOM",
-            "SPDXID": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6",
-            "versionInfo": "0.1.6",
+            "name": "Reexport",
+            "SPDXID": "SPDXRef-Reexport-189a3867-3050-52da-a836-e630ba90ab69",
+            "versionInfo": "1.2.2",
             "supplier": "NOASSERTION",
-            "originator": "Person:  Simon Avery  (savery@ieee.org)",
-            "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.6",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/simonster/Reexport.jl.git@v1.2.2",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "fdd33b4d50f4309fa7e99d54936e6bd8d2bf08ec",
+                "packageVerificationCodeValue": "f9db47d4561e59e697984cc92d851beb0c010d59"
+            },
+            "homepage": "https://github.com/simonster/Reexport.jl.git",
+            "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "PkgToSoftwareBOM",
+            "SPDXID": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6",
+            "versionInfo": "0.1.7",
+            "supplier": "NOASSERTION",
+            "originator": "Person:  Simon Avery  (savery@ieee.org)",
+            "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.7",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "39b52e27f9c5272ebfa2e48a4a8a3d7b37e43663",
                 "packageVerificationCodeExcludedFiles": [
                     "PkgToSoftwareBOM.spdx.json"
                 ]
@@ -333,6 +396,16 @@
         }
     ],
     "relationships": [
+        {
+            "spdxElementId": "SPDXRef-LazilyInitializedFields-0e77f7df-68c5-4e49-93ce-4cd80f5598bf",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-RegistryInstances-2792f1a3-b283-48e8-9a74-f99dce5104f3"
+        },
+        {
+            "spdxElementId": "SPDXRef-RegistryInstances-2792f1a3-b283-48e8-9a74-f99dce5104f3",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"
+        },
         {
             "spdxElementId": "SPDXRef-Preferences-21216c6a-2e73-6563-6e65-726566657250",
             "relationshipType": "DEPENDENCY_OF",
@@ -410,6 +483,11 @@
         },
         {
             "spdxElementId": "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540",
+            "relationshipType": "DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"
+        },
+        {
+            "spdxElementId": "SPDXRef-Reexport-189a3867-3050-52da-a836-e630ba90ab69",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"
         }
