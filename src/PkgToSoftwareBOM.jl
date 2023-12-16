@@ -4,10 +4,11 @@ module PkgToSoftwareBOM
 
 using Pkg
 using UUIDs
-using TOML
 using Reexport
 @reexport using SPDX
+using Artifacts
 using RegistryInstances
+using Base.BinaryPlatforms
 
 export spdxCreationData, spdxPackageInstructions
 

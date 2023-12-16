@@ -80,11 +80,40 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
         end
     end
 
+    # Check for artifacts and add them
+        # buildSPDXartifactpackage!
+        # builddata should include the host platform so that user can override for another if needed
+        #   Should there be an option for computing all the possible architecture/os downloads and adding them?
+        #       That different from generating a BOM for the current user environment which is what we advertise doing now.
+        #       That requires downloading all possible artifacts and then deleting ones that don't belong and that weren't already present.
+        #       This feels like a future feature. Focus on just the host platform to start.
+        # Always include lazy artifacts, should they be optional dependencies?
+        #   That would require downloading lazy artifacts if they are not already downloaded. Not too big a deal.
+        # Should artifacts be runtime dependencies or just dependencies?
+        # If downloads are required that we should test or otherwise allow for cases where the download will fail because there is no netowrk connection
+        # And fill in the package fields appropriately
+        # SourceInfo could include the platofrm info
+        # The git-tree-sha1 hash identifies the artifact in Julia, so that should be part of the SPDX-Ref + it's name
+    buildSPDXartifactpackage!(spdxDoc, packagedata)
+
     push!(spdxDoc.Packages, package)
     push!(builddata.packagesinsbom, uuid)
     return package.SPDXID
 end
 
+function buildSPDXartifactpackage!(spdxDoc::SpdxDocumentV2, packagedata::Pkg.API.PackageInfo, platform::AbstractPlatform= HostPlatform())
+    filenames= ["Artifacts.toml", "JuliaArtifacts.toml"]
+    filecheck= isfile.(joinpath.(packagedata.source, filenames))
+    any(filecheck) || return nothing
+
+    artifact_toml= joinpath(packagedata.source, filenames[findfirst(filecheck)])
+    artifact_data= select_downloadable_artifacts(artifact_toml; platform= platform, include_lazy= true) # Reads (Julia)Artifacts.toml and 
+                                                                                                        # selects the set of artifacts appropriate to the target platform
+    for (artifact_name, artifact) in artifact_data
+
+    end
+
+end
 
 function spdxpkgverifcode(source::AbstractString, packageInstructions::Union{Missing, spdxPackageInstructions})
     if ismissing(packageInstructions)
