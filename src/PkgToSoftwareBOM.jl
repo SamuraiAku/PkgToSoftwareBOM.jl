@@ -45,6 +45,7 @@ Base.@kwdef struct spdxPackageData
     registrydata::Dict{UUID, Union{Nothing, Missing, PackageRegistryInfo}}
     packagesinsbom::Set{UUID}= Set{UUID}()
     packageInstructions::Dict{UUID, spdxPackageInstructions}
+    artifactsinsbom::Set{String}= Set{String}()
 end
 
 Base.@kwdef struct spdxCreationData

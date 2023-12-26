@@ -42,6 +42,7 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
     return spdxDoc
 end
 
+## Building an SPDX Package for a Julia package
 function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxPackageData)
     packagedata= builddata.packages[uuid]
     registrydata= builddata.registrydata[uuid]
@@ -81,38 +82,52 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     end
 
     # Check for artifacts and add them
-        # buildSPDXartifactpackage!
-        # builddata should include the host platform so that user can override for another if needed
-        #   Should there be an option for computing all the possible architecture/os downloads and adding them?
-        #       That different from generating a BOM for the current user environment which is what we advertise doing now.
-        #       That requires downloading all possible artifacts and then deleting ones that don't belong and that weren't already present.
-        #       This feels like a future feature. Focus on just the host platform to start.
-        # Always include lazy artifacts, should they be optional dependencies?
-        #   That would require downloading lazy artifacts if they are not already downloaded. Not too big a deal.
-        # Should artifacts be runtime dependencies or just dependencies?
-        # If downloads are required that we should test or otherwise allow for cases where the download will fail because there is no netowrk connection
-        # And fill in the package fields appropriately
-        # SourceInfo could include the platofrm info
-        # The git-tree-sha1 hash identifies the artifact in Julia, so that should be part of the SPDX-Ref + it's name
-    buildSPDXartifactpackage!(spdxDoc, packagedata)
+    filenames= ["Artifacts.toml", "JuliaArtifacts.toml"]
+    filecheck= isfile.(joinpath.(packagedata.source, filenames))
+    if any(filecheck)
+        artifact_toml= joinpath(packagedata.source, filenames[findfirst(filecheck)])
+        resolved_artifact_data= select_downloadable_artifacts(artifact_toml; platform= HostPlatform(), include_lazy= true) # Reads (Julia)Artifacts.toml and resolves
+                                                                                                                  # the set of artifacts appropriate to the target platform
+        for (artifact_name, artifact) in resolved_artifact_data
+            depid= buildSPDXpackage!(spdxDoc, artifact_name, artifact, builddata)
+            if depid isa String
+                if haskey(artifact, ["lazy"]) && artifact["lazy"] == true
+                    push!(spdxDoc.Relationships, SpdxRelationshipV2("$(depid) OPTIONAL_DEPENDENCY_OF $(package.SPDXID)"))
+                else
+                    push!(spdxDoc.Relationships, SpdxRelationshipV2("$(depid) RUNTIME_DEPENDENCY_OF $(package.SPDXID)"))
+                end
+            end
+        end
+    end
 
     push!(spdxDoc.Packages, package)
     push!(builddata.packagesinsbom, uuid)
     return package.SPDXID
 end
 
-function buildSPDXartifactpackage!(spdxDoc::SpdxDocumentV2, packagedata::Pkg.API.PackageInfo, platform::AbstractPlatform= HostPlatform())
-    filenames= ["Artifacts.toml", "JuliaArtifacts.toml"]
-    filecheck= isfile.(joinpath.(packagedata.source, filenames))
-    any(filecheck) || return nothing
+## Building an SPDX Package for a Julia artifact
+function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractString, artifact::Dict{String, Any}, builddata::spdxPackageData)
+    git_tree_sha1= artifact["git-tree-sha1"]
+    package= SpdxPackageV2("SPDXRef-$(git_tree_sha1)")
 
-    artifact_toml= joinpath(packagedata.source, filenames[findfirst(filecheck)])
-    artifact_data= select_downloadable_artifacts(artifact_toml; platform= platform, include_lazy= true) # Reads (Julia)Artifacts.toml and 
-                                                                                                        # selects the set of artifacts appropriate to the target platform
-    for (artifact_name, artifact) in artifact_data
+    # Check if this artifact already exists in the SBOM
+    # TODO: Maybe add additional names to the name field? That would require searching for the package and then parsing
+    (git_tree_sha1 in builddata.artifactsinsbom) && (return package.SPDXID)
 
-    end
+    package.Name= artifact_name
+    package.Supplier= SpdxCreatorV2("NOASSERTION")
+    package.Originator= SpdxCreatorV2("NOASSERTION") # TODO: Should there be instructions like for packages?
+    resolve_pkgsource!(package, artifact)
+    #TODO: package.VerificationCode= spdxpkgverifcode(packagedata.source, packageInstructions) # Verify the artifact is installed (not necessarily true for lazy artifacts). Download if it is not?
+    package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
+    push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
+    package.Copyright= "NOASSERTION"  # TODO:  Should there be instructions like for packages?  Scan license files for the first line that says "Copyright"?  That would about work.
 
+    package.Comment= "The SPDX ID field is derived from the Git tree hash that all Julia artifacts are computer to uniquely identify it."
+
+    push!(spdxDoc.Packages, package)
+    push!(builddata.artifactsinsbom, git_tree_sha1)
+    return package.SPDXID
 end
 
 function spdxpkgverifcode(source::AbstractString, packageInstructions::Union{Missing, spdxPackageInstructions})

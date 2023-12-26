@@ -41,3 +41,37 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
 
     return nothing
 end
+
+
+function resolve_pkgsource!(package::SpdxPackageV2, artifact::Dict{String, Any})
+    platform_keys= setdiff(keys(artifact), Set(["download", "git-tree-sha1", "lazy"]))
+    if length(platform_keys) > 0
+        package.SourceInfo= ""
+        package.SourceInfo= string(package.SourceInfo, "This artifact download was determined using following platform specific parameters.", "\n")
+        for k in platform_keys
+            package.SourceInfo= string(package.SourceInfo, k * ": ", artifact[k], "\n")
+        end
+    end
+    
+    if haskey(artifact, "download") && !isempty(artifact["download"])
+        # If there are multiple download locations specified, take the first one.
+        package.DownloadLocation= SpdxDownloadLocationV2(artifact["download"][1]["url"])
+        push!(package.Checksums, SpdxChecksumV2("SHA256", artifact["download"][1]["sha256"]))
+
+        # Record alternative download locations
+        if length(artifact["download"]) > 1
+            if ismissing(package.SourceInfo)
+                package.SourceInfo= ""
+            end
+            package.SourceInfo= string(package.SourceInfo, "This artifact may also be downloaded from the following alternate locations:", "\n")
+            for dl in artifact["download"][2:end]
+                package.SourceInfo= string(package.SourceInfo, "PackageDownloadLocation: $(dl["url"])", "\n")
+                package.SourceInfo= string(package.SourceInfo, "PackageChecksum: SHA256: $(dl["sha256"])", "\n")
+            end
+        end
+    end
+
+    package.HomePage= "NOASSERTION"
+
+        
+end
