@@ -142,7 +142,7 @@ using UUIDs
         @test all(isequal.(getproperty.(sbom.Packages, :LicenseDeclared), [SpdxSimpleLicenseExpressionV2("NOASSERTION")]))
         @test all(ismissing.(getproperty.(sbom.Packages, :LicenseComments)))
         @test all(isequal.(getproperty.(sbom.Packages, :Copyright), "NOASSERTION"))
-        @test all(ismissing.(getproperty.(sbom.Packages, :Summary)))
+        @test all(isequal.(getproperty.(sbom.Packages, :Summary), "This is a Julia package, written in the Julia language."))
         @test all(ismissing.(getproperty.(sbom.Packages, :DetailedDescription)))
         @test all(isequal.(getproperty.(sbom.Packages, :Comment), "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."))
         @test all(isempty.(getproperty.(sbom.Packages, :ExternalReferences)))

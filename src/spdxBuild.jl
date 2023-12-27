@@ -65,6 +65,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
     package.LicenseDeclared= ismissing(packageInstructions) ? SpdxLicenseExpressionV2("NOASSERTION") : packageInstructions.declaredLicense # TODO: Scan source for licenses and/or query Github API
     package.Copyright= ismissing(packageInstructions) ? "NOASSERTION" : packageInstructions.copyright # TODO:  Scan license files for the first line that says "Copyright"?  That would about work.
+    package.Summary= "This is a Julia package, written in the Julia language."
 
     # TODO: Populate Summary with something via a Github API query
     # TODO: Should DetailedDescription be populated with the README?  Or the first 10k characters? Or just a link or path to the README?
@@ -86,8 +87,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     filecheck= isfile.(joinpath.(packagedata.source, filenames))
     if any(filecheck)
         artifact_toml= joinpath(packagedata.source, filenames[findfirst(filecheck)])
-        resolved_artifact_data= select_downloadable_artifacts(artifact_toml; platform= HostPlatform(), include_lazy= true) # Reads (Julia)Artifacts.toml and resolves
-                                                                                                                  # the set of artifacts appropriate to the target platform
+        resolved_artifact_data= select_downloadable_artifacts(artifact_toml; platform= HostPlatform(), include_lazy= true)
         for (artifact_name, artifact) in resolved_artifact_data
             depid= buildSPDXpackage!(spdxDoc, artifact_name, artifact, builddata)
             if depid isa String
@@ -121,7 +121,9 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractStrin
     #TODO: package.VerificationCode= spdxpkgverifcode(packagedata.source, packageInstructions) # Verify the artifact is installed (not necessarily true for lazy artifacts). Download if it is not?
     package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
     push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
+    package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
     package.Copyright= "NOASSERTION"  # TODO:  Should there be instructions like for packages?  Scan license files for the first line that says "Copyright"?  That would about work.
+    package.Summary= "This is a Julia artifact. \nAn artifact is a binary runtime or other data store not written in the Julia language that is used by a Julia package."
 
     package.Comment= "The SPDX ID field is derived from the Git tree hash that all Julia artifacts are computer to uniquely identify it."
 

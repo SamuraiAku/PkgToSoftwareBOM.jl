@@ -73,5 +73,5 @@ function resolve_pkgsource!(package::SpdxPackageV2, artifact::Dict{String, Any})
 
     package.HomePage= "NOASSERTION"
 
-        
+    return nothing
 end
