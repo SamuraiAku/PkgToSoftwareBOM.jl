@@ -96,6 +96,8 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
                 else
                     push!(spdxDoc.Relationships, SpdxRelationshipV2("$(depid) RUNTIME_DEPENDENCY_OF $(package.SPDXID)"))
                 end
+            elseif ismissing(depid)
+                error("buildSPDXpackage!():  call of buildSPDXpackage!() for an artifact package returned an error")
             end
         end
     end
