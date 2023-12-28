@@ -18,7 +18,7 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
     end
     setcreationtime!(spdxDoc)
 
-    # Add any creator comments from docData and then append the Traget Platform Information
+    # Add any creator comments from docData and then append the Target Platform information
     ismissing(docData.CreatorComment) || (spdxDoc.CreationInfo.CreatorComment= docData.CreatorComment)
 
     if (ismissing(spdxDoc.CreationInfo.CreatorComment))  spdxDoc.CreationInfo.CreatorComment= ""
