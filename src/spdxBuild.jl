@@ -6,7 +6,7 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
     # Query the registries for package information
     registry_packages= registry_packagequery(envpkgs, sbomRegistries)
 
-    packagebuilddata= spdxPackageData(packages= envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions)
+    packagebuilddata= spdxPackageData(targetplatform= docData.TargetPlatform, packages= envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions)
 
    # Create the SPDX Document
     spdxDoc= SpdxDocumentV2()
@@ -17,7 +17,13 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
         push!(spdxDoc.CreationInfo.Creator, c)
     end
     setcreationtime!(spdxDoc)
+
+    # Add any creator comments from docData and then append the Traget Platform Information
     ismissing(docData.CreatorComment) || (spdxDoc.CreationInfo.CreatorComment= docData.CreatorComment)
+    (spdxDoc.CreationInfo.CreatorComment isa String) && (spdxDoc.CreationInfo.CreatorComment*= "\n")
+    ismissing(spdxDoc.CreationInfo.CreatorComment) && (spdxDoc.CreationInfo.CreatorComment= "")
+    spdxDoc.CreationInfo.CreatorComment*= string("Target Platform: ", string(docData.TargetPlatform))
+
     ismissing(docData.DocumentComment) || (spdxDoc.DocumentComment= docData.DocumentComment)
 
     # Add description of the registries in use
@@ -87,7 +93,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     filecheck= isfile.(joinpath.(packagedata.source, filenames))
     if any(filecheck)
         artifact_toml= joinpath(packagedata.source, filenames[findfirst(filecheck)])
-        resolved_artifact_data= select_downloadable_artifacts(artifact_toml; platform= HostPlatform(), include_lazy= true)
+        resolved_artifact_data= select_downloadable_artifacts(artifact_toml; platform= builddata.targetplatform, include_lazy= true)
         for (artifact_name, artifact) in resolved_artifact_data
             depid= buildSPDXpackage!(spdxDoc, artifact_name, artifact, builddata)
             if depid isa String

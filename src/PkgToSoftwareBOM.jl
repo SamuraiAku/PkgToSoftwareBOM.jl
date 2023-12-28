@@ -41,6 +41,7 @@ Base.@kwdef struct spdxPackageInstructions
 end
 
 Base.@kwdef struct spdxPackageData
+    targetplatform::Platform
     packages::Dict{UUID, Pkg.API.PackageInfo}
     registrydata::Dict{UUID, Union{Nothing, Missing, PackageRegistryInfo}}
     packagesinsbom::Set{UUID}= Set{UUID}()
@@ -49,6 +50,7 @@ Base.@kwdef struct spdxPackageData
 end
 
 Base.@kwdef struct spdxCreationData
+    TargetPlatform::Platform= HostPlatform()
     Name::String= "Julia Environment"
     NamespaceURL::Union{AbstractString, Nothing}= nothing
     Creators::Vector{SpdxCreatorV2}= SpdxCreatorV2[SpdxCreatorV2("Tool", "PkgToSoftwareBOM.jl", "")]

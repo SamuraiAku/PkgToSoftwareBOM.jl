@@ -2,6 +2,7 @@ using Pkg
 using PkgToSoftwareBOM
 using Test
 using UUIDs
+using Base.BinaryPlatforms
 
 @testset "PkgToSoftwareBOM.jl" begin
     # Function issetequal doesn't work with vectors of SpdxRelationshipV2
@@ -77,7 +78,7 @@ using UUIDs
 
         @test sbom.Name == SPDX_docCreation.Name
         @test isvectorsetequal(sbom.CreationInfo.Creator, SPDX_docCreation.Creators)
-        @test sbom.CreationInfo.CreatorComment == SPDX_docCreation.CreatorComment
+        @test sbom.CreationInfo.CreatorComment == SPDX_docCreation.CreatorComment * string("\nTarget Platform: ", string(HostPlatform()))
         @test occursin(SPDX_docCreation.DocumentComment, sbom.DocumentComment)
         @test sbom.Namespace.URI == SPDX_docCreation.NamespaceURL
 
@@ -118,7 +119,7 @@ using UUIDs
         @test ismissing(sbom.CreationInfo.LicenseListVersion)
         @test length(sbom.CreationInfo.Creator) == 1 && sbom.CreationInfo.Creator[1] == SpdxCreatorV2("Tool: PkgToSoftwareBOM.jl")
         @test !ismissing(sbom.CreationInfo.Created)
-        @test ismissing(sbom.CreationInfo.CreatorComment)
+        @test sbom.CreationInfo.CreatorComment == string("Target Platform: ", string(HostPlatform()))
         @test occursin("DummyRegistry", sbom.DocumentComment) && occursin("General registry", sbom.DocumentComment)
         @test isempty(sbom.Files)
         @test isempty(sbom.Snippets)
