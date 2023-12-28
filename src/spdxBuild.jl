@@ -20,8 +20,10 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
 
     # Add any creator comments from docData and then append the Traget Platform Information
     ismissing(docData.CreatorComment) || (spdxDoc.CreationInfo.CreatorComment= docData.CreatorComment)
-    (spdxDoc.CreationInfo.CreatorComment isa String) && (spdxDoc.CreationInfo.CreatorComment*= "\n")
-    ismissing(spdxDoc.CreationInfo.CreatorComment) && (spdxDoc.CreationInfo.CreatorComment= "")
+
+    if (ismissing(spdxDoc.CreationInfo.CreatorComment))  spdxDoc.CreationInfo.CreatorComment= ""
+                                                   else  spdxDoc.CreationInfo.CreatorComment*= "\n" end
+
     spdxDoc.CreationInfo.CreatorComment*= string("Target Platform: ", string(docData.TargetPlatform))
 
     ismissing(docData.DocumentComment) || (spdxDoc.DocumentComment= docData.DocumentComment)
