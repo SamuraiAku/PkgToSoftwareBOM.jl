@@ -126,7 +126,11 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractStrin
     package.Supplier= SpdxCreatorV2("NOASSERTION")
     package.Originator= SpdxCreatorV2("NOASSERTION") # TODO: Should there be instructions like for packages?
     resolve_pkgsource!(package, artifact)
-    #TODO: package.VerificationCode= spdxpkgverifcode(packagedata.source, packageInstructions) # Verify the artifact is installed (not necessarily true for lazy artifacts). Download if it is not?
+    if artifact_exists(SHA1(git_tree_sha1))
+        artifact_source= artifact_path(SHA1(git_tree_sha1))
+        package.VerificationCode= spdxpkgverifcode(artifact_source, missing)
+        #TODO: Consider temporary download if artifact is not installed (lazy artifacts only right?)
+    end
     package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
     push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
     package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 

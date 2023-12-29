@@ -9,6 +9,7 @@ using Reexport
 using Artifacts
 using RegistryInstances
 using Base.BinaryPlatforms
+import Base: SHA1
 
 export spdxCreationData, spdxPackageInstructions
 
