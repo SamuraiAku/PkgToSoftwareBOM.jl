@@ -91,10 +91,8 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     end
 
     # Check for artifacts and add them
-    filenames= ["Artifacts.toml", "JuliaArtifacts.toml"]
-    filecheck= isfile.(joinpath.(packagedata.source, filenames))
-    if any(filecheck)
-        artifact_toml= joinpath(packagedata.source, filenames[findfirst(filecheck)])
+    artifact_toml= find_artifacts_toml(packagedata.source)
+    if artifact_toml isa String
         resolved_artifact_data= select_downloadable_artifacts(artifact_toml; platform= builddata.targetplatform, include_lazy= true)
         for (artifact_name, artifact) in resolved_artifact_data
             depid= buildSPDXpackage!(spdxDoc, artifact_name, artifact, builddata)
