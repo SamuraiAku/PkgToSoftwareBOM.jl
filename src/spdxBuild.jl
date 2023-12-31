@@ -133,7 +133,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractStrin
     package.Copyright= "NOASSERTION"  # TODO:  Should there be instructions like for packages?  Scan license files for the first line that says "Copyright"?  That would about work.
     package.Summary= "This is a Julia artifact. \nAn artifact is a binary runtime or other data store not written in the Julia language that is used by a Julia package."
 
-    package.Comment= "The SPDX ID field is derived from the Git tree hash that all Julia artifacts are computer to uniquely identify it."
+    package.Comment= "The SPDX ID field is derived from the Git tree hash of the artifact files which is used to uniquely identify it."
 
     push!(spdxDoc.Packages, package)
     push!(builddata.artifactsinsbom, git_tree_sha1)
