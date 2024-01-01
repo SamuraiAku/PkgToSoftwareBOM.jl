@@ -3,13 +3,14 @@
     "dataLicense": "CC0-1.0",
     "SPDXID": "SPDXRef-DOCUMENT",
     "name": "PkgToSoftwareBOM.jl Developer SBOM",
-    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-5bc08470-3bc7-4254-8968-20b9f317d1c6",
+    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-e2113d5f-6bb4-4a30-b8d7-d6076bfd7234",
     "creationInfo": {
         "creators": [
             "Person:  Simon Avery  (savery@ieee.org)",
             "Tool:  PkgToSoftwareBOM.jl"
         ],
-        "created": "2023-12-12T05:55:53Z"
+        "created": "2024-01-01T05:23:20Z",
+        "comment": "Target Platform: macOS aarch64 {cxxstring_abi=cxx11, julia_version=1.9.2, libgfortran_version=5.0.0}"
     },
     "comment": "Registries used for populating Package data:\nGeneral registry: https://github.com/JuliaRegistries/General.git\nOfficial general Julia package registry where people can\nregister any package they want without too much debate about\nnaming and without enforced standards on documentation or\ntesting. We nevertheless encourage documentation, testing and\nsome amount of consideration when choosing package names.\n\n\n",
     "packages": [
@@ -32,6 +33,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -53,6 +55,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -74,6 +77,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -95,6 +99,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -116,6 +121,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -137,6 +143,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -158,6 +165,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -179,6 +187,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -200,6 +209,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -221,6 +231,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -242,6 +253,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -263,7 +275,31 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "tzjdata",
+            "SPDXID": "SPDXRef-52e48e96c4df04eeebc6ece0d9f1c3b545f0544c",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "https://github.com/JuliaTime/TZJData.jl/releases/download/v1.0.0+2023c/tzjfile-v1-tzdata2023c.tar.gz",
+            "filesAnalyzed": true,
+            "checksums": [
+                {
+                    "algorithm": "SHA256",
+                    "checksumValue": "50cd6c70dfb582336b4223adb3fe76aca6c6a9a5982c3111001e2091fb947b66"
+                }
+            ],
+            "homepage": "NOASSERTION",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "NOASSERTION"
+            ],
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia artifact. \nAn artifact is a binary runtime or other data store not written in the Julia language that is used by a Julia package.",
+            "comment": "The SPDX ID field is derived from the Git tree hash of the artifact files which is used to uniquely identify it."
         },
         {
             "name": "TZJData",
@@ -284,6 +320,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -305,6 +342,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -326,6 +364,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -347,6 +386,7 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
@@ -368,18 +408,19 @@
             ],
             "licenseDeclared": "NOASSERTION",
             "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
             "name": "PkgToSoftwareBOM",
             "SPDXID": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6",
-            "versionInfo": "0.1.7",
+            "versionInfo": "0.1.8",
             "supplier": "NOASSERTION",
             "originator": "Person:  Simon Avery  (savery@ieee.org)",
-            "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.7",
+            "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.8",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "39b52e27f9c5272ebfa2e48a4a8a3d7b37e43663",
+                "packageVerificationCodeValue": "f4f9307b5c9176b519572d26030368e73d4c91c6",
                 "packageVerificationCodeExcludedFiles": [
                     "PkgToSoftwareBOM.spdx.json"
                 ]
@@ -392,6 +433,7 @@
             ],
             "licenseDeclared": "MIT",
             "copyrightText": "Copyright (c) 2023 Simon Avery <savery@ieee.org> and contributors",
+            "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         }
     ],
@@ -465,6 +507,11 @@
             "spdxElementId": "SPDXRef-InlineStrings-842dd82b-1e85-43dc-bf29-5d0ee9dffc48",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53"
+        },
+        {
+            "spdxElementId": "SPDXRef-52e48e96c4df04eeebc6ece0d9f1c3b545f0544c",
+            "relationshipType": "RUNTIME_DEPENDENCY_OF",
+            "relatedSpdxElement": "SPDXRef-TZJData-dc5dba14-91b3-4cab-a142-028a31da12f7"
         },
         {
             "spdxElementId": "SPDXRef-TZJData-dc5dba14-91b3-4cab-a142-028a31da12f7",
