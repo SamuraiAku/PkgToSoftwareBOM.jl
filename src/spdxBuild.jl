@@ -97,11 +97,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
         for (artifact_name, artifact) in resolved_artifact_data
             depid= buildSPDXpackage!(spdxDoc, artifact_name, artifact, builddata)
             if depid isa String
-                if haskey(artifact, ["lazy"]) && artifact["lazy"] == true
-                    push!(spdxDoc.Relationships, SpdxRelationshipV2("$(depid) OPTIONAL_DEPENDENCY_OF $(package.SPDXID)"))
-                else
-                    push!(spdxDoc.Relationships, SpdxRelationshipV2("$(depid) RUNTIME_DEPENDENCY_OF $(package.SPDXID)"))
-                end
+                push!(spdxDoc.Relationships, SpdxRelationshipV2("$(depid) RUNTIME_DEPENDENCY_OF $(package.SPDXID)"))
             elseif ismissing(depid)
                 error("buildSPDXpackage!():  call of buildSPDXpackage!() for an artifact package returned an error")
             end
@@ -132,6 +128,9 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractStrin
     package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
     package.Copyright= "NOASSERTION"  # TODO:  Should there be instructions like for packages?  Scan license files for the first line that says "Copyright"?  That would about work.
     package.Summary= "This is a Julia artifact. \nAn artifact is a binary runtime or other data store not written in the Julia language that is used by a Julia package."
+    if haskey(artifact, ["lazy"]) && artifact["lazy"] == true
+        package.Summary*= "\nThis is a lazy artifact that is not downloaded when the parent Julia package is installed. It will be downloaded when needed."
+    end
 
     package.Comment= "The SPDX ID field is derived from the Git tree hash of the artifact files which is used to uniquely identify it."
 
