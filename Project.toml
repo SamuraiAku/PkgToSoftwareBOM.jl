@@ -1,7 +1,7 @@
 name = "PkgToSoftwareBOM"
 uuid = "6254a0f9-6143-4104-aa2e-fd339a2830a6"
 authors = ["Simon Avery <savery@ieee.org> and contributors"]
-version = "0.1.7"
+version = "0.1.8"
 
 [deps]
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
@@ -13,7 +13,7 @@ Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 
 [compat]
 SPDX = "0.3.1"
-RegistryInstances = "0.1.0"
+RegistryInstances = "0.1"
 Reexport = "1"
 julia = "1.8"
 
