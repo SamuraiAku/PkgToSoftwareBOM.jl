@@ -8,7 +8,18 @@ This package produces a Software Bill of Materials (SBOM) describing your Julia 
 
 I created PkgToSoftwareBOM.jl to help the Julia ecosystem get prepared for the emerging future of software supply chain security. If we want to see Julia adoption to continue to grow, then we need to be able to easily create SBOMs to supply to the organizations using Julia packages.
 
-PkgToSoftwareBOM interfaces with the standard library Pkg to fill in the SBOM data fields. Information filled out today includes a complete dependency list, versions in use, where the package can be downloaded from, and a checksum. Future versions may be able to fill in additional fields including copyright text and software license.
+PkgToSoftwareBOM interfaces with the standard library Pkg to fill in the SBOM data fields. Information filled out today includes:
+- A complete package dependency list including
+    - versions in use
+    - where the package can be downloaded from
+    - SPDX verification code
+- A complete artifact list
+    - artifact version resolved to the target platform
+        - target platform may be changed by an advanced user
+    - where the artifact can be downloaded from
+    - download checksum
+
+Future versions may be able to fill in additional fields including copyright text and software license.
 
 PkgToSoftwareBOM defaults to using the General registry but can use other registries and even mutiple registries as the source(s) of package information.
 
@@ -177,4 +188,22 @@ For example to create a User Environment SBOM using the General registry and ano
 sbom= generateSPDX(spdxCreationData(), ["PrivateRegistry", "General"]);
 ```
 
-The second argument is a list of all the registries you would like to use. If you have a package that exists in both registries (for example, you've cloned the respository to your local network and you want to list that as the download location), PkgToSoftwareBOM will use the information from the first registry in the list that has valid information and ignore all subsequent registires
+The second argument is a list of all the registries you would like to use. If you have a package that exists in both registries (for example, you've cloned the respository to your local network and you want to list that as the download location), PkgToSoftwareBOM will use the information from the first registry in the list that has valid information and ignore all subsequent registries
+
+## How does PkgToSoftwareBOM target hardware platforms other than the one it is running on?
+
+Advanced users may wish to create an SBOM in which the artifacts are targeted to a different platform than the one that PkgToSoftwareBOM is running on.  For example, create an SBOM for an x86 linux installation from an M1 Macbook.
+
+To do this, the user must first create a platform object describing the target platform.  For example, to create a platform object for the hardware you are currently running on:
+```julia
+using Base.BinaryPlatforms
+myplatform= HostPlatform()
+```
+
+Creating a platform object for other hardware is left as an exercise for the advanced user.
+
+To pass the platform object to PkgToSoftwareBOM, use the keyword `TargetPlatform` when creating an `spdxCreationData` object
+
+```julia
+SPDX_docCreation= spdxCreationData(TargetPlatform= myplatform)
+```

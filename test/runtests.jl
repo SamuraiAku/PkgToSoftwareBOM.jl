@@ -2,6 +2,7 @@ using Pkg
 using PkgToSoftwareBOM
 using Test
 using UUIDs
+using Base.BinaryPlatforms
 
 @testset "PkgToSoftwareBOM.jl" begin
     # Function issetequal doesn't work with vectors of SpdxRelationshipV2
@@ -77,7 +78,7 @@ using UUIDs
 
         @test sbom.Name == SPDX_docCreation.Name
         @test isvectorsetequal(sbom.CreationInfo.Creator, SPDX_docCreation.Creators)
-        @test sbom.CreationInfo.CreatorComment == SPDX_docCreation.CreatorComment
+        @test sbom.CreationInfo.CreatorComment == SPDX_docCreation.CreatorComment * string("\nTarget Platform: ", string(HostPlatform()))
         @test occursin(SPDX_docCreation.DocumentComment, sbom.DocumentComment)
         @test sbom.Namespace.URI == SPDX_docCreation.NamespaceURL
 
@@ -118,7 +119,7 @@ using UUIDs
         @test ismissing(sbom.CreationInfo.LicenseListVersion)
         @test length(sbom.CreationInfo.Creator) == 1 && sbom.CreationInfo.Creator[1] == SpdxCreatorV2("Tool: PkgToSoftwareBOM.jl")
         @test !ismissing(sbom.CreationInfo.Created)
-        @test ismissing(sbom.CreationInfo.CreatorComment)
+        @test sbom.CreationInfo.CreatorComment == string("Target Platform: ", string(HostPlatform()))
         @test occursin("DummyRegistry", sbom.DocumentComment) && occursin("General registry", sbom.DocumentComment)
         @test isempty(sbom.Files)
         @test isempty(sbom.Snippets)
@@ -142,7 +143,7 @@ using UUIDs
         @test all(isequal.(getproperty.(sbom.Packages, :LicenseDeclared), [SpdxSimpleLicenseExpressionV2("NOASSERTION")]))
         @test all(ismissing.(getproperty.(sbom.Packages, :LicenseComments)))
         @test all(isequal.(getproperty.(sbom.Packages, :Copyright), "NOASSERTION"))
-        @test all(ismissing.(getproperty.(sbom.Packages, :Summary)))
+        @test all(isequal.(getproperty.(sbom.Packages, :Summary), "This is a Julia package, written in the Julia language."))
         @test all(ismissing.(getproperty.(sbom.Packages, :DetailedDescription)))
         @test all(isequal.(getproperty.(sbom.Packages, :Comment), "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."))
         @test all(isempty.(getproperty.(sbom.Packages, :ExternalReferences)))
