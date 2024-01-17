@@ -29,12 +29,12 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
     ismissing(docData.DocumentComment) || (spdxDoc.DocumentComment= docData.DocumentComment)
 
     # Add description of the registries in use
-    spdxDoc.DocumentComment= (ismissing(spdxDoc.DocumentComment) ? "" : "$(spdxDoc.DocumentComment)\n\n") * "Registries used for populating Package data:\n"
+    spdxDoc.DocumentComment= (ismissing(spdxDoc.DocumentComment) ? "" : "$(spdxDoc.DocumentComment)\n\n") * "Registries used for populating Package data:"
     active_registries= reachable_registries()
     for reg in active_registries
         if reg.name in sbomRegistries
             spdxDoc.DocumentComment= spdxDoc.DocumentComment * 
-                "$(reg.name) registry: $(reg.repo)\n$(reg.description)\n\n"
+                "\n$(reg.name) registry: $(reg.repo)\n$(reg.description)"
         end
     end
 
