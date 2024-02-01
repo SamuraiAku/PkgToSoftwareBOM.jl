@@ -122,7 +122,6 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractStrin
     package.Supplier= SpdxCreatorV2("NOASSERTION")
     package.Originator= SpdxCreatorV2("NOASSERTION") # TODO: Should there be instructions like for packages?
     resolve_pkgsource!(package, artifact)
-    #TODO: package.VerificationCode= spdxpkgverifcode(packagedata.source, packageInstructions) # Verify the artifact is installed (not necessarily true for lazy artifacts). Download if it is not?
     package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
     push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
     package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
@@ -146,6 +145,5 @@ function spdxpkgverifcode(source::AbstractString, packageInstructions::Union{Mis
 
     excluded_files= copy(packageInstructions.excluded_files)
     ismissing(packageInstructions.spdxfile_toexclude) || append!(excluded_files, packageInstructions.spdxfile_toexclude)
-    verifcode= spdxchecksum("SHA1", source, excluded_files, packageInstructions.excluded_dirs, packageInstructions.excluded_patterns)
-    return SpdxPkgVerificationCodeV2(bytes2hex(verifcode), packageInstructions.spdxfile_toexclude)
+    return ComputePackageVerificationCode(source, excluded_files, packageInstructions.excluded_dirs, packageInstructions.excluded_patterns)
 end

@@ -71,6 +71,14 @@ function resolve_pkgsource!(package::SpdxPackageV2, artifact::Dict{String, Any})
         end
     end
 
+    artifact_src= artifact_path(Base.SHA1(artifact["git-tree-sha1"]))
+    if isdir(artifact_src) # Just in case this is a lazy artifact that didn't get downloaded
+        package.VerificationCode= spdxpkgverifcode(artifact_src, missing)
+    else
+        @info "Verification code for artifact $(package.Name) not computed because directory does not exist. Probably a lazy artifact" artifact_src= artifact_src
+    end
+
+
     package.HomePage= "NOASSERTION"
 
     return nothing
