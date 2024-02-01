@@ -3,13 +3,13 @@
     "dataLicense": "CC0-1.0",
     "SPDXID": "SPDXRef-DOCUMENT",
     "name": "PkgToSoftwareBOM.jl Developer SBOM",
-    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-6f2f3e1d-8888-4038-bc23-f84758703d77",
+    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-d1568559-9b82-4047-a949-ebb36a43d52b",
     "creationInfo": {
         "creators": [
             "Person:  Simon Avery  (savery@ieee.org)",
             "Tool:  PkgToSoftwareBOM.jl"
         ],
-        "created": "2024-02-01T06:28:01Z",
+        "created": "2024-02-01T20:20:18Z",
         "comment": "Target Platform: macOS aarch64 {cxxstring_abi=cxx11, julia_version=1.9.2, libgfortran_version=5.0.0}"
     },
     "comment": "Registries used for populating Package data:\nGeneral registry: https://github.com/JuliaRegistries/General.git\nOfficial general Julia package registry where people can\nregister any package they want without too much debate about\nnaming and without enforced standards on documentation or\ntesting. We nevertheless encourage documentation, testing and\nsome amount of consideration when choosing package names.\n",
@@ -280,18 +280,18 @@
         },
         {
             "name": "tzjdata",
-            "SPDXID": "SPDXRef-52e48e96c4df04eeebc6ece0d9f1c3b545f0544c",
+            "SPDXID": "SPDXRef-b071cffdb310f5d3ca640c09cfa3dc3f23d450ad",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "https://github.com/JuliaTime/TZJData.jl/releases/download/v1.0.0+2023c/tzjfile-v1-tzdata2023c.tar.gz",
+            "downloadLocation": "https://github.com/JuliaTime/TZJData.jl/releases/download/v1.1.0+2023d/tzjfile-v1-tzdata2023d.tar.gz",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "be7dcb33e6a8bb611ce5bc91540969992c896479"
+                "packageVerificationCodeValue": "4b5c5102b3f75fc089cccbbb499a4e1c09398f42"
             },
             "checksums": [
                 {
                     "algorithm": "SHA256",
-                    "checksumValue": "50cd6c70dfb582336b4223adb3fe76aca6c6a9a5982c3111001e2091fb947b66"
+                    "checksumValue": "ff06bf7c19783925eff4430f1571c5cf81bf9232240dd2ee98d8a66987612f24"
                 }
             ],
             "homepage": "NOASSERTION",
@@ -307,13 +307,13 @@
         {
             "name": "TZJData",
             "SPDXID": "SPDXRef-TZJData-dc5dba14-91b3-4cab-a142-028a31da12f7",
-            "versionInfo": "1.0.0+2023c",
+            "versionInfo": "1.1.0+2023d",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaTime/TZJData.jl.git@v1.0.0+2023c",
+            "downloadLocation": "git+https://github.com/JuliaTime/TZJData.jl.git@v1.1.0+2023d",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "20c68c2f7dd222475c2e42813123af6e669587ee"
+                "packageVerificationCodeValue": "b9aea6a065dda907b52d5aa237ec62c98277c21b"
             },
             "homepage": "https://github.com/JuliaTime/TZJData.jl.git",
             "sourceInfo": "Source Code Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git",
@@ -428,7 +428,7 @@
             "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.9",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "5a6e6ad9a8dba0aa2d3271c06e40f7ffe5dbca1d",
+                "packageVerificationCodeValue": "6cad11d2308bae4fac6a5a616af92bb53d701bd8",
                 "packageVerificationCodeExcludedFiles": [
                     "PkgToSoftwareBOM.spdx.json"
                 ]
@@ -517,7 +517,7 @@
             "relatedSpdxElement": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53"
         },
         {
-            "spdxElementId": "SPDXRef-52e48e96c4df04eeebc6ece0d9f1c3b545f0544c",
+            "spdxElementId": "SPDXRef-b071cffdb310f5d3ca640c09cfa3dc3f23d450ad",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-TZJData-dc5dba14-91b3-4cab-a142-028a31da12f7"
         },
