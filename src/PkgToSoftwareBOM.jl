@@ -53,7 +53,7 @@ Base.@kwdef struct spdxCreationData
     TargetPlatform::Platform= HostPlatform()
     Name::String= "Julia Environment"
     NamespaceURL::Union{AbstractString, Nothing}= nothing
-    Creators::Vector{SpdxCreatorV2}= SpdxCreatorV2[SpdxCreatorV2("Tool", "PkgToSoftwareBOM.jl", "")]
+    Creators::Vector{SpdxCreatorV2}= SpdxCreatorV2[SpdxCreatorV2("Tool", "PkgToSoftwareBOM.jl v$(pkgversion(@__MODULE__))", "")]
     CreatorComment::Union{AbstractString, Missing}= missing
     DocumentComment::Union{AbstractString, Missing}= missing
     rootpackages::Dict{String, Base.UUID}= Pkg.project().dependencies
