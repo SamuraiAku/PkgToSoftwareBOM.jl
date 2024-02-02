@@ -117,7 +117,7 @@ using Base.BinaryPlatforms
         @test sbom.Namespace.URI == "https://spdx.org/spdxdocs/Julia_Environment" && !isnothing(sbom.Namespace.UUID)
         @test isempty(sbom.ExternalDocReferences)
         @test ismissing(sbom.CreationInfo.LicenseListVersion)
-        @test length(sbom.CreationInfo.Creator) == 1 && sbom.CreationInfo.Creator[1] == SpdxCreatorV2("Tool: PkgToSoftwareBOM.jl")
+        @test length(sbom.CreationInfo.Creator) == 1 && sbom.CreationInfo.Creator[1] == SpdxCreatorV2("Tool: PkgToSoftwareBOM.jl v$(pkgversion(PkgToSoftwareBOM))")
         @test !ismissing(sbom.CreationInfo.Created)
         @test sbom.CreationInfo.CreatorComment == string("Target Platform: ", string(HostPlatform()))
         @test occursin("DummyRegistry", sbom.DocumentComment) && occursin("General registry", sbom.DocumentComment)
