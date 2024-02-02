@@ -49,6 +49,8 @@ Base.@kwdef struct spdxPackageData
     artifactsinsbom::Set{String}= Set{String}()
 end
 
+# TODO: When abandoning julia 1.8 compatibility, update the default Creator below to include the package version
+#       using the function pkgversion(m::Module)
 Base.@kwdef struct spdxCreationData
     TargetPlatform::Platform= HostPlatform()
     Name::String= "Julia Environment"

@@ -5,8 +5,6 @@ Update SPDX package compatibility to v0.4.  This update enables the following:
 * Updates the algorithm for computing the package verification code to a hopefully correct implementation.
 * Allows the computation of artifact verification codes, since it is now able to ignore bad symbolic links.
 
-The version of PkgToSoftwareBOM is documented in the Creators field of a generated SBOM.
-
 ## v0.1.8
 Resolved [#2](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/2), Include artifacts in the SBOM
 
