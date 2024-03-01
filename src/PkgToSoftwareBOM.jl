@@ -5,6 +5,7 @@ module PkgToSoftwareBOM
 using Pkg
 using UUIDs
 using Reexport
+using LicenseCheck
 @reexport using SPDX
 using Artifacts
 using RegistryInstances
