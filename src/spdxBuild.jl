@@ -68,10 +68,8 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     package.Supplier= SpdxCreatorV2("NOASSERTION") # TODO: That would be the person/org who hosts package server?. Julialang would be the supplier for General registry but how would that be determined in generic case
     package.Originator= ismissing(packageInstructions) ?  SpdxCreatorV2("NOASSERTION") : packageInstructions.originator  # TODO: Use the person or group that hosts the repo on Github. Is there an API to query?    
     resolve_pkgsource!(package, packagedata, registrydata)
+    resolve_pkglicense!(package, packagedata.source, packageInstructions)
     package.VerificationCode= spdxpkgverifcode(packagedata.source, packageInstructions)
-    package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
-    push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
-    package.LicenseDeclared= ismissing(packageInstructions) ? SpdxLicenseExpressionV2("NOASSERTION") : packageInstructions.declaredLicense # TODO: Scan source for licenses and/or query Github API
     package.Copyright= ismissing(packageInstructions) ? "NOASSERTION" : packageInstructions.copyright # TODO:  Scan license files for the first line that says "Copyright"?  That would about work.
     package.Summary= "This is a Julia package, written in the Julia language."
 
@@ -122,9 +120,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractStrin
     package.Supplier= SpdxCreatorV2("NOASSERTION")
     package.Originator= SpdxCreatorV2("NOASSERTION") # TODO: Should there be instructions like for packages?
     resolve_pkgsource!(package, artifact)
-    package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
-    push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
-    package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
+    resolve_pkglicense!(package, artifact)
     package.Copyright= "NOASSERTION"  # TODO:  Should there be instructions like for packages?  Scan license files for the first line that says "Copyright"?  That would about work.
     package.Summary= "This is a Julia artifact. \nAn artifact is a binary runtime or other data store not written in the Julia language that is used by a Julia package."
     if haskey(artifact, ["lazy"]) && artifact["lazy"] == true

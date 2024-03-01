@@ -83,3 +83,16 @@ function resolve_pkgsource!(package::SpdxPackageV2, artifact::Dict{String, Any})
 
     return nothing
 end
+
+
+function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString, packageInstructions)
+    package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
+    push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
+    package.LicenseDeclared= ismissing(packageInstructions) ? SpdxLicenseExpressionV2("NOASSERTION") : packageInstructions.declaredLicense # TODO: Scan source for licenses and/or query Github API
+end
+
+function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any})
+    package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
+    push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
+    package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
+end
