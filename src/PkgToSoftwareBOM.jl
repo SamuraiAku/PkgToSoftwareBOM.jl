@@ -48,6 +48,7 @@ Base.@kwdef struct spdxPackageData
     packagesinsbom::Set{UUID}= Set{UUID}()
     packageInstructions::Dict{UUID, spdxPackageInstructions}
     artifactsinsbom::Set{String}= Set{String}()
+    licenseScan::Bool
 end
 
 # TODO: When abandoning julia 1.8 compatibility, update the default Creator below to include the package version
@@ -61,6 +62,7 @@ Base.@kwdef struct spdxCreationData
     DocumentComment::Union{AbstractString, Missing}= missing
     rootpackages::Dict{String, Base.UUID}= Pkg.project().dependencies
     packageInstructions::Dict{UUID, spdxPackageInstructions}= Dict{UUID, spdxPackageInstructions}()
+    licenseScan::Bool= false
 end
 
 include("Registry.jl")

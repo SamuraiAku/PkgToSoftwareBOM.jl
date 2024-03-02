@@ -85,14 +85,43 @@ function resolve_pkgsource!(package::SpdxPackageV2, artifact::Dict{String, Any})
 end
 
 
-function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString, packageInstructions)
+function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString, packageInstructions, licenseScan::Bool)
     package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
+
+    if ismissing(packageInstructions) 
+        if false == licenseScan
+            package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
+        else
+            scanresults= find_licenses(packagepath) # Returns an array of found license files in top level of packagepath with scanner results
+            if isempty(scanresults)
+                package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+            else
+                # If multiple licenses exist, pick the first one as declared and log the rest
+                package.LicenseDeclared= SpdxLicenseExpressionV2(scanresults[1].licenses_found[1])
+            end
+        end
+    else
+        package.LicenseDeclared= packageInstructions.declaredLicense
+    end
+
     push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
-    package.LicenseDeclared= ismissing(packageInstructions) ? SpdxLicenseExpressionV2("NOASSERTION") : packageInstructions.declaredLicense # TODO: Scan source for licenses and/or query Github API
 end
 
-function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any})
+function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any}, licenseScan::Bool)
     package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
+
+    if licenseScan == true
+        artifact_src= artifact_path(Base.SHA1(artifact["git-tree-sha1"]))
+        scanresults= find_licenses(artifact_src) # Returns an array of found license files in top level of packagepath with scanner results
+        if isempty(scanresults)
+            package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+        else
+            # If multiple licenses exist, pick the first one as declared and log the rest
+            package.LicenseDeclared= SpdxLicenseExpressionV2(scanresults[1].licenses_found[1])
+        end
+    else
+        package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
+    end
+
     push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
-    package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
 end
