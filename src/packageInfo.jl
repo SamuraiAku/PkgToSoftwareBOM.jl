@@ -91,37 +91,47 @@ function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString
     if ismissing(packageInstructions) 
         if false == licenseScan
             package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
-        else
-            scanresults= find_licenses(packagepath) # Returns an array of found license files in top level of packagepath with scanner results
+        else    
+            scanresults= find_licenses(packagepath, scan_subdir= true) # Returns an array of found license files in top level of packagepath with scanner results
             if isempty(scanresults)
                 package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
             else
                 # If multiple licenses exist, pick the first one as declared and log the rest
-                package.LicenseDeclared= SpdxLicenseExpressionV2(scanresults[1].licenses_found[1])
+                # As long as it exists at the top of the pkg
+                if splitdir(scanresults[1].license_filename)[1] == packagepath
+                    package.LicenseDeclared= SpdxLicenseExpressionV2(scanresults[1].licenses_found[1])
+                else
+                    package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+                end
+                package.LicenseInfoFromFiles= [SpdxLicenseExpressionV2(license) for f in scanresults for license in f.licenses_found]
             end
         end
     else
         package.LicenseDeclared= packageInstructions.declaredLicense
     end
-
-    push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
 end
 
 function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any}, licenseScan::Bool)
     package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
 
-    if licenseScan == true
+    if false == licenseScan
+        package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
+    else
         artifact_src= artifact_path(Base.SHA1(artifact["git-tree-sha1"]))
-        scanresults= find_licenses(artifact_src) # Returns an array of found license files in top level of packagepath with scanner results
+        scanresults= find_licenses(artifact_src, scan_subdir= true)
         if isempty(scanresults)
             package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
         else
-            # If multiple licenses exist, pick the first one as declared and log the rest
-            package.LicenseDeclared= SpdxLicenseExpressionV2(scanresults[1].licenses_found[1])
+            # If multiple licenses exist, pick the first one at the top or the first one in the share/licenses directory
+            declared_licenses= filter(lic -> contains(splitdir(lic.license_filename)[1], joinpath(artifact_src, "share", "licenses"))
+                                             || (splitdir(lic.license_filename)[1] == artifact_src)
+                                    ,scanresults)
+            if isempty(declared_licenses)
+                package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+            else
+                package.LicenseDeclared= SpdxLicenseExpressionV2(declared_licenses[1].licenses_found[1])
+            end
+            package.LicenseInfoFromFiles= [SpdxLicenseExpressionV2(license) for f in scanresults for license in f.licenses_found]
         end
-    else
-        package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
     end
-
-    push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
 end
