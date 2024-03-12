@@ -104,6 +104,7 @@ function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString
                     package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
                 end
                 package.LicenseInfoFromFiles= [SpdxLicenseExpressionV2(license) for f in scanresults for license in f.licenses_found]
+                package.LicenseInfoFromFiles= unique(package.LicenseInfoFromFiles) # Remove duplicates
             end
         end
     else
