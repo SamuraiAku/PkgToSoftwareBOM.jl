@@ -132,6 +132,7 @@ function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any}
                 package.LicenseDeclared= SpdxLicenseExpressionV2(declared_licenses[1].licenses_found[1])
             end
             package.LicenseInfoFromFiles= [SpdxLicenseExpressionV2(license) for f in scanresults for license in f.licenses_found]
+            package.LicenseInfoFromFiles= unique(package.LicenseInfoFromFiles) # Remove duplicates
         end
     end
 end
