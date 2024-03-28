@@ -10,6 +10,7 @@ using LicenseCheck
 using Artifacts
 using RegistryInstances
 using Base.BinaryPlatforms
+using Logging
 
 export spdxCreationData, spdxPackageInstructions
 

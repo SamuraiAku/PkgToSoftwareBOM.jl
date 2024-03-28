@@ -62,6 +62,8 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
 
     # Check if it's a standard library
     is_stdlib(uuid) && return nothing
+
+    @logmsg Logging.LogLevel(-50) "******* Entering package $(packagedata.name) *******"
     
     package.Name= packagedata.name
     package.Version= string(packagedata.version)
@@ -115,6 +117,8 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractStrin
     # Check if this artifact already exists in the SBOM
     # TODO: Maybe add additional names to the name field? That would require searching for the package and then parsing
     (git_tree_sha1 in builddata.artifactsinsbom) && (return package.SPDXID)
+
+    @logmsg Logging.LogLevel(-50) "******* Entering artifact $(artifact_name) *******"
 
     package.Name= artifact_name
     package.Supplier= SpdxCreatorV2("NOASSERTION")

@@ -100,10 +100,13 @@ function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString
                 # As long as it exists at the top of the pkg
                 if splitdir(scanresults[1].license_filename)[1] == packagepath
                     package.LicenseDeclared= SpdxLicenseExpressionV2(scanresults[1].licenses_found[1])
+                    @logmsg Logging.LogLevel(-50) "Declared License:" LicenseDeclared= package.LicenseDeclared LicenseFile= scanresults[1].license_filename
                 else
                     package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+                    @logmsg Logging.LogLevel(-50) "Declared License cannot be determined"
                 end
                 package.LicenseInfoFromFiles= [SpdxLicenseExpressionV2(license) for f in scanresults for license in f.licenses_found]
+                @logmsg Logging.LogLevel(-75) "License data found in:" licenselist= [(a.license_filename, a.licenses_found) for a in scanresults]
                 package.LicenseInfoFromFiles= unique(package.LicenseInfoFromFiles) # Remove duplicates
             end
         end
@@ -129,10 +132,13 @@ function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any}
                                     ,scanresults)
             if isempty(declared_licenses)
                 package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+                @logmsg Logging.LogLevel(-50) "Declared License cannot be determined"
             else
                 package.LicenseDeclared= SpdxLicenseExpressionV2(declared_licenses[1].licenses_found[1])
+                @logmsg Logging.LogLevel(-50) "Declared License:" LicenseDeclared= package.LicenseDeclared LicenseFile= declared_licenses[1].license_filename
             end
             package.LicenseInfoFromFiles= [SpdxLicenseExpressionV2(license) for f in scanresults for license in f.licenses_found]
+            @logmsg Logging.LogLevel(-75) "License data found in:" licenselist= [(a.license_filename, a.licenses_found) for a in scanresults]
             package.LicenseInfoFromFiles= unique(package.LicenseInfoFromFiles) # Remove duplicates
         end
     end
