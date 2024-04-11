@@ -203,8 +203,7 @@ The second argument is a list of all the registries you would like to use. If yo
 
 ## How does PkgToSoftwareBOM determine what the license of the package or artifact is?
 PkgToSoftwareBOM scans the entire julia package or artifact for license information.  If the scanning locates a file containing a recognized software license, the license is recorded in the `LicenseInfoFromFiles` property of the SBOM package description but does not record which file(s) the license was found in. The license scan follows these rules (LicenseCheck.jl, version 0.2.2)
-- If the sub-directory has less than 100 files in it, then all plaintext files less than 450 KB are scanned
-- If the sub-directory has more than 100 files, then plaintext files named ("LICENSE", "LICENCE", "COPYING", "NOTICE", "COPYRIGHT") with extensions (".md", ".txt", "", ".rst") are scanned.
+- All plaintext files less than 450 KB are scanned
 
 During that search PkgToSoftwareBOM looks for an overall package license in the following locations:
 - For Julia packages, in the package root directory

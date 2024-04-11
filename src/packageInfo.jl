@@ -147,18 +147,14 @@ function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any}
 end
 
 ###############################
-#  A modified version of the find_licenses function in LicenseCheck.jl
 function scan_for_licenses(dir::AbstractString)
     licenses_list= Vector{NamedTuple{(:license_filename, :licenses_found, :license_file_percent_covered), Tuple{String, Vector{String}, Float64}}}()
     for dirdata in walkdir(dir)
         root= dirdata[1]
         files= dirdata[3]
         files= [f for f in files if isfile(joinpath(root, f))]  # Remove anything that isn't an actual file, i.e. a broken symlink or symlinks to directories
-        if length(files) < LicenseCheck.CUTOFF
-            licenses_found= find_licenses_by_bruteforce(root; files=files)
-        else
-            licenses_found= find_licenses_by_list_intersection(root; files=files)
-        end
+        licenses_found= find_licenses_by_bruteforce(root; files=files)
+        
         # If not empty, rebuild the licenses_found list with the complete path
         licenses_fullpath= typeof(licenses_list)()
         for lic in licenses_found
