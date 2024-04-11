@@ -63,7 +63,7 @@ Base.@kwdef struct spdxCreationData
     DocumentComment::Union{AbstractString, Missing}= missing
     rootpackages::Dict{String, Base.UUID}= Pkg.project().dependencies
     packageInstructions::Dict{UUID, spdxPackageInstructions}= Dict{UUID, spdxPackageInstructions}()
-    licenseScan::Bool= false
+    licenseScan::Bool= true
 end
 
 include("Registry.jl")
