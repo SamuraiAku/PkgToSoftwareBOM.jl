@@ -2,6 +2,19 @@
 
 export generateSPDX
 
+###############################
+"""
+    generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"])
+
+Generate a software BOM in the SPDX format. By default, the SBOM will describe all the packages and artifacts in the active environment using the General registry to retrieve download information.
+
+If you would like to use a different registry or search multiple registries, you just call `generateSPDX` with two arguments.
+
+For example to create a User Environment SBOM using the General registry and another registry called "PrivateRegistry", type:
+```julia-repl
+sbom= generateSPDX(spdxCreationData(), ["PrivateRegistry", "General"]);
+```
+"""
 function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"], envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= Pkg.dependencies())
     # Query the registries for package information
     registry_packages= registry_packagequery(envpkgs, sbomRegistries)
@@ -50,6 +63,7 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
     return spdxDoc
 end
 
+###############################
 ## Building an SPDX Package for a Julia package
 function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxPackageData)
     packagedata= builddata.packages[uuid]
@@ -109,6 +123,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     return package.SPDXID
 end
 
+###############################
 ## Building an SPDX Package for a Julia artifact
 function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractString, artifact::Dict{String, Any}, builddata::spdxPackageData)
     git_tree_sha1= artifact["git-tree-sha1"]
@@ -138,6 +153,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractStrin
     return package.SPDXID
 end
 
+###############################
 function spdxpkgverifcode(source::AbstractString, packageInstructions::Union{Missing, spdxPackageInstructions})
     if ismissing(packageInstructions)
         packageInstructions= spdxPackageInstructions(name= "") # go with the defaults

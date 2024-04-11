@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: MIT
 
+###############################
 # Think of a name that would be good fit for the Pkg API
 function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registries::Vector{<:AbstractString})
     if length(registries) == 1
@@ -17,6 +18,7 @@ function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, regist
     return registry_pkg
 end
 
+###############################
 function _registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registry::AbstractString)
     #Get the requested registry
     active_regs= reachable_registries()
@@ -38,6 +40,7 @@ function _registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, regis
     return registry_pkg
 end
 
+###############################
 function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registry::RegistryInstance)
     package.is_tracking_repo && return nothing
     is_stdlib(uuid) && return nothing

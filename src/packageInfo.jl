@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: MIT
 
+###############################
 function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.PackageInfo, registrydata::Union{Nothing, Missing, PackageRegistryInfo})
     # The location of the SPDX package's source code depend on whether Pkg is tracking the package via:
     #   1) A package registry
@@ -42,7 +43,7 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
     return nothing
 end
 
-
+###############################
 function resolve_pkgsource!(package::SpdxPackageV2, artifact::Dict{String, Any})
     platform_keys= setdiff(keys(artifact), Set(["download", "git-tree-sha1", "lazy"]))
     if length(platform_keys) > 0
@@ -84,7 +85,7 @@ function resolve_pkgsource!(package::SpdxPackageV2, artifact::Dict{String, Any})
     return nothing
 end
 
-
+###############################
 function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString, packageInstructions, licenseScan::Bool)
     package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
 
@@ -115,6 +116,7 @@ function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString
     end
 end
 
+###############################
 function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any}, licenseScan::Bool)
     package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
 

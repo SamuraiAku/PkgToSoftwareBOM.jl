@@ -38,7 +38,7 @@ Base.@kwdef struct spdxPackageInstructions
     excluded_dirs::Vector{String}= String[".git"]
     excluded_patterns::Vector{Regex}= Regex[]
     originator::SpdxCreatorV2= SpdxCreatorV2("NOASSERTION") 
-    declaredLicense= SpdxLicenseExpressionV2("NOASSERTION")
+    declaredLicense::Union{SpdxSimpleLicenseExpressionV2, SpdxComplexLicenseExpressionV2}= SpdxLicenseExpressionV2("NOASSERTION")
     copyright::String= "NOASSERTION"
 end
 
