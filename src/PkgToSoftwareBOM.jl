@@ -5,10 +5,12 @@ module PkgToSoftwareBOM
 using Pkg
 using UUIDs
 using Reexport
+using LicenseCheck
 @reexport using SPDX
 using Artifacts
 using RegistryInstances
 using Base.BinaryPlatforms
+using Logging
 
 export spdxCreationData, spdxPackageInstructions
 
@@ -36,7 +38,7 @@ Base.@kwdef struct spdxPackageInstructions
     excluded_dirs::Vector{String}= String[".git"]
     excluded_patterns::Vector{Regex}= Regex[]
     originator::SpdxCreatorV2= SpdxCreatorV2("NOASSERTION") 
-    declaredLicense= SpdxLicenseExpressionV2("NOASSERTION")
+    declaredLicense::Union{SpdxSimpleLicenseExpressionV2, SpdxComplexLicenseExpressionV2}= SpdxLicenseExpressionV2("NOASSERTION")
     copyright::String= "NOASSERTION"
 end
 
@@ -47,6 +49,7 @@ Base.@kwdef struct spdxPackageData
     packagesinsbom::Set{UUID}= Set{UUID}()
     packageInstructions::Dict{UUID, spdxPackageInstructions}
     artifactsinsbom::Set{String}= Set{String}()
+    licenseScan::Bool
 end
 
 # TODO: When abandoning julia 1.8 compatibility, update the default Creator below to include the package version
@@ -60,6 +63,7 @@ Base.@kwdef struct spdxCreationData
     DocumentComment::Union{AbstractString, Missing}= missing
     rootpackages::Dict{String, Base.UUID}= Pkg.project().dependencies
     packageInstructions::Dict{UUID, spdxPackageInstructions}= Dict{UUID, spdxPackageInstructions}()
+    licenseScan::Bool= true
 end
 
 include("Registry.jl")

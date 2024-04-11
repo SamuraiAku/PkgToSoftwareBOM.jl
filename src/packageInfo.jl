@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: MIT
 
+###############################
 function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.PackageInfo, registrydata::Union{Nothing, Missing, PackageRegistryInfo})
     # The location of the SPDX package's source code depend on whether Pkg is tracking the package via:
     #   1) A package registry
@@ -42,7 +43,7 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
     return nothing
 end
 
-
+###############################
 function resolve_pkgsource!(package::SpdxPackageV2, artifact::Dict{String, Any})
     platform_keys= setdiff(keys(artifact), Set(["download", "git-tree-sha1", "lazy"]))
     if length(platform_keys) > 0
@@ -82,4 +83,86 @@ function resolve_pkgsource!(package::SpdxPackageV2, artifact::Dict{String, Any})
     package.HomePage= "NOASSERTION"
 
     return nothing
+end
+
+###############################
+function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString, packageInstructions, licenseScan::Bool)
+    package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
+
+    if ismissing(packageInstructions) 
+        if false == licenseScan
+            package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
+        else    
+            scanresults= scan_for_licenses(packagepath) # Returns an array of found license files in top level of packagepath with scanner results
+            if isempty(scanresults)
+                package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+            else
+                # If multiple licenses exist, pick the first one as declared and log the rest
+                # As long as it exists at the top of the pkg
+                if splitdir(scanresults[1].license_filename)[1] == packagepath
+                    package.LicenseDeclared= SpdxLicenseExpressionV2(scanresults[1].licenses_found[1])
+                    @logmsg Logging.LogLevel(-50) "Declared License:" LicenseDeclared= package.LicenseDeclared LicenseFile= scanresults[1].license_filename
+                else
+                    package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+                    @logmsg Logging.LogLevel(-50) "Declared License cannot be determined"
+                end
+                package.LicenseInfoFromFiles= [SpdxLicenseExpressionV2(license) for f in scanresults for license in f.licenses_found]
+                @logmsg Logging.LogLevel(-75) "License data found in:" licenselist= [(a.license_filename, a.licenses_found) for a in scanresults]
+                package.LicenseInfoFromFiles= unique(package.LicenseInfoFromFiles) # Remove duplicates
+            end
+        end
+    else
+        package.LicenseDeclared= packageInstructions.declaredLicense
+    end
+end
+
+###############################
+function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any}, licenseScan::Bool)
+    package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
+
+    if false == licenseScan
+        package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
+    else
+        artifact_src= artifact_path(Base.SHA1(artifact["git-tree-sha1"]))
+        scanresults= scan_for_licenses(artifact_src)
+        if isempty(scanresults)
+            package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+        else
+            # If multiple licenses exist, pick the first one at the top or the first one in the share/licenses directory
+            declared_licenses= filter(lic -> contains(splitdir(lic.license_filename)[1], joinpath(artifact_src, "share", "licenses"))
+                                             || (splitdir(lic.license_filename)[1] == artifact_src)
+                                    ,scanresults)
+            if isempty(declared_licenses)
+                package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+                @logmsg Logging.LogLevel(-50) "Declared License cannot be determined"
+            else
+                package.LicenseDeclared= SpdxLicenseExpressionV2(declared_licenses[1].licenses_found[1])
+                @logmsg Logging.LogLevel(-50) "Declared License:" LicenseDeclared= package.LicenseDeclared LicenseFile= declared_licenses[1].license_filename
+            end
+            package.LicenseInfoFromFiles= [SpdxLicenseExpressionV2(license) for f in scanresults for license in f.licenses_found]
+            @logmsg Logging.LogLevel(-75) "License data found in:" licenselist= [(a.license_filename, a.licenses_found) for a in scanresults]
+            package.LicenseInfoFromFiles= unique(package.LicenseInfoFromFiles) # Remove duplicates
+        end
+    end
+end
+
+###############################
+function scan_for_licenses(dir::AbstractString)
+    licenses_list= Vector{NamedTuple{(:license_filename, :licenses_found, :license_file_percent_covered), Tuple{String, Vector{String}, Float64}}}()
+    for dirdata in walkdir(dir)
+        root= dirdata[1]
+        files= dirdata[3]
+        files= [f for f in files if isfile(joinpath(root, f))]  # Remove anything that isn't an actual file, i.e. a broken symlink or symlinks to directories
+        licenses_found= find_licenses_by_bruteforce(root; files=files)
+        
+        # If not empty, rebuild the licenses_found list with the complete path
+        licenses_fullpath= typeof(licenses_list)()
+        for lic in licenses_found
+            push!(licenses_fullpath, (license_filename= joinpath(root, lic.license_filename), licenses_found= lic.licenses_found, license_file_percent_covered= lic.license_file_percent_covered))
+        end
+
+        licenses_list= isempty(licenses_fullpath) ? licenses_list : vcat(licenses_list, licenses_fullpath)
+    end
+
+    return licenses_list
 end

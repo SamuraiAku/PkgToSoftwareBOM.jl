@@ -2,11 +2,24 @@
 
 export generateSPDX
 
+###############################
+"""
+    generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"])
+
+Generate a software BOM in the SPDX format. By default, the SBOM will describe all the packages and artifacts in the active environment using the General registry to retrieve download information.
+
+If you would like to use a different registry or search multiple registries, you just call `generateSPDX` with two arguments.
+
+For example to create a User Environment SBOM using the General registry and another registry called "PrivateRegistry", type:
+```julia-repl
+sbom= generateSPDX(spdxCreationData(), ["PrivateRegistry", "General"]);
+```
+"""
 function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"], envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= Pkg.dependencies())
     # Query the registries for package information
     registry_packages= registry_packagequery(envpkgs, sbomRegistries)
 
-    packagebuilddata= spdxPackageData(targetplatform= docData.TargetPlatform, packages= envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions)
+    packagebuilddata= spdxPackageData(targetplatform= docData.TargetPlatform, packages= envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions, licenseScan= docData.licenseScan)
 
    # Create the SPDX Document
     spdxDoc= SpdxDocumentV2()
@@ -50,6 +63,7 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
     return spdxDoc
 end
 
+###############################
 ## Building an SPDX Package for a Julia package
 function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxPackageData)
     packagedata= builddata.packages[uuid]
@@ -62,16 +76,16 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
 
     # Check if it's a standard library
     is_stdlib(uuid) && return nothing
+
+    @logmsg Logging.LogLevel(-50) "******* Entering package $(packagedata.name) *******"
     
     package.Name= packagedata.name
     package.Version= string(packagedata.version)
     package.Supplier= SpdxCreatorV2("NOASSERTION") # TODO: That would be the person/org who hosts package server?. Julialang would be the supplier for General registry but how would that be determined in generic case
     package.Originator= ismissing(packageInstructions) ?  SpdxCreatorV2("NOASSERTION") : packageInstructions.originator  # TODO: Use the person or group that hosts the repo on Github. Is there an API to query?    
     resolve_pkgsource!(package, packagedata, registrydata)
+    resolve_pkglicense!(package, packagedata.source, packageInstructions, builddata.licenseScan)
     package.VerificationCode= spdxpkgverifcode(packagedata.source, packageInstructions)
-    package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
-    push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
-    package.LicenseDeclared= ismissing(packageInstructions) ? SpdxLicenseExpressionV2("NOASSERTION") : packageInstructions.declaredLicense # TODO: Scan source for licenses and/or query Github API
     package.Copyright= ismissing(packageInstructions) ? "NOASSERTION" : packageInstructions.copyright # TODO:  Scan license files for the first line that says "Copyright"?  That would about work.
     package.Summary= "This is a Julia package, written in the Julia language."
 
@@ -109,6 +123,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     return package.SPDXID
 end
 
+###############################
 ## Building an SPDX Package for a Julia artifact
 function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractString, artifact::Dict{String, Any}, builddata::spdxPackageData)
     git_tree_sha1= artifact["git-tree-sha1"]
@@ -118,13 +133,13 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractStrin
     # TODO: Maybe add additional names to the name field? That would require searching for the package and then parsing
     (git_tree_sha1 in builddata.artifactsinsbom) && (return package.SPDXID)
 
+    @logmsg Logging.LogLevel(-50) "******* Entering artifact $(artifact_name) *******"
+
     package.Name= artifact_name
     package.Supplier= SpdxCreatorV2("NOASSERTION")
     package.Originator= SpdxCreatorV2("NOASSERTION") # TODO: Should there be instructions like for packages?
     resolve_pkgsource!(package, artifact)
-    package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
-    push!(package.LicenseInfoFromFiles, SpdxLicenseExpressionV2("NOASSERTION"))
-    package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
+    resolve_pkglicense!(package, artifact, builddata.licenseScan)
     package.Copyright= "NOASSERTION"  # TODO:  Should there be instructions like for packages?  Scan license files for the first line that says "Copyright"?  That would about work.
     package.Summary= "This is a Julia artifact. \nAn artifact is a binary runtime or other data store not written in the Julia language that is used by a Julia package."
     if haskey(artifact, ["lazy"]) && artifact["lazy"] == true
@@ -138,6 +153,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractStrin
     return package.SPDXID
 end
 
+###############################
 function spdxpkgverifcode(source::AbstractString, packageInstructions::Union{Missing, spdxPackageInstructions})
     if ismissing(packageInstructions)
         packageInstructions= spdxPackageInstructions(name= "") # go with the defaults
