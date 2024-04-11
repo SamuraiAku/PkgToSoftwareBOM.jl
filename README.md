@@ -13,13 +13,15 @@ PkgToSoftwareBOM interfaces with the standard library Pkg to fill in the SBOM da
     - versions in use
     - where the package can be downloaded from
     - SPDX verification code
+    - determines the declared license and scans all source files for additional licenses present
 - A complete artifact list
     - artifact version resolved to the target platform
         - target platform may be changed by an advanced user
     - where the artifact can be downloaded from
     - download checksum
+    - determines the declared license and scans all source files for additional licenses present
 
-Future versions may be able to fill in additional fields including copyright text and software license.
+Future versions may be able to fill in additional fields including copyright text.
 
 PkgToSoftwareBOM defaults to using the General registry but can use other registries and even mutiple registries as the source(s) of package information.
 
@@ -60,6 +62,15 @@ There are two use cases envisioned:
 
 - Users: Create an SBOM of your current environment. Submit this file to your organization
 - Developers: Create an SBOM to be included with your package source code. This becomes your official declaration of what your package dependencies, copyright, license, and download location.
+
+### !!! Important note about stability and license scanning !!!
+PkgToSoftwareBOM uses [LicenseCheck.jl](https://github.com/ericphanson/LicenseCheck.jl) to scan package and artifact directories for license file information. LicenseCheck has been known to occasionally crash when run on Apple Silicon, see [Issue #11](https://github.com/ericphanson/LicenseCheck.jl/issues/11).  I have observed it happening every time when run within VSCode with the julia-vscode extension. There are some early indications this issue may be resolved in Julia 1.11 when it is released, but it is not certain yet.
+
+If you wish to disable license scanning for stability reasons, use the keyword licenseScan when creating a spdxCreationData object (see examples below)
+
+```julia
+spdxCreationData(licenseScan= false)
+```
 
 ### User Environment SBOM
 
@@ -189,6 +200,17 @@ sbom= generateSPDX(spdxCreationData(), ["PrivateRegistry", "General"]);
 ```
 
 The second argument is a list of all the registries you would like to use. If you have a package that exists in both registries (for example, you've cloned the respository to your local network and you want to list that as the download location), PkgToSoftwareBOM will use the information from the first registry in the list that has valid information and ignore all subsequent registries
+
+## How does PkgToSoftwareBOM determine what the license of the package or artifact is?
+PkgToSoftwareBOM scans the entire julia package or artifact for license information.  If the scanning locates a file containing a recognized software license, the license is recorded in the `LicenseInfoFromFiles` property of the SBOM package description but does not record which file(s) the license was found in. The license scan follows these rules (LicenseCheck.jl, version 0.2.2)
+- If the sub-directory has less than 100 files in it, then all plaintext files less than 450 KB are scanned
+- If the sub-directory has more that 100 files, then plaintext files named ("LICENSE", "LICENCE", "COPYING", "NOTICE", "COPYRIGHT") with extensions (".md", ".txt", "", ".rst") are scanned.
+
+During that search PkgToSoftwareBOM looks for an overall package license in the following locations:
+- For Julia packages, in the package root directory
+- For artifacts, in the root directory and in the directory `share/licenses`
+
+If files with a valid license are found in the expected location, PkgToSoftwareBOM declares the file where the license takes up the greatest percentage of the total file to be the package license, as you would expect a package license to contain only the license text and nothing else.
 
 ## How does PkgToSoftwareBOM target hardware platforms other than the one it is running on?
 

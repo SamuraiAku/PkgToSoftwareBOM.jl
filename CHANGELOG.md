@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.1.10
+Resolved [#7](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/7), Fill in Declared License field in SBOM
+* Uses LicenseCheck.jl to scan packages and artifacts for license files and licenses embedded in source files.
+* Also fill in package field License Info From Files.
+
 ## v0.1.9
 Update SPDX package compatibility to v0.4.  This update enables the following:
 * Updates the algorithm for computing the package verification code to a hopefully correct implementation.
