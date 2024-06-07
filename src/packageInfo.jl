@@ -48,9 +48,9 @@ function resolve_pkgsource!(package::SpdxPackageV2, artifact::Dict{String, Any})
     platform_keys= setdiff(keys(artifact), Set(["download", "git-tree-sha1", "lazy"]))
     if length(platform_keys) > 0
         package.SourceInfo= ""
-        package.SourceInfo= string(package.SourceInfo, "The artifact download URL was determined using the following platform specific parameters:", "\n")
+        package.SourceInfo= string(package.SourceInfo, "The artifact download URL was determined using the following platform specific parameters:")
         for k in platform_keys
-            package.SourceInfo= string(package.SourceInfo, k * ": ", artifact[k], "\n")
+            package.SourceInfo= string(package.SourceInfo, "\n", k * ": ", artifact[k])
         end
     end
     
