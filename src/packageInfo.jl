@@ -63,11 +63,13 @@ function resolve_pkgsource!(package::SpdxPackageV2, artifact::Dict{String, Any})
         if length(artifact["download"]) > 1
             if ismissing(package.SourceInfo)
                 package.SourceInfo= ""
+            else
+                package.SourceInfo= package.SourceInfo * "\n"
             end
-            package.SourceInfo= string(package.SourceInfo, "This artifact may also be downloaded from the following alternate locations:", "\n")
+            package.SourceInfo= string(package.SourceInfo, "This artifact may also be downloaded from the following alternate locations:")
             for dl in artifact["download"][2:end]
-                package.SourceInfo= string(package.SourceInfo, "PackageDownloadLocation: $(dl["url"])", "\n")
-                package.SourceInfo= string(package.SourceInfo, "PackageChecksum: SHA256: $(dl["sha256"])", "\n")
+                package.SourceInfo= string(package.SourceInfo, "\n", "PackageDownloadLocation: $(dl["url"])")
+                package.SourceInfo= string(package.SourceInfo, "\n", "PackageChecksum: SHA256: $(dl["sha256"])")
             end
         end
     end
