@@ -10,9 +10,10 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
 
     if packagedata.is_tracking_registry
         # Simplest and most common case is if you are tracking a registered package
-        package.DownloadLocation= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@v$(packagedata.version)$(isempty(registrydata.packageSubdir) ? "" : "#"*registrydata.packageSubdir)")
+        package.DownloadLocation= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@$(packagedata.tree_hash)$(isempty(registrydata.packageSubdir) ? "" : "#"*registrydata.packageSubdir)")
         package.HomePage= registrydata.packageURL
         package.SourceInfo= "Source Code Location is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
+        package.SourceInfo= package.SourceInfo * "\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>"
     elseif packagedata.is_tracking_repo
         # Next simplest case is if you are directly tracking a repository
         # TODO: Extract the subdirectory information if it exists. Can't find it in packagedata.
