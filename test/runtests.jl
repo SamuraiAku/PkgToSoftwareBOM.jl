@@ -162,9 +162,9 @@ using Base.BinaryPlatforms
         # Given a key of the name of SPDXID, you know the value of Version, DownloadLocation and Homepage
         # Loop, on the names then find the index that has that name
         package_info= [
-            "Dummy1" => (Version= "1.0.1", DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy1.git@v1.0.1"), HomePage= "https://github.com/SamuraiAku/Dummy1.git")
-            "Dummy2" => (Version= "1.0.1", DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy2.git@v1.0.1"), HomePage= "https://github.com/SamuraiAku/Dummy2.git")
-            "Dummy3" => (Version= "1.0.0", DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy3.git@v1.0.0"), HomePage= "https://github.com/SamuraiAku/Dummy3.git")
+            "Dummy1" => (Version= "1.0.1", DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy1.git@008576972fec29599db48c93f85350c4a266c877"), HomePage= "https://github.com/SamuraiAku/Dummy1.git")
+            "Dummy2" => (Version= "1.0.1", DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy2.git@322507efe9c377be703d1788305e481cfd0b9be7"), HomePage= "https://github.com/SamuraiAku/Dummy2.git")
+            "Dummy3" => (Version= "1.0.0", DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy3.git@c45b219b60c32061a31194f5093610aab3d3bd93"), HomePage= "https://github.com/SamuraiAku/Dummy3.git")
             "Dummy4" => (Version= "1.0.0", DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy4.git@v1.0.0"), HomePage= "https://github.com/SamuraiAku/Dummy4.git")
         ]
         for p in package_info
