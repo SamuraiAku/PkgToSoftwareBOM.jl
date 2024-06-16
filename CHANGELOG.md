@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.1.11
+* Resolved [#18](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/18), Put a package's git tree hash in the Download Location
+* Pulled out some trailing whitespace ininformation fields
+
 ## v0.1.10
 Resolved [#7](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/7), Fill in Declared License field in SBOM
 * Uses LicenseCheck.jl to scan packages and artifacts for license files and licenses embedded in source files.
