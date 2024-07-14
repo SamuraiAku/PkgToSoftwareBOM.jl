@@ -11,6 +11,7 @@ using Artifacts
 using RegistryInstances
 using Base.BinaryPlatforms
 using Logging
+using Downloads
 
 export spdxCreationData, spdxPackageInstructions
 
@@ -25,6 +26,7 @@ Base.@kwdef struct PackageRegistryInfo
     packageURL::String
     packageSubdir::String
     packageTreeHash::Union{String, Nothing}
+    packageserverURL::Union{String, Nothing}
     
     # It would be nice to add these fields, but first have to figure out how to resolve version ranges
     #packageCompatibility::Dict{String, Any}
