@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 
 ###############################
-function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.PackageInfo, registrydata::Union{Nothing, Missing, PackageRegistryInfo})
+function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.PackageInfo, registrydata::Union{Nothing, Missing, PackageRegistryInfo}, use_packageserver::Bool)
     # The location of the SPDX package's source code depend on whether Pkg is tracking the package via:
     #   1) A package registry
     #   2) Connecting directly with a git repository
@@ -10,10 +10,26 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
 
     if packagedata.is_tracking_registry
         # Simplest and most common case is if you are tracking a registered package
-        package.DownloadLocation= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@$(packagedata.tree_hash)$(isempty(registrydata.packageSubdir) ? "" : "#"*registrydata.packageSubdir)")
+        repo_download= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@$(packagedata.tree_hash)$(isempty(registrydata.packageSubdir) ? "" : "#"*registrydata.packageSubdir)")
+        if use_packageserver
+            if isnothing(registrydata.packageserverURL)
+                resolve_pkgsource!(package, packagedata, registrydata, false) # Try it again but don't look for the package server
+                return nothing
+            else
+                package.DownloadLocation= SpdxDownloadLocationV2(registrydata.packageserverURL)
+                if startswith(registrydata.packageserverURL, "https://pkg.julialang.org/")
+                    package.Supplier= SpdxCreatorV2("Organization", "JuliaLang", "")
+                else
+                    package.Supplier= SpdxCreatorV2("NOASSERTION")
+                end
+                package.SourceInfo= "Download is a compressed tarball, supplied from a package server, rather than the package source respository."
+            end
+        else
+            package.DownloadLocation= repo_download
+            package.SourceInfo= "Download Location is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
+            package.SourceInfo= package.SourceInfo * "\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>"
+        end
         package.HomePage= registrydata.packageURL
-        package.SourceInfo= "Source Code Location is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
-        package.SourceInfo= package.SourceInfo * "\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>"
     elseif packagedata.is_tracking_repo
         # Next simplest case is if you are directly tracking a repository
         # TODO: Extract the subdirectory information if it exists. Can't find it in packagedata.
