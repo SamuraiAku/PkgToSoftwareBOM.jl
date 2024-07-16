@@ -2,8 +2,12 @@
 
 ###############################
 # Think of a name that would be good fit for the Pkg API
-function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registries::Vector{<:AbstractString})
-    server_registry_info= pkg_server_registry_info()
+function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registries::Vector{<:AbstractString}, use_packageserver::Bool)
+    if use_packageserver
+        server_registry_info= pkg_server_registry_info()
+    else
+        server_registry_info= nothing
+    end
     
     if length(registries) == 1
         return _registry_packagequery(packages, registries[1], server_registry_info)
