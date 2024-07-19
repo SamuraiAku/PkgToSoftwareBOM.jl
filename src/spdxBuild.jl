@@ -53,7 +53,7 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
 
     # Add packages and their relationships to the document
     for (pkg_name, pkg_uuid) in docData.rootpackages
-        pkgid= buildSPDXpackage!(spdxDoc, pkg_uuid, packagebuilddata, docData.use_packageserver)
+        pkgid= buildSPDXpackage!(spdxDoc, pkg_uuid, packagebuilddata)
         if pkgid isa String
             push!(spdxDoc.Relationships, SpdxRelationshipV2("SPDXRef-DOCUMENT DESCRIBES $(pkgid)"))
         elseif ismissing(pkgid)
@@ -65,7 +65,7 @@ end
 
 ###############################
 ## Building an SPDX Package for a Julia package
-function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxPackageData, use_packageserver::Bool)
+function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxPackageData)
     packagedata= builddata.packages[uuid]
     registrydata= builddata.registrydata[uuid]
     packageInstructions= get(builddata.packageInstructions, uuid, missing)
@@ -83,7 +83,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     package.Version= string(packagedata.version)
     package.Supplier= SpdxCreatorV2("NOASSERTION") # TODO: That would be the person/org who hosts package server?. Julialang would be the supplier for General registry but how would that be determined in generic case
     package.Originator= ismissing(packageInstructions) ?  SpdxCreatorV2("NOASSERTION") : packageInstructions.originator  # TODO: Use the person or group that hosts the repo on Github. Is there an API to query?    
-    resolve_pkgsource!(package, packagedata, registrydata, use_packageserver)
+    resolve_pkgsource!(package, packagedata, registrydata)
     resolve_pkglicense!(package, packagedata.source, packageInstructions, builddata.licenseScan)
     package.VerificationCode= spdxpkgverifcode(packagedata.source, packageInstructions)
     package.Copyright= ismissing(packageInstructions) ? "NOASSERTION" : packageInstructions.copyright # TODO:  Scan license files for the first line that says "Copyright"?  That would about work.
@@ -96,7 +96,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
 
     # Check for dependencies and recursively call this function for any that exist
     for (depname, dep_uuid) in packagedata.dependencies
-        depid= buildSPDXpackage!(spdxDoc, dep_uuid, builddata, use_packageserver)
+        depid= buildSPDXpackage!(spdxDoc, dep_uuid, builddata)
         if depid isa String
             push!(spdxDoc.Relationships, SpdxRelationshipV2("$(depid) DEPENDENCY_OF $(package.SPDXID)"))
         elseif ismissing(depid)
