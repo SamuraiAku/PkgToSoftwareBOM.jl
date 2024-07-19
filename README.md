@@ -198,9 +198,10 @@ But in everyday use, very few people actually download from there. Instead Pkg d
 
 Also not every analyst would find it useful to be directed to the repo and then be expected to figure out how to use git to extract the correct version. A straight download location could be easier for them.
 
-The user can change the DownloadLocation to the package server through the use of a keyword
+The user can change the DownloadLocation to the package server through the use of the keyword use_packageserver when creating a spdxCreationData object (see example below)
+
 ```julia
-sbom= generateSPDX(; use_packageserver= true)
+spdxCreationData(use_packageserver= true)
 ```
 
 When this keyword is used, PkgToSoftwareBOM will determine if each package has a valid package server URL and use it if available. If the JuliaLang package server is used, then the package Supplier field will be updated to reflect that.
