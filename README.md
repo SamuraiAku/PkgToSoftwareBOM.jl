@@ -188,6 +188,30 @@ writespdx(sbom, "path/to/package/source/MyPackageName.spdx.json")
 
 One case that PkgToSoftwareBOM does not support properly today is when a previous version of the developer's package does not exist in the registry. In that case, the SBOM will list the path to the local copy of the package code, instead of the URL of the repository. This may be fixed in a later version.
 
+## Optional Modes
+PkgToSoftwareBOM has keywords that can be invoked with `generateSPDX()`.  These keywords modify the contents of the SBOM in ways that are useful in particular situations
+
+### Use a package server as the DownloadLocation
+The package developer's GitHub (or other) repository is the canonical source for the package code. By default, this repository is used to populate the field DownloadLocation in each package description.
+
+But in everyday use, very few people actually download from there. Instead Pkg defaults to using the package server maintained by JuliaLang (https://pkg.julialang.org) or another package server specified by `ENV["JULIA_PKG_SERVER"]`. A package server maintains compressed tarballs of released source code for packages tracked by a registry. So you can argue that the SBOM should reflect that in the name of accuracy.
+
+Also not every analyst would find it useful to be directed to the repo and then be expected to figure out how to use git to extract the correct version. A straight download location could be easier for them.
+
+The user can change the DownloadLocation to the package server through the use of a keyword
+```julia
+sbom= generateSPDX(; use_packageserver= true)
+```
+
+When this keyword is used, PkgToSoftwareBOM will determine if each package has a valid package server URL and use it if available. If the JuliaLang package server is used, then the package Supplier field will be updated to reflect that.
+```
+Organization:  JuliaLang  ()
+```
+
+If a valid package server URL cannot be determined, then the repository link will be used.
+
+In all cases, the repository URL is documented in the HomePage field of the package description.
+
 ## How does PkgToSoftwareBOM support mulitple registries?
 
 The majority of users and developers only ever use the General registry and that is what PkgToSoftwareBOM defaults to to find package information.
