@@ -47,6 +47,8 @@ function _registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, regis
         server, registry_info = server_registry_info
         if selected_registry.uuid in keys(registry_info)
             packageserver = "$server/package"
+        else
+            packageserver= nothing
         end
     end
     
