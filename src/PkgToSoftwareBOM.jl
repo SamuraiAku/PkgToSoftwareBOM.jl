@@ -66,6 +66,7 @@ Base.@kwdef struct spdxCreationData
     rootpackages::Dict{String, Base.UUID}= Pkg.project().dependencies
     packageInstructions::Dict{UUID, spdxPackageInstructions}= Dict{UUID, spdxPackageInstructions}()
     licenseScan::Bool= true
+    use_packageserver::Bool= false
 end
 
 include("Registry.jl")

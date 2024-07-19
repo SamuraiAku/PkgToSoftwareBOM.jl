@@ -15,9 +15,9 @@ For example to create a User Environment SBOM using the General registry and ano
 sbom= generateSPDX(spdxCreationData(), ["PrivateRegistry", "General"]);
 ```
 """
-function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"], envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= Pkg.dependencies(); use_packageserver= false)
+function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"], envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= Pkg.dependencies())
     # Query the registries for package information
-    registry_packages= registry_packagequery(envpkgs, sbomRegistries, use_packageserver)
+    registry_packages= registry_packagequery(envpkgs, sbomRegistries, docData.use_packageserver)
 
     packagebuilddata= spdxPackageData(targetplatform= docData.TargetPlatform, packages= envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions, licenseScan= docData.licenseScan)
 
@@ -53,7 +53,7 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
 
     # Add packages and their relationships to the document
     for (pkg_name, pkg_uuid) in docData.rootpackages
-        pkgid= buildSPDXpackage!(spdxDoc, pkg_uuid, packagebuilddata, use_packageserver)
+        pkgid= buildSPDXpackage!(spdxDoc, pkg_uuid, packagebuilddata, docData.use_packageserver)
         if pkgid isa String
             push!(spdxDoc.Relationships, SpdxRelationshipV2("SPDXRef-DOCUMENT DESCRIBES $(pkgid)"))
         elseif ismissing(pkgid)

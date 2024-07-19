@@ -43,7 +43,7 @@ using Base.BinaryPlatforms
         @test VersionNumber(DataStructuresPkg[1].Version) >= v"0.18"
 
         # Use the package server for downloads
-        sbom_with_packageserver = generateSPDX(; use_packageserver= true)
+        sbom_with_packageserver = generateSPDX(spdxCreationData(use_packageserver= true))
         package_tree_hash= sbom.Packages[end-1].DownloadLocation.VCS_Tag
         package_server_source= string(sbom_with_packageserver.Packages[end-1].DownloadLocation)
         packageserver= PkgToSoftwareBOM.pkg_server() # Internal function
@@ -52,7 +52,7 @@ using Base.BinaryPlatforms
 
         # Try with a package server that doesn't exist
         ENV["JULIA_PKG_SERVER"]= "https://pkg.nowhere.org"
-        sbom_with_packageserver = generateSPDX(; use_packageserver= true)
+        sbom_with_packageserver = generateSPDX(spdxCreationData(use_packageserver= true))
         @test sbom.Packages[end-1].DownloadLocation == sbom_with_packageserver.Packages[end-1].DownloadLocation
         delete!(ENV, "JULIA_PKG_SERVER")
     end
@@ -190,7 +190,7 @@ using Base.BinaryPlatforms
 
         ## Regenerate the SBOM trying to use the package server. Since none of these packages are in the pacage server
          # the download locations should be unchanged
-        sbom2= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies)), ["DummyRegistry", "General"]; use_packageserver= true);
+        sbom2= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies), use_packageserver= true), ["DummyRegistry", "General"]);
         @test issetequal(sbom.Packages, sbom2.Packages)
     end
 
