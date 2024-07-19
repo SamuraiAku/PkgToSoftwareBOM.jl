@@ -189,7 +189,7 @@ writespdx(sbom, "path/to/package/source/MyPackageName.spdx.json")
 One case that PkgToSoftwareBOM does not support properly today is when a previous version of the developer's package does not exist in the registry. In that case, the SBOM will list the path to the local copy of the package code, instead of the URL of the repository. This may be fixed in a later version.
 
 ## Optional Modes
-PkgToSoftwareBOM has keywords that can be invoked with `generateSPDX()`.  These keywords modify the contents of the SBOM in ways that are useful in particular situations
+PkgToSoftwareBOM has keywords that can be invoked with `spdxCreationData()`.  These keywords modify the contents of the SBOM in ways that are useful in particular situations
 
 ### Use a package server as the DownloadLocation
 The package developer's GitHub (or other) repository is the canonical source for the package code. By default, this repository is used to populate the field DownloadLocation in each package description.
