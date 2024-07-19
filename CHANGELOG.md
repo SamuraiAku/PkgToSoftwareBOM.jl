@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v0.1.12
+* Resolved [#34](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/34), Option to make the package server the download location instead of the GitHub repo
+
 ## v0.1.11
 * Resolved [#18](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/18), Put a package's git tree hash in the Download Location
 * Pulled out some trailing whitespace ininformation fields

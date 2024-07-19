@@ -17,7 +17,7 @@ sbom= generateSPDX(spdxCreationData(), ["PrivateRegistry", "General"]);
 """
 function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"], envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= Pkg.dependencies())
     # Query the registries for package information
-    registry_packages= registry_packagequery(envpkgs, sbomRegistries)
+    registry_packages= registry_packagequery(envpkgs, sbomRegistries, docData.use_packageserver)
 
     packagebuilddata= spdxPackageData(targetplatform= docData.TargetPlatform, packages= envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions, licenseScan= docData.licenseScan)
 
