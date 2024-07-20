@@ -16,6 +16,7 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
             package.DownloadLocation= repo_download
             package.SourceInfo= "Download Location is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
             package.SourceInfo= package.SourceInfo * "\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>"
+            package.Supplier= SpdxCreatorV2("NOASSERTION")
         else
             package.DownloadLocation= SpdxDownloadLocationV2(registrydata.packageserverURL)
             if startswith(registrydata.packageserverURL, "https://pkg.julialang.org/")
@@ -32,6 +33,7 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
         package.DownloadLocation= SpdxDownloadLocationV2("git+$(packagedata.git_source)@$(packagedata.git_revision)")
         package.HomePage= packagedata.git_source
         package.SourceInfo= "$(packagedata.name) is directly tracking a git repository."
+        package.Supplier= SpdxCreatorV2("NOASSERTION")
     elseif packagedata.is_tracking_path
         # The hard case is if you are working off a local file path.  Is it really just a path, or are you dev'ing a package?
         if registrydata isa PackageRegistryInfo
@@ -48,6 +50,7 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
             package.HomePage= "NOASSERTION"
             package.FileName= packagedata.source
         end
+        package.Supplier= SpdxCreatorV2("NOASSERTION")
     else
         # This should not happen unless there has been a breaking change in Pkg
         error("PkgToSBOM.resolve_pkgsource!():  Unable to resolve. Maybe the Pkg source has changed in a breaking way?")
@@ -96,6 +99,7 @@ function resolve_pkgsource!(package::SpdxPackageV2, artifact::Dict{String, Any})
 
 
     package.HomePage= "NOASSERTION"
+    package.Supplier= SpdxCreatorV2("NOASSERTION")
 
     return nothing
 end

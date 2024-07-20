@@ -81,7 +81,6 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     
     package.Name= packagedata.name
     package.Version= string(packagedata.version)
-    package.Supplier= SpdxCreatorV2("NOASSERTION") # TODO: That would be the person/org who hosts package server?. Julialang would be the supplier for General registry but how would that be determined in generic case
     package.Originator= ismissing(packageInstructions) ?  SpdxCreatorV2("NOASSERTION") : packageInstructions.originator  # TODO: Use the person or group that hosts the repo on Github. Is there an API to query?    
     resolve_pkgsource!(package, packagedata, registrydata)
     resolve_pkglicense!(package, packagedata.source, packageInstructions, builddata.licenseScan)
