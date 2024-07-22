@@ -52,6 +52,7 @@ Base.@kwdef struct spdxPackageData
     packageInstructions::Dict{UUID, spdxPackageInstructions}
     artifactsinsbom::Set{String}= Set{String}()
     licenseScan::Bool
+    find_artifactsource::Bool= false
 end
 
 # TODO: When abandoning julia 1.8 compatibility, update the default Creator below to include the package version
@@ -67,6 +68,7 @@ Base.@kwdef struct spdxCreationData
     packageInstructions::Dict{UUID, spdxPackageInstructions}= Dict{UUID, spdxPackageInstructions}()
     licenseScan::Bool= true
     use_packageserver::Bool= false
+    find_artifactsource::Bool= false
 end
 
 include("Registry.jl")
