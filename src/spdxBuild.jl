@@ -19,7 +19,7 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
     # Query the registries for package information
     registry_packages= registry_packagequery(envpkgs, sbomRegistries, docData.use_packageserver)
 
-    packagebuilddata= spdxPackageData(targetplatform= docData.TargetPlatform, packages= envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions, licenseScan= docData.licenseScan)
+    packagebuilddata= spdxPackageData(targetplatform= docData.TargetPlatform, packages= envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions, licenseScan= docData.licenseScan, find_artifactsource= docData.find_artifactsource)
 
    # Create the SPDX Document
     spdxDoc= SpdxDocumentV2()
@@ -111,6 +111,13 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
             depid= buildSPDXpackage!(spdxDoc, artifact_name, artifact, builddata)
             if depid isa String
                 push!(spdxDoc.Relationships, SpdxRelationshipV2("$(depid) RUNTIME_DEPENDENCY_OF $(package.SPDXID)"))
+                # Build a package for the artifact source code (if possible)
+                depid_source= buildArtifactSourcePackage!(spdxDoc, package, packagedata, builddata)
+                if depid_source isa String
+                    push!(spdxDoc.Relationships, SpdxRelationshipV2("$(package.SPDXID) GENERATED_FROM $(depid_source)"))
+                elseif ismissing(depid)
+                    error("buildSPDXpackage!():  call of buildArtifactSourcePackage!() returned an error")
+                end
             elseif ismissing(depid)
                 error("buildSPDXpackage!():  call of buildSPDXpackage!() for an artifact package returned an error")
             end
@@ -149,6 +156,26 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractStrin
 
     push!(spdxDoc.Packages, package)
     push!(builddata.artifactsinsbom, git_tree_sha1)
+    return package.SPDXID
+end
+
+###############################
+## Building an SPDX Package for the source code used to build a Julia Artifact
+function buildArtifactSourcePackage!(spdxDoc::SpdxDocumentV2, artifactpackage::SpdxPackageV2, artifactpackagedata::Pkg.API.PackageInfo, builddata::spdxPackageData)
+    builddata.find_artifactsource || return nothing
+
+    @logmsg Logging.LogLevel(-50) "******* Building source code package for $(artifactpackage.Name) *******"
+    package= SpdxPackageV2("SPDXRef-Source-$(artifactpackage.Name)")
+
+    resolve_jllsource!(package, artifactpackage, artifactpackagedata)
+    ismissing(package.DownloadLocation) && return nothing
+    (package.DownloadLocation.VCS_Tag in builddata.artifactsinsbom) && (return package.SPDXID)
+
+    package.Copyright= "NOASSERTION"
+    package.Summary= "The binary artifact $(artifactpackage.SPDXID) is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree."
+
+    push!(spdxDoc.Packages, package)
+    push!(builddata.artifactsinsbom, package.DownloadLocation.VCS_Tag)
     return package.SPDXID
 end
 

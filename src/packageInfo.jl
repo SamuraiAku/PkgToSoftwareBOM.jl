@@ -136,6 +136,48 @@ function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString
 end
 
 ###############################
+function resolve_jllsource!(package::SpdxPackageV2,artifactpackage::SpdxPackageV2, artifactpackagedata::Pkg.API.PackageInfo)
+    # Only JLLs using Yggdrasil, the Julia community build tree, have a known build pattern that we can grep
+    # through to find the necessary information
+    startswith(artifactpackage.DownloadLocation.HostPath, "github.com/JuliaBinaryWrappers/") || return nothing
+    
+    # The link to the artifact source can be found in the README.md file of the JLL
+    # Read through it line by line to find the golden phrase and links
+    markdownlink_regex= r"originating \[(.*?)\]\((\S*?) ?('(.*?)')?\) script can be found on \[(.*?)\]\((\S*?) ?('(.*?)')?\), the community build tree"  # markdown link extraction pattern from https://regex101.com/library/fTJqF7?orderBy=RELEVANCE&search=markdown+link
+    url_regex= r"^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"  # From Appendix B of RFC 3986
+    Yggdrasil_regex= r"/JuliaPackaging/Yggdrasil/blob/(?<Hash>[[:xdigit:]]{40})(?<Path>[[:graph:]]*)build_tarballs.jl"  # extract the githash, and the path after the hash
+    
+    readme= string(artifactpackagedata.source, "/README.md")
+    isfile(readme) || return nothing
+    sourceinfo= open(readme) do io
+        while !eof(io)
+            build_tarballs_search= match(markdownlink_regex, readline(io))
+            isnothing(build_tarballs_search) && continue
+
+            # Make sure that this readme line has the expected format
+            build_tarballs_search[1] == "`build_tarballs.jl`" || return nothing
+            build_tarballs_search[5] == "`Yggdrasil`" || return nothing
+            build_tarballs_search[6] == "https://github.com/JuliaPackaging/Yggdrasil/" || return nothing
+
+            URLparse= match(url_regex, build_tarballs_search[2])
+            Yggdrasil_extract= match(Yggdrasil_regex, URLparse[5])
+            return (githash= Yggdrasil_extract[1], path= Yggdrasil_extract[2])
+        end
+        return nothing
+    end
+
+    isnothing(sourceinfo) && return nothing
+
+    buildrepo= "git+https://github.com/JuliaPackaging/Yggdrasil.git"*"@$(sourceinfo.githash)"*"#$(sourceinfo.path)"
+    package.DownloadLocation= SpdxDownloadLocationV2(buildrepo)
+    package.Supplier= SpdxCreatorV2("NOASSERTION")
+    package.Originator= SpdxCreatorV2("NOASSERTION")
+    package.SourceInfo= "The location of this repository was extracted from the README.md file of $(artifactpackage.SPDXID)"
+
+    return nothing
+end
+
+###############################
 function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any}, licenseScan::Bool)
     package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
 
