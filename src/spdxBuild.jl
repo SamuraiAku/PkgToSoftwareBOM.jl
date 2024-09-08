@@ -114,7 +114,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
                 # Build a package for the artifact source code (if possible)
                 depid_source= buildArtifactSourcePackage!(spdxDoc, package, packagedata, builddata)
                 if depid_source isa String
-                    push!(spdxDoc.Relationships, SpdxRelationshipV2("$(package.SPDXID) GENERATED_FROM $(depid_source)"))
+                    push!(spdxDoc.Relationships, SpdxRelationshipV2("$(depid) GENERATED_FROM $(depid_source)"))
                 elseif ismissing(depid)
                     error("buildSPDXpackage!():  call of buildArtifactSourcePackage!() returned an error")
                 end
@@ -167,6 +167,8 @@ function buildArtifactSourcePackage!(spdxDoc::SpdxDocumentV2, artifactpackage::S
     @logmsg Logging.LogLevel(-50) "******* Building source code package for $(artifactpackage.Name) *******"
     package= SpdxPackageV2("SPDXRef-Source-$(artifactpackage.Name)")
 
+    package.FilesAnalyzed= false
+    package.Name= artifactpackage.Name * "_source"
     resolve_jllsource!(package, artifactpackage, artifactpackagedata)
     ismissing(package.DownloadLocation) && return nothing
     (package.DownloadLocation.VCS_Tag in builddata.artifactsinsbom) && (return package.SPDXID)
