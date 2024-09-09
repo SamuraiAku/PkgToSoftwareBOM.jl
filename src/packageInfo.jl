@@ -136,7 +136,7 @@ function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString
 end
 
 ###############################
-function resolve_jllsource!(package::SpdxPackageV2,artifactpackage::SpdxPackageV2, artifactpackagedata::Pkg.API.PackageInfo)
+function resolve_jllsource!(package::SpdxPackageV2,artifactpackage::SpdxPackageV2, artifact_wrapperdata::Pkg.API.PackageInfo)
     # Only JLLs using Yggdrasil, the Julia community build tree, have a known build pattern that we can grep
     # through to find the necessary information
     startswith(artifactpackage.DownloadLocation.HostPath, "github.com/JuliaBinaryWrappers/") || return nothing
@@ -147,7 +147,7 @@ function resolve_jllsource!(package::SpdxPackageV2,artifactpackage::SpdxPackageV
     url_regex= r"^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"  # From Appendix B of RFC 3986
     Yggdrasil_regex= r"/JuliaPackaging/Yggdrasil/blob/(?<Hash>[[:xdigit:]]{40})(?<Path>[[:graph:]]*)build_tarballs.jl"  # extract the githash, and the path after the hash
     
-    readme= string(artifactpackagedata.source, "/README.md")
+    readme= string(artifact_wrapperdata.source, "/README.md")
     isfile(readme) || return nothing
     sourceinfo= open(readme) do io
         while !eof(io)

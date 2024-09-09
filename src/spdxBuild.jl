@@ -108,16 +108,9 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     if artifact_toml isa String
         resolved_artifact_data= select_downloadable_artifacts(artifact_toml; platform= builddata.targetplatform, include_lazy= true)
         for (artifact_name, artifact) in resolved_artifact_data
-            depid= buildSPDXpackage!(spdxDoc, artifact_name, artifact, builddata)
+            depid= buildSPDXpackage!(spdxDoc, artifact_name, artifact, packagedata, builddata)
             if depid isa String
                 push!(spdxDoc.Relationships, SpdxRelationshipV2("$(depid) RUNTIME_DEPENDENCY_OF $(package.SPDXID)"))
-                # Build a package for the artifact source code (if possible)
-                depid_source= buildArtifactSourcePackage!(spdxDoc, package, packagedata, builddata)
-                if depid_source isa String
-                    push!(spdxDoc.Relationships, SpdxRelationshipV2("$(depid) GENERATED_FROM $(depid_source)"))
-                elseif ismissing(depid)
-                    error("buildSPDXpackage!():  call of buildArtifactSourcePackage!() returned an error")
-                end
             elseif ismissing(depid)
                 error("buildSPDXpackage!():  call of buildSPDXpackage!() for an artifact package returned an error")
             end
@@ -131,7 +124,7 @@ end
 
 ###############################
 ## Building an SPDX Package for a Julia artifact
-function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractString, artifact::Dict{String, Any}, builddata::spdxPackageData)
+function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractString, artifact::Dict{String, Any}, artifact_wrapperdata::Pkg.API.PackageInfo, builddata::spdxPackageData)
     git_tree_sha1= artifact["git-tree-sha1"]
     package= SpdxPackageV2("SPDXRef-$(git_tree_sha1)")
 
@@ -154,6 +147,14 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, artifact_name::AbstractStrin
 
     package.Comment= "The SPDX ID field is derived from the Git tree hash of the artifact files which is used to uniquely identify it."
 
+    # Build a package for the artifact source code (if possible)
+    sourceid= buildArtifactSourcePackage!(spdxDoc, package, artifact_wrapperdata, builddata)
+    if sourceid isa String
+        push!(spdxDoc.Relationships, SpdxRelationshipV2("$(package.SPDXID) GENERATED_FROM $(sourceid)"))
+    elseif ismissing(sourceid)
+        error("buildSPDXpackage!():  call of buildArtifactSourcePackage!() returned an error")
+    end
+
     push!(spdxDoc.Packages, package)
     push!(builddata.artifactsinsbom, git_tree_sha1)
     return package.SPDXID
@@ -161,7 +162,7 @@ end
 
 ###############################
 ## Building an SPDX Package for the source code used to build a Julia Artifact
-function buildArtifactSourcePackage!(spdxDoc::SpdxDocumentV2, artifactpackage::SpdxPackageV2, artifactpackagedata::Pkg.API.PackageInfo, builddata::spdxPackageData)
+function buildArtifactSourcePackage!(spdxDoc::SpdxDocumentV2, artifactpackage::SpdxPackageV2, artifact_wrapperdata::Pkg.API.PackageInfo, builddata::spdxPackageData)
     builddata.find_artifactsource || return nothing
 
     @logmsg Logging.LogLevel(-50) "******* Building source code package for $(artifactpackage.Name) *******"
@@ -169,7 +170,7 @@ function buildArtifactSourcePackage!(spdxDoc::SpdxDocumentV2, artifactpackage::S
 
     package.FilesAnalyzed= false
     package.Name= artifactpackage.Name * "_source"
-    resolve_jllsource!(package, artifactpackage, artifactpackagedata)
+    resolve_jllsource!(package, artifactpackage, artifact_wrapperdata)
     ismissing(package.DownloadLocation) && return nothing
     (package.DownloadLocation.VCS_Tag in builddata.artifactsinsbom) && (return package.SPDXID)
 
