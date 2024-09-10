@@ -166,17 +166,24 @@ function buildArtifactSourcePackage!(spdxDoc::SpdxDocumentV2, artifactpackage::S
     builddata.find_artifactsource || return nothing
 
     @logmsg Logging.LogLevel(-50) "******* Building source code package for $(artifactpackage.Name) *******"
-    package= SpdxPackageV2("SPDXRef-Source-$(artifactpackage.Name)")
+    source_DownloadLocation= resolve_jllsource(artifactpackage, artifact_wrapperdata)
+    isnothing(source_DownloadLocation) && return nothing
 
-    package.FilesAnalyzed= false
-    package.Name= artifactpackage.Name * "_source"
-    resolve_jllsource!(package, artifactpackage, artifact_wrapperdata)
-    ismissing(package.DownloadLocation) && return nothing
+    package= SpdxPackageV2("SPDXRef-$(source_DownloadLocation.VCS_Tag)")
+    package.DownloadLocation= source_DownloadLocation
     (package.DownloadLocation.VCS_Tag in builddata.artifactsinsbom) && (return package.SPDXID)
 
+    package.Name= artifactpackage.Name * "_source"
+    package.Supplier= SpdxCreatorV2("NOASSERTION")
+    package.Originator= SpdxCreatorV2("NOASSERTION")
+    package.FilesAnalyzed= false
+    package.SourceInfo= "The location of this repository was extracted from the README.md file of $(artifactpackage.SPDXID)"
+    package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
+    package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
     package.Copyright= "NOASSERTION"
     package.Summary= "The binary artifact $(artifactpackage.SPDXID) is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree."
-
+    package.Comment= "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+    
     push!(spdxDoc.Packages, package)
     push!(builddata.artifactsinsbom, package.DownloadLocation.VCS_Tag)
     return package.SPDXID

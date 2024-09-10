@@ -136,7 +136,7 @@ function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString
 end
 
 ###############################
-function resolve_jllsource!(package::SpdxPackageV2,artifactpackage::SpdxPackageV2, artifact_wrapperdata::Pkg.API.PackageInfo)
+function resolve_jllsource(artifactpackage::SpdxPackageV2, artifact_wrapperdata::Pkg.API.PackageInfo)
     # Only JLLs using Yggdrasil, the Julia community build tree, have a known build pattern that we can grep
     # through to find the necessary information
     startswith(artifactpackage.DownloadLocation.HostPath, "github.com/JuliaBinaryWrappers/") || return nothing
@@ -169,12 +169,9 @@ function resolve_jllsource!(package::SpdxPackageV2,artifactpackage::SpdxPackageV
     isnothing(sourceinfo) && return nothing
 
     buildrepo= "git+https://github.com/JuliaPackaging/Yggdrasil.git"*"@$(sourceinfo.githash)"*"#$(sourceinfo.path)"
-    package.DownloadLocation= SpdxDownloadLocationV2(buildrepo)
-    package.Supplier= SpdxCreatorV2("NOASSERTION")
-    package.Originator= SpdxCreatorV2("NOASSERTION")
-    package.SourceInfo= "The location of this repository was extracted from the README.md file of $(artifactpackage.SPDXID)"
+    DownloadLocation= SpdxDownloadLocationV2(buildrepo)
 
-    return nothing
+    return DownloadLocation
 end
 
 ###############################
