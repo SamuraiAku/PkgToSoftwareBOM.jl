@@ -3,12 +3,12 @@
     "dataLicense": "CC0-1.0",
     "SPDXID": "SPDXRef-DOCUMENT",
     "name": "Julia Environment",
-    "documentNamespace": "https://spdx.org/spdxdocs/Julia_Environment-5546bb95-45cb-4472-8d70-59940a4ce301",
+    "documentNamespace": "https://spdx.org/spdxdocs/Julia_Environment-11036db2-957c-4a81-ab6f-191d2b834a04",
     "creationInfo": {
         "creators": [
             "Tool:  PkgToSoftwareBOM.jl"
         ],
-        "created": "2024-09-12T05:57:51Z",
+        "created": "2024-09-12T06:06:01Z",
         "comment": "Target Platform: macOS aarch64 {cxxstring_abi=cxx11, julia_version=1.10.4, libgfortran_version=5.0.0}"
     },
     "comment": "Registries used for populating Package data:\nGeneral registry: https://github.com/JuliaRegistries/General.git\nOfficial general Julia package registry where people can\nregister any package they want without too much debate about\nnaming and without enforced standards on documentation or\ntesting. We nevertheless encourage documentation, testing and\nsome amount of consideration when choosing package names.\n",
@@ -745,6 +745,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Libiconv_source",
+            "SPDXID": "SPDXRef-58ba605f538af3a8cf9fb69f0e060174dbfd78b7",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@58ba605f538af3a8cf9fb69f0e060174dbfd78b7#/L/Libiconv/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-92b949e2f3a66439c69a8d334fc95810fbd9df9b",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-92b949e2f3a66439c69a8d334fc95810fbd9df9b is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Libiconv",
             "SPDXID": "SPDXRef-92b949e2f3a66439c69a8d334fc95810fbd9df9b",
             "supplier": "NOASSERTION",
@@ -801,6 +815,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "XML2_source",
+            "SPDXID": "SPDXRef-554c4768d9dd68413fcbd80587d05da5943f0fb2",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@554c4768d9dd68413fcbd80587d05da5943f0fb2#/X/XML2/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-b8f5da6f57c2e2fc6e975f48076310a72e239e66",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-b8f5da6f57c2e2fc6e975f48076310a72e239e66 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "XML2",
             "SPDXID": "SPDXRef-b8f5da6f57c2e2fc6e975f48076310a72e239e66",
             "supplier": "NOASSERTION",
@@ -851,6 +879,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Libgpg_error_source",
+            "SPDXID": "SPDXRef-48448d7b619a7d4a3a05c0c6d31048b89017667b",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@48448d7b619a7d4a3a05c0c6d31048b89017667b#/L/Libgpg_error/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-b4b55cdf66313bc4e20cc03ee73a2a3e25d04a41",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-b4b55cdf66313bc4e20cc03ee73a2a3e25d04a41 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "Libgpg_error",
@@ -906,6 +948,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Libgcrypt_source",
+            "SPDXID": "SPDXRef-c21a0be7ea9ada3bfe7ea11edc425858d1a530e9",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@c21a0be7ea9ada3bfe7ea11edc425858d1a530e9#/L/Libgcrypt/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-92577c4a27649a6a970edfee5f3d6b7a5ed26cc7",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-92577c4a27649a6a970edfee5f3d6b7a5ed26cc7 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Libgcrypt",
             "SPDXID": "SPDXRef-92577c4a27649a6a970edfee5f3d6b7a5ed26cc7",
             "supplier": "NOASSERTION",
@@ -957,6 +1013,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "XSLT_source",
+            "SPDXID": "SPDXRef-7961d50528aa7c0c4902f4d82940f833b93f07a5",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@7961d50528aa7c0c4902f4d82940f833b93f07a5#/X/XSLT/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-e6c2b6243df385be8b94039b3d30aade1a0db85b",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-e6c2b6243df385be8b94039b3d30aade1a0db85b is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "XSLT",
@@ -1276,6 +1346,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Xorg_xkeyboard_config_source",
+            "SPDXID": "SPDXRef-56e199f18cdc1ef851fad8a2befed4349c2f1033",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@56e199f18cdc1ef851fad8a2befed4349c2f1033#/X/Xorg_xkeyboard_config/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-f8b49c7c45b400e3f5c4002d19645d4b88712c0c",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-f8b49c7c45b400e3f5c4002d19645d4b88712c0c is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Xorg_xkeyboard_config",
             "SPDXID": "SPDXRef-f8b49c7c45b400e3f5c4002d19645d4b88712c0c",
             "supplier": "NOASSERTION",
@@ -1349,6 +1433,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Expat_source",
+            "SPDXID": "SPDXRef-08e46a899028d19c1e07b5316b9470b6849b5a88",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@08e46a899028d19c1e07b5316b9470b6849b5a88#/E/Expat/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-b53d3c68aa0812e5ae574464a3198d17d79ded1a",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-b53d3c68aa0812e5ae574464a3198d17d79ded1a is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Expat",
             "SPDXID": "SPDXRef-b53d3c68aa0812e5ae574464a3198d17d79ded1a",
             "supplier": "NOASSERTION",
@@ -1400,6 +1498,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Libffi_source",
+            "SPDXID": "SPDXRef-7629d04b17d885309dd15bcb96e7bc990695a7dd",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@7629d04b17d885309dd15bcb96e7bc990695a7dd#/L/Libffi/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-5b338c8fa90c05e6faea86e54d2996cca76cfbbe",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-5b338c8fa90c05e6faea86e54d2996cca76cfbbe is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "Libffi",
@@ -1476,6 +1588,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Wayland_protocols_source",
+            "SPDXID": "SPDXRef-fbd66688f6324ce128a42409b1532bfcb0cbb48d",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@fbd66688f6324ce128a42409b1532bfcb0cbb48d#/W/Wayland_protocols/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-97ba5172167298b990339cda263370d192688f61",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-97ba5172167298b990339cda263370d192688f61 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Wayland_protocols",
             "SPDXID": "SPDXRef-97ba5172167298b990339cda263370d192688f61",
             "supplier": "NOASSERTION",
@@ -1546,6 +1672,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Bzip2_source",
+            "SPDXID": "SPDXRef-b7f5e3c48f292078bbed4c9fdad071da7875c0bc",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@b7f5e3c48f292078bbed4c9fdad071da7875c0bc#/B/Bzip2/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-5902919ba30b97bafa388ca950a351ea32516d26",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-5902919ba30b97bafa388ca950a351ea32516d26 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "Bzip2",
@@ -1628,6 +1768,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "FreeType2_source",
+            "SPDXID": "SPDXRef-c3b6d04a872107e6eb47b9112fc7466259e4ea9f",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@c3b6d04a872107e6eb47b9112fc7466259e4ea9f#/F/FreeType2/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-8408d0a22293bf477615b4ae706ede8df2b6367e",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-8408d0a22293bf477615b4ae706ede8df2b6367e is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "FreeType2",
             "SPDXID": "SPDXRef-8408d0a22293bf477615b4ae706ede8df2b6367e",
             "supplier": "NOASSERTION",
@@ -1679,6 +1833,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Fontconfig_source",
+            "SPDXID": "SPDXRef-f33279b56a13c91a82dcb16c9b0397de42d79b9d",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@f33279b56a13c91a82dcb16c9b0397de42d79b9d#/F/Fontconfig/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-bb74171086b39a991ff3f12027bdf216d0fe9bd3",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-bb74171086b39a991ff3f12027bdf216d0fe9bd3 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "Fontconfig",
@@ -1797,6 +1965,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Vulkan_Loader_source",
+            "SPDXID": "SPDXRef-941fd00740abed3236b0de4726e58310e76e2800",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@941fd00740abed3236b0de4726e58310e76e2800#/V/Vulkan_Loader/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-4b3b2d79556cc3aef6e3d8a234649cc85b91bb87",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-4b3b2d79556cc3aef6e3d8a234649cc85b91bb87 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Vulkan_Loader",
             "SPDXID": "SPDXRef-4b3b2d79556cc3aef6e3d8a234649cc85b91bb87",
             "supplier": "NOASSERTION",
@@ -1895,6 +2077,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "gperf_source",
+            "SPDXID": "SPDXRef-9ad0b95acb4c26167a7df9715cc90aed877d47ee",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@9ad0b95acb4c26167a7df9715cc90aed877d47ee#/G/gperf/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-34b9a5702fe42ddb003e7885ea3ab18b3c108b58",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-34b9a5702fe42ddb003e7885ea3ab18b3c108b58 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "gperf",
@@ -2057,6 +2253,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Gettext_source",
+            "SPDXID": "SPDXRef-0c67fe3f21b49e41bd1f31689534c79a98982b4b",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@0c67fe3f21b49e41bd1f31689534c79a98982b4b#/G/Gettext/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-9410bad2635eda2239b4a72ba4316c4aa8f5b76e",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-9410bad2635eda2239b4a72ba4316c4aa8f5b76e is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Gettext",
             "SPDXID": "SPDXRef-9410bad2635eda2239b4a72ba4316c4aa8f5b76e",
             "supplier": "NOASSERTION",
@@ -2146,6 +2356,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Glib_source",
+            "SPDXID": "SPDXRef-38b9be9a7777d00cc05227c4bac59450cada1dc2",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@38b9be9a7777d00cc05227c4bac59450cada1dc2#/G/Glib/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-e04c23df67d77af61db2b9bfb82096c50c14346d",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-e04c23df67d77af61db2b9bfb82096c50c14346d is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Glib",
             "SPDXID": "SPDXRef-e04c23df67d77af61db2b9bfb82096c50c14346d",
             "supplier": "NOASSERTION",
@@ -2226,6 +2450,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "OpenSSL_source",
+            "SPDXID": "SPDXRef-787af53f2296d404f968ee5a304e33e53734cc45",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@787af53f2296d404f968ee5a304e33e53734cc45#/O/OpenSSL/OpenSSL@3.0/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-4cf34dadc4f98bea68c48757ab4b9c9f74832b98",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-4cf34dadc4f98bea68c48757ab4b9c9f74832b98 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "OpenSSL",
@@ -2324,6 +2562,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Qt6Base_source",
+            "SPDXID": "SPDXRef-a8a79169755f1be3e434ec6b20068dde53ecbe57",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@a8a79169755f1be3e434ec6b20068dde53ecbe57#/Q/Qt6Base/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-7f2122f84c49e5b75c5b4cbf46bbdeb3b0ffc5da",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-7f2122f84c49e5b75c5b4cbf46bbdeb3b0ffc5da is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "Qt6Base",
@@ -2430,6 +2682,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Qt6ShaderTools_source",
+            "SPDXID": "SPDXRef-386f38a3b5f66bce4c54b42e1691956061695204",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@386f38a3b5f66bce4c54b42e1691956061695204#/Q/Qt6ShaderTools/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-38fc42706968b7eadc989506380e45cea7bb989e",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-38fc42706968b7eadc989506380e45cea7bb989e is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Qt6ShaderTools",
             "SPDXID": "SPDXRef-38fc42706968b7eadc989506380e45cea7bb989e",
             "supplier": "NOASSERTION",
@@ -2483,6 +2749,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Qt6Declarative_source",
+            "SPDXID": "SPDXRef-33f6441739c5a7414a3db8faaf636da5518ae840",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@33f6441739c5a7414a3db8faaf636da5518ae840#/Q/Qt6Declarative/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-056ac53a87b9a7f1ce79dee7f7ed31111233011a",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-056ac53a87b9a7f1ce79dee7f7ed31111233011a is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "Qt6Declarative",
@@ -2934,6 +3214,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "LLVMOpenMP_source",
+            "SPDXID": "SPDXRef-4d1c7765b5633194240381996061fa17c9b6d200",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@4d1c7765b5633194240381996061fa17c9b6d200#/L/LLVMOpenMP/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-21209a2ac399ce693d73daf1aa8d670fbc84d70f",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-21209a2ac399ce693d73daf1aa8d670fbc84d70f is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "LLVMOpenMP",
             "SPDXID": "SPDXRef-21209a2ac399ce693d73daf1aa8d670fbc84d70f",
             "supplier": "NOASSERTION",
@@ -2983,6 +3277,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Pixman_source",
+            "SPDXID": "SPDXRef-ee94b85bfaa8b3428dce7e5080fdfe8edfb1f14b",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@ee94b85bfaa8b3428dce7e5080fdfe8edfb1f14b#/P/Pixman/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-07e6bd5ae846b525d0c43be96788967cfccb923b",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-07e6bd5ae846b525d0c43be96788967cfccb923b is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "Pixman",
@@ -3039,6 +3347,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "LAME_source",
+            "SPDXID": "SPDXRef-60ef83dc9781a5fbd7acc19007f61e94195cce44",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@60ef83dc9781a5fbd7acc19007f61e94195cce44#/L/LAME/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-115f3a18328d7b88e31c9e3f095aeb12eb381710",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-115f3a18328d7b88e31c9e3f095aeb12eb381710 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "LAME",
             "SPDXID": "SPDXRef-115f3a18328d7b88e31c9e3f095aeb12eb381710",
             "supplier": "NOASSERTION",
@@ -3090,6 +3412,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Opus_source",
+            "SPDXID": "SPDXRef-8618591912338397171bae041462ae57ba5d3dfd",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@8618591912338397171bae041462ae57ba5d3dfd#/O/Opus/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-83ff444c229f9dd64a13999123a4eb14e632d67a",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-83ff444c229f9dd64a13999123a4eb14e632d67a is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "Opus",
@@ -3145,6 +3481,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "FriBidi_source",
+            "SPDXID": "SPDXRef-8ee7288d29a27d4d789301cf6ca90dd844c98cba",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@8ee7288d29a27d4d789301cf6ca90dd844c98cba#/F/FriBidi/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-a6b6a73123c51d64fc30aa1caf34364bacf0f8a5",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-a6b6a73123c51d64fc30aa1caf34364bacf0f8a5 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "FriBidi",
             "SPDXID": "SPDXRef-a6b6a73123c51d64fc30aa1caf34364bacf0f8a5",
             "supplier": "NOASSERTION",
@@ -3196,6 +3546,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "x264_source",
+            "SPDXID": "SPDXRef-eace1e483d7d8f9f2d1e766757ad67361de94140",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@eace1e483d7d8f9f2d1e766757ad67361de94140#/X/x264/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-0db9c3f6cf936a0da49e2ba954ba3e10bed6ad72",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-0db9c3f6cf936a0da49e2ba954ba3e10bed6ad72 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "x264",
@@ -3251,6 +3615,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "libaom_source",
+            "SPDXID": "SPDXRef-224eb5b5e61cbe90f86c140d6d7bf18f2be64886",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@224eb5b5e61cbe90f86c140d6d7bf18f2be64886#/L/libaom/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-8aeda74365ddd4a5b4b857356622b5c7612a3f2e",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-8aeda74365ddd4a5b4b857356622b5c7612a3f2e is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "libaom",
             "SPDXID": "SPDXRef-8aeda74365ddd4a5b4b857356622b5c7612a3f2e",
             "supplier": "NOASSERTION",
@@ -3304,6 +3682,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Ogg_source",
+            "SPDXID": "SPDXRef-e047e801037a38a6180e3f6e5d83fba7369df761",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@e047e801037a38a6180e3f6e5d83fba7369df761#/O/Ogg/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-ca2831bf6edc5088aec5b329ea98364951d6cad0",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-ca2831bf6edc5088aec5b329ea98364951d6cad0 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Ogg",
             "SPDXID": "SPDXRef-ca2831bf6edc5088aec5b329ea98364951d6cad0",
             "supplier": "NOASSERTION",
@@ -3354,6 +3746,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "libvorbis_source",
+            "SPDXID": "SPDXRef-141ae6cbb980d6838d299651f7dadd1f464822a7",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@141ae6cbb980d6838d299651f7dadd1f464822a7#/L/libvorbis/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-477447566a69a531a7a3f8e0130cbfe460b37eec",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-477447566a69a531a7a3f8e0130cbfe460b37eec is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "libvorbis",
@@ -3410,6 +3816,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "x265_source",
+            "SPDXID": "SPDXRef-d52629813122da349962571160f6ff079c0464eb",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@d52629813122da349962571160f6ff079c0464eb#/X/x265/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-1a7e22e66b523d9cb884cf85c3ec065b5fb3e5c3",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-1a7e22e66b523d9cb884cf85c3ec065b5fb3e5c3 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "x265",
             "SPDXID": "SPDXRef-1a7e22e66b523d9cb884cf85c3ec065b5fb3e5c3",
             "supplier": "NOASSERTION",
@@ -3461,6 +3881,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "libpng_source",
+            "SPDXID": "SPDXRef-24c46037d75c749a337f340d5ecdd5130031884e",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@24c46037d75c749a337f340d5ecdd5130031884e#/L/libpng/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-e8b17d4e8df51de281bf55f890ba48f924e41ce3",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-e8b17d4e8df51de281bf55f890ba48f924e41ce3 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "libpng",
@@ -3519,6 +3953,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "LZO_source",
+            "SPDXID": "SPDXRef-d4a6226c5ad3eca54e9fa7d482c87c1f34b16d54",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@d4a6226c5ad3eca54e9fa7d482c87c1f34b16d54#/L/LZO/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-e035616204b9c7fff03c7f78787b49c2bf61a8b0",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-e035616204b9c7fff03c7f78787b49c2bf61a8b0 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "LZO",
             "SPDXID": "SPDXRef-e035616204b9c7fff03c7f78787b49c2bf61a8b0",
             "supplier": "NOASSERTION",
@@ -3572,6 +4020,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Cairo_source",
+            "SPDXID": "SPDXRef-8acf0750cf9d4ee584b1bd19943e3535791b36b6",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@8acf0750cf9d4ee584b1bd19943e3535791b36b6#/C/Cairo/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-65d6651eacd881039e256d64c458d1ebd0101013",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-65d6651eacd881039e256d64c458d1ebd0101013 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Cairo",
             "SPDXID": "SPDXRef-65d6651eacd881039e256d64c458d1ebd0101013",
             "supplier": "NOASSERTION",
@@ -3621,6 +4083,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Graphite2_source",
+            "SPDXID": "SPDXRef-343878de1d40d053e29d14bc23f859f4a6dc3e99",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@343878de1d40d053e29d14bc23f859f4a6dc3e99#/G/Graphite2/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-3b3d0bcaf14a9b239a4f4dc20ef7b9e63030a47e",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-3b3d0bcaf14a9b239a4f4dc20ef7b9e63030a47e is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "Graphite2",
@@ -3676,6 +4152,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "HarfBuzz_source",
+            "SPDXID": "SPDXRef-b8c393cfc181ec0d4e02be0d6c5fba96c9b955d6",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@b8c393cfc181ec0d4e02be0d6c5fba96c9b955d6#/H/HarfBuzz/HarfBuzz/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-24f9c94c5a6e1c3258a8a90540a9a7956973ab00",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-24f9c94c5a6e1c3258a8a90540a9a7956973ab00 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "HarfBuzz",
             "SPDXID": "SPDXRef-24f9c94c5a6e1c3258a8a90540a9a7956973ab00",
             "supplier": "NOASSERTION",
@@ -3726,6 +4216,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "libass_source",
+            "SPDXID": "SPDXRef-7ff6a901794e67f00fb474e9a1400365820996db",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@7ff6a901794e67f00fb474e9a1400365820996db#/L/libass/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-a3e73ecf5d803bb3792a23f0382a2b5573383647",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-a3e73ecf5d803bb3792a23f0382a2b5573383647 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "libass",
@@ -3780,6 +4284,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "libfdk_aac_source",
+            "SPDXID": "SPDXRef-0ca5e5d79051dc2e3a89704f77eb183034cf01e6",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@0ca5e5d79051dc2e3a89704f77eb183034cf01e6#/L/libfdk_aac/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-67723a86975c82b43f01cda306999b382d3435f0",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-67723a86975c82b43f01cda306999b382d3435f0 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "libfdk_aac",
             "SPDXID": "SPDXRef-67723a86975c82b43f01cda306999b382d3435f0",
             "supplier": "NOASSERTION",
@@ -3827,6 +4345,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "FFMPEG_source",
+            "SPDXID": "SPDXRef-f91a513c5623e8fbf6b10215b12d323dde211490",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@f91a513c5623e8fbf6b10215b12d323dde211490#/F/FFMPEG/FFMPEG/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-6095fcd268ea712c0f786f5ff1a45bf0eb7b005e",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-6095fcd268ea712c0f786f5ff1a45bf0eb7b005e is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "FFMPEG",
@@ -3905,6 +4437,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "JpegTurbo_source",
+            "SPDXID": "SPDXRef-aec070fa63ed4c6a036f4a1bb5db989a5c9225fb",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@aec070fa63ed4c6a036f4a1bb5db989a5c9225fb#/J/JpegTurbo/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-6b104f71c6fc2280dea4cd195cb6800737e8c9aa",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-6b104f71c6fc2280dea4cd195cb6800737e8c9aa is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "JpegTurbo",
             "SPDXID": "SPDXRef-6b104f71c6fc2280dea4cd195cb6800737e8c9aa",
             "supplier": "NOASSERTION",
@@ -3960,6 +4506,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "LERC_source",
+            "SPDXID": "SPDXRef-9654851dc28b8cd6e667ce12d138722ac994debe",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@9654851dc28b8cd6e667ce12d138722ac994debe#/L/LERC/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-b450526929615030746974fd622effa333c2c87a",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-b450526929615030746974fd622effa333c2c87a is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "LERC",
             "SPDXID": "SPDXRef-b450526929615030746974fd622effa333c2c87a",
             "supplier": "NOASSERTION",
@@ -4007,6 +4567,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "XZ_source",
+            "SPDXID": "SPDXRef-d6d1b7e3f5afd181797df2dd1850e89a0a04c254",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@d6d1b7e3f5afd181797df2dd1850e89a0a04c254#/X/XZ/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-fb653fdc268e50c0be4391f6ca2f2fce2be7f15b",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-fb653fdc268e50c0be4391f6ca2f2fce2be7f15b is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "XZ",
@@ -4094,6 +4668,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Zstd_source",
+            "SPDXID": "SPDXRef-90cf06674f06f60060b513e72dff1c70897b8e6c",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@90cf06674f06f60060b513e72dff1c70897b8e6c#/Z/Zstd/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-3908ba61f3e144a7e7e28b9d676ca770f2f6a955",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-3908ba61f3e144a7e7e28b9d676ca770f2f6a955 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Zstd",
             "SPDXID": "SPDXRef-3908ba61f3e144a7e7e28b9d676ca770f2f6a955",
             "supplier": "NOASSERTION",
@@ -4152,6 +4740,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "Libtiff_source",
+            "SPDXID": "SPDXRef-fcc005a12d007f7d5d1a7b825308ace17466b6f4",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@fcc005a12d007f7d5d1a7b825308ace17466b6f4#/L/Libtiff/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-2107e7bc404f11b178cb9724cb371ef704995727",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-2107e7bc404f11b178cb9724cb371ef704995727 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "Libtiff",
@@ -4295,6 +4897,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "Pango_source",
+            "SPDXID": "SPDXRef-dad8ca3e8b26e8154985e9da1753205a64c75a22",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@dad8ca3e8b26e8154985e9da1753205a64c75a22#/P/Pango/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-11e3f8f6ec684a7b002271b55bbe69b4c4bac58b",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-11e3f8f6ec684a7b002271b55bbe69b4c4bac58b is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "Pango",
             "SPDXID": "SPDXRef-11e3f8f6ec684a7b002271b55bbe69b4c4bac58b",
             "supplier": "NOASSERTION",
@@ -4394,6 +5010,20 @@
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
         },
         {
+            "name": "GLFW_source",
+            "SPDXID": "SPDXRef-b4a1dafa7bf80b5fe27431f6d1dc6e96b45ac0c8",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@b4a1dafa7bf80b5fe27431f6d1dc6e96b45ac0c8#/G/GLFW/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-b17b8d5c7b4a2b9d0d81352efc80ce5b9da2553e",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-b17b8d5c7b4a2b9d0d81352efc80ce5b9da2553e is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
+        },
+        {
             "name": "GLFW",
             "SPDXID": "SPDXRef-b17b8d5c7b4a2b9d0d81352efc80ce5b9da2553e",
             "supplier": "NOASSERTION",
@@ -4445,6 +5075,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "GR_source",
+            "SPDXID": "SPDXRef-216fe82c8eca61879b75f5589eedda7626fba9a2",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@216fe82c8eca61879b75f5589eedda7626fba9a2#/G/GR/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-9cbd4bb5d69dad27b1c39fa28580935bfd0dc196",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-9cbd4bb5d69dad27b1c39fa28580935bfd0dc196 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "GR",
@@ -4565,6 +5209,20 @@
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
             "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+        },
+        {
+            "name": "fzf_source",
+            "SPDXID": "SPDXRef-af874ee2e9e3a0bd4e4ead6a91d5a22618bb58e0",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Yggdrasil.git@af874ee2e9e3a0bd4e4ead6a91d5a22618bb58e0#/F/fzf/",
+            "filesAnalyzed": false,
+            "sourceInfo": "The location of this repository was extracted from the README.md file of SPDXRef-1796c86e5b19131a0978f5e58eb6425402895c47",
+            "licenseConcluded": "NOASSERTION",
+            "licenseDeclared": "NOASSERTION",
+            "copyrightText": "NOASSERTION",
+            "summary": "The binary artifact SPDXRef-1796c86e5b19131a0978f5e58eb6425402895c47 is built using the scripts and source files in this package.\nThe build system is called Yggdrasil, the Julia community build tree.",
+            "comment": "The SPDX ID field is derived from the Git hash in the DownloadLocation"
         },
         {
             "name": "fzf",
@@ -5604,6 +6262,11 @@
         },
         {
             "spdxElementId": "SPDXRef-92b949e2f3a66439c69a8d334fc95810fbd9df9b",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-58ba605f538af3a8cf9fb69f0e060174dbfd78b7"
+        },
+        {
+            "spdxElementId": "SPDXRef-92b949e2f3a66439c69a8d334fc95810fbd9df9b",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Libiconv_jll-94ce4f54-9a6c-5748-9c1c-f9c7231a4531"
         },
@@ -5611,6 +6274,11 @@
             "spdxElementId": "SPDXRef-Libiconv_jll-94ce4f54-9a6c-5748-9c1c-f9c7231a4531",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-XML2_jll-02c8fc9c-b97f-50b9-bbe4-9be30ff0a78a"
+        },
+        {
+            "spdxElementId": "SPDXRef-b8f5da6f57c2e2fc6e975f48076310a72e239e66",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-554c4768d9dd68413fcbd80587d05da5943f0fb2"
         },
         {
             "spdxElementId": "SPDXRef-b8f5da6f57c2e2fc6e975f48076310a72e239e66",
@@ -5626,6 +6294,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Libgpg_error_jll-7add5ba3-2f88-524e-9cd5-f83b8a55f7b8"
+        },
+        {
+            "spdxElementId": "SPDXRef-b4b55cdf66313bc4e20cc03ee73a2a3e25d04a41",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-48448d7b619a7d4a3a05c0c6d31048b89017667b"
         },
         {
             "spdxElementId": "SPDXRef-b4b55cdf66313bc4e20cc03ee73a2a3e25d04a41",
@@ -5649,6 +6322,11 @@
         },
         {
             "spdxElementId": "SPDXRef-92577c4a27649a6a970edfee5f3d6b7a5ed26cc7",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-c21a0be7ea9ada3bfe7ea11edc425858d1a530e9"
+        },
+        {
+            "spdxElementId": "SPDXRef-92577c4a27649a6a970edfee5f3d6b7a5ed26cc7",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Libgcrypt_jll-d4300ac3-e22c-5743-9152-c294e39db1e4"
         },
@@ -5661,6 +6339,11 @@
             "spdxElementId": "SPDXRef-Libiconv_jll-94ce4f54-9a6c-5748-9c1c-f9c7231a4531",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-XSLT_jll-aed1982a-8fda-507f-9586-7b0439959a61"
+        },
+        {
+            "spdxElementId": "SPDXRef-e6c2b6243df385be8b94039b3d30aade1a0db85b",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-7961d50528aa7c0c4902f4d82940f833b93f07a5"
         },
         {
             "spdxElementId": "SPDXRef-e6c2b6243df385be8b94039b3d30aade1a0db85b",
@@ -5809,6 +6492,11 @@
         },
         {
             "spdxElementId": "SPDXRef-f8b49c7c45b400e3f5c4002d19645d4b88712c0c",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-56e199f18cdc1ef851fad8a2befed4349c2f1033"
+        },
+        {
+            "spdxElementId": "SPDXRef-f8b49c7c45b400e3f5c4002d19645d4b88712c0c",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Xorg_xkeyboard_config_jll-33bec58e-1273-512f-9401-5d533626f822"
         },
@@ -5844,6 +6532,11 @@
         },
         {
             "spdxElementId": "SPDXRef-b53d3c68aa0812e5ae574464a3198d17d79ded1a",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-08e46a899028d19c1e07b5316b9470b6849b5a88"
+        },
+        {
+            "spdxElementId": "SPDXRef-b53d3c68aa0812e5ae574464a3198d17d79ded1a",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Expat_jll-2e619515-83b5-522b-bb60-26c02a35a201"
         },
@@ -5856,6 +6549,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Libffi_jll-e9f186c6-92d2-5b65-8a66-fee21dc1b490"
+        },
+        {
+            "spdxElementId": "SPDXRef-5b338c8fa90c05e6faea86e54d2996cca76cfbbe",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-7629d04b17d885309dd15bcb96e7bc990695a7dd"
         },
         {
             "spdxElementId": "SPDXRef-5b338c8fa90c05e6faea86e54d2996cca76cfbbe",
@@ -5876,6 +6574,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Wayland_protocols_jll-2381bf8a-dfd0-557d-9999-79630e7b1b91"
+        },
+        {
+            "spdxElementId": "SPDXRef-97ba5172167298b990339cda263370d192688f61",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-fbd66688f6324ce128a42409b1532bfcb0cbb48d"
         },
         {
             "spdxElementId": "SPDXRef-97ba5172167298b990339cda263370d192688f61",
@@ -5901,6 +6604,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Bzip2_jll-6e34b625-4abd-537c-b88f-471c36dfa7a0"
+        },
+        {
+            "spdxElementId": "SPDXRef-5902919ba30b97bafa388ca950a351ea32516d26",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-b7f5e3c48f292078bbed4c9fdad071da7875c0bc"
         },
         {
             "spdxElementId": "SPDXRef-5902919ba30b97bafa388ca950a351ea32516d26",
@@ -5934,6 +6642,11 @@
         },
         {
             "spdxElementId": "SPDXRef-8408d0a22293bf477615b4ae706ede8df2b6367e",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-c3b6d04a872107e6eb47b9112fc7466259e4ea9f"
+        },
+        {
+            "spdxElementId": "SPDXRef-8408d0a22293bf477615b4ae706ede8df2b6367e",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-FreeType2_jll-d7e528f0-a631-5988-bf34-fe36492bcfd7"
         },
@@ -5946,6 +6659,11 @@
             "spdxElementId": "SPDXRef-Expat_jll-2e619515-83b5-522b-bb60-26c02a35a201",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Fontconfig_jll-a3f928ae-7b40-5064-980b-68af3947d34b"
+        },
+        {
+            "spdxElementId": "SPDXRef-bb74171086b39a991ff3f12027bdf216d0fe9bd3",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-f33279b56a13c91a82dcb16c9b0397de42d79b9d"
         },
         {
             "spdxElementId": "SPDXRef-bb74171086b39a991ff3f12027bdf216d0fe9bd3",
@@ -6014,6 +6732,11 @@
         },
         {
             "spdxElementId": "SPDXRef-4b3b2d79556cc3aef6e3d8a234649cc85b91bb87",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-941fd00740abed3236b0de4726e58310e76e2800"
+        },
+        {
+            "spdxElementId": "SPDXRef-4b3b2d79556cc3aef6e3d8a234649cc85b91bb87",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Vulkan_Loader_jll-a44049a8-05dd-5a78-86c9-5fde0876e88c"
         },
@@ -6056,6 +6779,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-gperf_jll-1a1c6b14-54f6-533d-8383-74cd7377aa70"
+        },
+        {
+            "spdxElementId": "SPDXRef-34b9a5702fe42ddb003e7885ea3ab18b3c108b58",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-9ad0b95acb4c26167a7df9715cc90aed877d47ee"
         },
         {
             "spdxElementId": "SPDXRef-34b9a5702fe42ddb003e7885ea3ab18b3c108b58",
@@ -6139,6 +6867,11 @@
         },
         {
             "spdxElementId": "SPDXRef-9410bad2635eda2239b4a72ba4316c4aa8f5b76e",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-0c67fe3f21b49e41bd1f31689534c79a98982b4b"
+        },
+        {
+            "spdxElementId": "SPDXRef-9410bad2635eda2239b4a72ba4316c4aa8f5b76e",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Gettext_jll-78b55507-aeef-58d4-861c-77aaff3498b1"
         },
@@ -6169,6 +6902,11 @@
         },
         {
             "spdxElementId": "SPDXRef-e04c23df67d77af61db2b9bfb82096c50c14346d",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-38b9be9a7777d00cc05227c4bac59450cada1dc2"
+        },
+        {
+            "spdxElementId": "SPDXRef-e04c23df67d77af61db2b9bfb82096c50c14346d",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Glib_jll-7746bdde-850d-59dc-9ae8-88ece973131d"
         },
@@ -6196,6 +6934,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-OpenSSL_jll-458c3c95-2e84-50aa-8efc-19380b2a3a95"
+        },
+        {
+            "spdxElementId": "SPDXRef-4cf34dadc4f98bea68c48757ab4b9c9f74832b98",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-787af53f2296d404f968ee5a304e33e53734cc45"
         },
         {
             "spdxElementId": "SPDXRef-4cf34dadc4f98bea68c48757ab4b9c9f74832b98",
@@ -6254,6 +6997,11 @@
         },
         {
             "spdxElementId": "SPDXRef-7f2122f84c49e5b75c5b4cbf46bbdeb3b0ffc5da",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-a8a79169755f1be3e434ec6b20068dde53ecbe57"
+        },
+        {
+            "spdxElementId": "SPDXRef-7f2122f84c49e5b75c5b4cbf46bbdeb3b0ffc5da",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Qt6Base_jll-c0090381-4147-56d7-9ebc-da0b1113ec56"
         },
@@ -6261,6 +7009,11 @@
             "spdxElementId": "SPDXRef-Qt6Base_jll-c0090381-4147-56d7-9ebc-da0b1113ec56",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Qt6ShaderTools_jll-ce943373-25bb-56aa-8eca-768745ed7b5a"
+        },
+        {
+            "spdxElementId": "SPDXRef-38fc42706968b7eadc989506380e45cea7bb989e",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-386f38a3b5f66bce4c54b42e1691956061695204"
         },
         {
             "spdxElementId": "SPDXRef-38fc42706968b7eadc989506380e45cea7bb989e",
@@ -6276,6 +7029,11 @@
             "spdxElementId": "SPDXRef-Qt6Base_jll-c0090381-4147-56d7-9ebc-da0b1113ec56",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Qt6Declarative_jll-629bc702-f1f5-5709-abd5-49b8460ea067"
+        },
+        {
+            "spdxElementId": "SPDXRef-056ac53a87b9a7f1ce79dee7f7ed31111233011a",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-33f6441739c5a7414a3db8faaf636da5518ae840"
         },
         {
             "spdxElementId": "SPDXRef-056ac53a87b9a7f1ce79dee7f7ed31111233011a",
@@ -6384,6 +7142,11 @@
         },
         {
             "spdxElementId": "SPDXRef-21209a2ac399ce693d73daf1aa8d670fbc84d70f",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-4d1c7765b5633194240381996061fa17c9b6d200"
+        },
+        {
+            "spdxElementId": "SPDXRef-21209a2ac399ce693d73daf1aa8d670fbc84d70f",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-LLVMOpenMP_jll-1d63c593-3942-5779-bab2-d838dc0a180e"
         },
@@ -6391,6 +7154,11 @@
             "spdxElementId": "SPDXRef-LLVMOpenMP_jll-1d63c593-3942-5779-bab2-d838dc0a180e",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Pixman_jll-30392449-352a-5448-841d-b1acce4e97dc"
+        },
+        {
+            "spdxElementId": "SPDXRef-07e6bd5ae846b525d0c43be96788967cfccb923b",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-ee94b85bfaa8b3428dce7e5080fdfe8edfb1f14b"
         },
         {
             "spdxElementId": "SPDXRef-07e6bd5ae846b525d0c43be96788967cfccb923b",
@@ -6409,6 +7177,11 @@
         },
         {
             "spdxElementId": "SPDXRef-115f3a18328d7b88e31c9e3f095aeb12eb381710",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-60ef83dc9781a5fbd7acc19007f61e94195cce44"
+        },
+        {
+            "spdxElementId": "SPDXRef-115f3a18328d7b88e31c9e3f095aeb12eb381710",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-LAME_jll-c1c5ebd0-6772-5130-a774-d5fcae4a789d"
         },
@@ -6421,6 +7194,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Opus_jll-91d4177d-7536-5919-b921-800302f37372"
+        },
+        {
+            "spdxElementId": "SPDXRef-83ff444c229f9dd64a13999123a4eb14e632d67a",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-8618591912338397171bae041462ae57ba5d3dfd"
         },
         {
             "spdxElementId": "SPDXRef-83ff444c229f9dd64a13999123a4eb14e632d67a",
@@ -6439,6 +7217,11 @@
         },
         {
             "spdxElementId": "SPDXRef-a6b6a73123c51d64fc30aa1caf34364bacf0f8a5",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-8ee7288d29a27d4d789301cf6ca90dd844c98cba"
+        },
+        {
+            "spdxElementId": "SPDXRef-a6b6a73123c51d64fc30aa1caf34364bacf0f8a5",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-FriBidi_jll-559328eb-81f9-559d-9380-de523a88c83c"
         },
@@ -6454,6 +7237,11 @@
         },
         {
             "spdxElementId": "SPDXRef-0db9c3f6cf936a0da49e2ba954ba3e10bed6ad72",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-eace1e483d7d8f9f2d1e766757ad67361de94140"
+        },
+        {
+            "spdxElementId": "SPDXRef-0db9c3f6cf936a0da49e2ba954ba3e10bed6ad72",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-x264_jll-1270edf5-f2f9-52d2-97e9-ab00b5d0237a"
         },
@@ -6466,6 +7254,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-libaom_jll-a4ae2306-e953-59d6-aa16-d00cac43593b"
+        },
+        {
+            "spdxElementId": "SPDXRef-8aeda74365ddd4a5b4b857356622b5c7612a3f2e",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-224eb5b5e61cbe90f86c140d6d7bf18f2be64886"
         },
         {
             "spdxElementId": "SPDXRef-8aeda74365ddd4a5b4b857356622b5c7612a3f2e",
@@ -6494,6 +7287,11 @@
         },
         {
             "spdxElementId": "SPDXRef-ca2831bf6edc5088aec5b329ea98364951d6cad0",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-e047e801037a38a6180e3f6e5d83fba7369df761"
+        },
+        {
+            "spdxElementId": "SPDXRef-ca2831bf6edc5088aec5b329ea98364951d6cad0",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Ogg_jll-e7412a2a-1a6e-54c0-be00-318e2571c051"
         },
@@ -6501,6 +7299,11 @@
             "spdxElementId": "SPDXRef-Ogg_jll-e7412a2a-1a6e-54c0-be00-318e2571c051",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-libvorbis_jll-f27f6e37-5d2b-51aa-960f-b287f2bc3b7a"
+        },
+        {
+            "spdxElementId": "SPDXRef-477447566a69a531a7a3f8e0130cbfe460b37eec",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-141ae6cbb980d6838d299651f7dadd1f464822a7"
         },
         {
             "spdxElementId": "SPDXRef-477447566a69a531a7a3f8e0130cbfe460b37eec",
@@ -6521,6 +7324,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-x265_jll-dfaa095f-4041-5dcd-9319-2fabd8486b76"
+        },
+        {
+            "spdxElementId": "SPDXRef-1a7e22e66b523d9cb884cf85c3ec065b5fb3e5c3",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-d52629813122da349962571160f6ff079c0464eb"
         },
         {
             "spdxElementId": "SPDXRef-1a7e22e66b523d9cb884cf85c3ec065b5fb3e5c3",
@@ -6609,6 +7417,11 @@
         },
         {
             "spdxElementId": "SPDXRef-e8b17d4e8df51de281bf55f890ba48f924e41ce3",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-24c46037d75c749a337f340d5ecdd5130031884e"
+        },
+        {
+            "spdxElementId": "SPDXRef-e8b17d4e8df51de281bf55f890ba48f924e41ce3",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-libpng_jll-b53b4c65-9356-5827-b1ea-8c7a1a84506f"
         },
@@ -6624,6 +7437,11 @@
         },
         {
             "spdxElementId": "SPDXRef-e035616204b9c7fff03c7f78787b49c2bf61a8b0",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-d4a6226c5ad3eca54e9fa7d482c87c1f34b16d54"
+        },
+        {
+            "spdxElementId": "SPDXRef-e035616204b9c7fff03c7f78787b49c2bf61a8b0",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-LZO_jll-dd4b983a-f0e5-5f8d-a1b7-129d4a5fb1ac"
         },
@@ -6631,6 +7449,11 @@
             "spdxElementId": "SPDXRef-LZO_jll-dd4b983a-f0e5-5f8d-a1b7-129d4a5fb1ac",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Cairo_jll-83423d85-b0ee-5818-9007-b63ccbeb887a"
+        },
+        {
+            "spdxElementId": "SPDXRef-65d6651eacd881039e256d64c458d1ebd0101013",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-8acf0750cf9d4ee584b1bd19943e3535791b36b6"
         },
         {
             "spdxElementId": "SPDXRef-65d6651eacd881039e256d64c458d1ebd0101013",
@@ -6664,6 +7487,11 @@
         },
         {
             "spdxElementId": "SPDXRef-3b3d0bcaf14a9b239a4f4dc20ef7b9e63030a47e",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-343878de1d40d053e29d14bc23f859f4a6dc3e99"
+        },
+        {
+            "spdxElementId": "SPDXRef-3b3d0bcaf14a9b239a4f4dc20ef7b9e63030a47e",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Graphite2_jll-3b182d85-2403-5c21-9c21-1e1f0cc25472"
         },
@@ -6671,6 +7499,11 @@
             "spdxElementId": "SPDXRef-Graphite2_jll-3b182d85-2403-5c21-9c21-1e1f0cc25472",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-HarfBuzz_jll-2e76f6c2-a576-52d4-95c1-20adfe4de566"
+        },
+        {
+            "spdxElementId": "SPDXRef-24f9c94c5a6e1c3258a8a90540a9a7956973ab00",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-b8c393cfc181ec0d4e02be0d6c5fba96c9b955d6"
         },
         {
             "spdxElementId": "SPDXRef-24f9c94c5a6e1c3258a8a90540a9a7956973ab00",
@@ -6689,6 +7522,11 @@
         },
         {
             "spdxElementId": "SPDXRef-a3e73ecf5d803bb3792a23f0382a2b5573383647",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-7ff6a901794e67f00fb474e9a1400365820996db"
+        },
+        {
+            "spdxElementId": "SPDXRef-a3e73ecf5d803bb3792a23f0382a2b5573383647",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-libass_jll-0ac62f75-1d6f-5e53-bd7c-93b484bb37c0"
         },
@@ -6701,6 +7539,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-libfdk_aac_jll-f638f0a6-7fb0-5443-88ba-1cc74229b280"
+        },
+        {
+            "spdxElementId": "SPDXRef-67723a86975c82b43f01cda306999b382d3435f0",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-0ca5e5d79051dc2e3a89704f77eb183034cf01e6"
         },
         {
             "spdxElementId": "SPDXRef-67723a86975c82b43f01cda306999b382d3435f0",
@@ -6724,6 +7567,11 @@
         },
         {
             "spdxElementId": "SPDXRef-6095fcd268ea712c0f786f5ff1a45bf0eb7b005e",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-f91a513c5623e8fbf6b10215b12d323dde211490"
+        },
+        {
+            "spdxElementId": "SPDXRef-6095fcd268ea712c0f786f5ff1a45bf0eb7b005e",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-FFMPEG_jll-b22a6f82-2f65-5046-a5b2-351ab43fb4e5"
         },
@@ -6736,6 +7584,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-JpegTurbo_jll-aacddb02-875f-59d6-b918-886e6ef4fbf8"
+        },
+        {
+            "spdxElementId": "SPDXRef-6b104f71c6fc2280dea4cd195cb6800737e8c9aa",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-aec070fa63ed4c6a036f4a1bb5db989a5c9225fb"
         },
         {
             "spdxElementId": "SPDXRef-6b104f71c6fc2280dea4cd195cb6800737e8c9aa",
@@ -6774,6 +7627,11 @@
         },
         {
             "spdxElementId": "SPDXRef-b450526929615030746974fd622effa333c2c87a",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-9654851dc28b8cd6e667ce12d138722ac994debe"
+        },
+        {
+            "spdxElementId": "SPDXRef-b450526929615030746974fd622effa333c2c87a",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-LERC_jll-88015f11-f218-50d7-93a8-a6af411a945d"
         },
@@ -6786,6 +7644,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-XZ_jll-ffd25f8a-64ca-5728-b0f7-c24cf3aae800"
+        },
+        {
+            "spdxElementId": "SPDXRef-fb653fdc268e50c0be4391f6ca2f2fce2be7f15b",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-d6d1b7e3f5afd181797df2dd1850e89a0a04c254"
         },
         {
             "spdxElementId": "SPDXRef-fb653fdc268e50c0be4391f6ca2f2fce2be7f15b",
@@ -6804,6 +7667,11 @@
         },
         {
             "spdxElementId": "SPDXRef-3908ba61f3e144a7e7e28b9d676ca770f2f6a955",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-90cf06674f06f60060b513e72dff1c70897b8e6c"
+        },
+        {
+            "spdxElementId": "SPDXRef-3908ba61f3e144a7e7e28b9d676ca770f2f6a955",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Zstd_jll-3161d3a3-bdf6-5164-811a-617609db77b4"
         },
@@ -6811,6 +7679,11 @@
             "spdxElementId": "SPDXRef-Zstd_jll-3161d3a3-bdf6-5164-811a-617609db77b4",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Libtiff_jll-89763e89-9b03-5906-acba-b20f662cd828"
+        },
+        {
+            "spdxElementId": "SPDXRef-2107e7bc404f11b178cb9724cb371ef704995727",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-fcc005a12d007f7d5d1a7b825308ace17466b6f4"
         },
         {
             "spdxElementId": "SPDXRef-2107e7bc404f11b178cb9724cb371ef704995727",
@@ -6959,6 +7832,11 @@
         },
         {
             "spdxElementId": "SPDXRef-11e3f8f6ec684a7b002271b55bbe69b4c4bac58b",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-dad8ca3e8b26e8154985e9da1753205a64c75a22"
+        },
+        {
+            "spdxElementId": "SPDXRef-11e3f8f6ec684a7b002271b55bbe69b4c4bac58b",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-Pango_jll-36c8627f-9965-5494-a995-c6b170f724f3"
         },
@@ -6994,6 +7872,11 @@
         },
         {
             "spdxElementId": "SPDXRef-b17b8d5c7b4a2b9d0d81352efc80ce5b9da2553e",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-b4a1dafa7bf80b5fe27431f6d1dc6e96b45ac0c8"
+        },
+        {
+            "spdxElementId": "SPDXRef-b17b8d5c7b4a2b9d0d81352efc80ce5b9da2553e",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-GLFW_jll-0656b61e-2033-5cc2-a64a-77c0f6c09b89"
         },
@@ -7024,6 +7907,11 @@
         },
         {
             "spdxElementId": "SPDXRef-9cbd4bb5d69dad27b1c39fa28580935bfd0dc196",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-216fe82c8eca61879b75f5589eedda7626fba9a2"
+        },
+        {
+            "spdxElementId": "SPDXRef-9cbd4bb5d69dad27b1c39fa28580935bfd0dc196",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-GR_jll-d2c73de3-f751-5644-a686-071e5b155ba9"
         },
@@ -7051,6 +7939,11 @@
             "spdxElementId": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-fzf_jll-214eeab7-80f7-51ab-84ad-2988db7cef09"
+        },
+        {
+            "spdxElementId": "SPDXRef-1796c86e5b19131a0978f5e58eb6425402895c47",
+            "relationshipType": "GENERATED_FROM",
+            "relatedSpdxElement": "SPDXRef-af874ee2e9e3a0bd4e4ead6a91d5a22618bb58e0"
         },
         {
             "spdxElementId": "SPDXRef-1796c86e5b19131a0978f5e58eb6425402895c47",
