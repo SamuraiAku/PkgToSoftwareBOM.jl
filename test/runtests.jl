@@ -21,7 +21,7 @@ using Base.BinaryPlatforms
     @testset "README.md examples: Environment" begin
 
         ## Example #1
-        sbom = generateSPDX()
+        sbom = generateSPDX(spdxCreationData(find_artifactsource= true))
         # The SBOM is too big and complex to check everything, but we can check some things
         root_relationships= filter(r -> r.RelationshipType=="DESCRIBES", sbom.Relationships)
         @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), ["SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540", "SPDXRef-RegistryInstances-2792f1a3-b283-48e8-9a74-f99dce5104f3", "SPDXRef-Reexport-189a3867-3050-52da-a836-e630ba90ab69", "SPDXRef-LicenseCheck-726dbf0d-6eb6-41af-b36c-cd770e0f00cc"])
