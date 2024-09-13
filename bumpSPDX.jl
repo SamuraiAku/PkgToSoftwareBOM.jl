@@ -25,7 +25,8 @@ SPDX_docCreation= spdxCreationData(
               Creators= [myName, myTool],
               NamespaceURL= myNamespace,
               rootpackages= devRoot,
-              packageInstructions= Dict{UUID, spdxPackageInstructions}(active_pkgs[myPackage_instr.name] => myPackage_instr)
+              packageInstructions= Dict{UUID, spdxPackageInstructions}(active_pkgs[myPackage_instr.name] => myPackage_instr),
+              find_artifactsource= true
             )
 
 sbom= generateSPDX(SPDX_docCreation)
