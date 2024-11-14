@@ -19,7 +19,7 @@ Base.@kwdef struct PackageRegistryInfo
     registryName::String
     registryURL::String
     registryPath::String
-    registryDescription::String
+    registryDescription::Union{String, Nothing}
     packageUUID::UUID
     packageName::String
     packageVersion::VersionNumber
