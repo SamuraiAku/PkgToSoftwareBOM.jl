@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v0.2.13
+* Merged [#37](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/pull/37), Don't require custom registries to have a registry description
+
 ## v0.1.12
 * Resolved [#34](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/34), [#9](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/9), Option to make the package server the download location instead of the GitHub repo
 * Resolved [#33](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/33), adding source code for JLLs from Yggdrasil to the SBOM 
