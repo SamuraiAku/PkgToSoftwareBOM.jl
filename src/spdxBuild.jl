@@ -87,7 +87,7 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     package.VerificationCode= spdxpkgverifcode(packagedata.source, packageInstructions)
     package.Copyright= ismissing(packageInstructions) ? "NOASSERTION" : packageInstructions.copyright # TODO:  Scan license files for the first line that says "Copyright"?  That would about work.
     package.Summary= "This is a Julia package, written in the Julia language."
-
+    package.ExternalReferences=[SpdxPackageExternalReferenceV2("PACKAGE-MANAGER", "purl", "pkg:julia/$(packagedata.name)@$(packagedata.version)?uuid=$(uuid)")]
     # TODO: Populate Summary with something via a Github API query
     # TODO: Should DetailedDescription be populated with the README?  Or the first 10k characters? Or just a link or path to the README?
 

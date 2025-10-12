@@ -101,6 +101,7 @@ using Base.BinaryPlatforms
         @test SPDX_pkg.LicenseDeclared== myLicense
         @test SPDX_pkg.Copyright== myPackage_instr.copyright
         @test SPDX_pkg.Name== package_name
+        @test SPDX_pkg.ExternalReferences[1].Locator == "pkg:julia/$(SPDX_pkg.Name)@$(SPDX_pkg.Version)?uuid=47358f48-d834-4249-91f5-f6185eb3d540"
     end
 
     @testset "Repo Track + Dual registries" begin
@@ -160,7 +161,6 @@ using Base.BinaryPlatforms
         @test all(isequal.(getproperty.(sbom.Packages, :Summary), "This is a Julia package, written in the Julia language."))
         @test all(ismissing.(getproperty.(sbom.Packages, :DetailedDescription)))
         @test all(isequal.(getproperty.(sbom.Packages, :Comment), "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."))
-        @test all(isempty.(getproperty.(sbom.Packages, :ExternalReferences)))
         @test all(isempty.(getproperty.(sbom.Packages, :Attributions)))
         @test all(ismissing.(getproperty.(sbom.Packages, :PrimaryPurpose)))
         @test all(ismissing.(getproperty.(sbom.Packages, :ReleaseDate)))
