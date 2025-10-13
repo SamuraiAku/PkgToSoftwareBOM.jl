@@ -1,6 +1,9 @@
 # CHANGELOG
 
-## v0.2.13
+## v0.1.14
+* Merged [#39](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/pull/39), Add purl identifiers for packages
+
+## v0.1.13
 * Merged [#37](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/pull/37), Don't require custom registries to have a registry description
 
 ## v0.1.12
