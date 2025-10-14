@@ -101,6 +101,8 @@ using Base.BinaryPlatforms
         @test SPDX_pkg.LicenseDeclared== myLicense
         @test SPDX_pkg.Copyright== myPackage_instr.copyright
         @test SPDX_pkg.Name== package_name
+        @test SPDX_pkg.ExternalReferences[1].Category == "PACKAGE-MANAGER"
+        @test SPDX_pkg.ExternalReferences[1].RefType == "purl"
         @test SPDX_pkg.ExternalReferences[1].Locator == "pkg:julia/$(SPDX_pkg.Name)@$(SPDX_pkg.Version)?uuid=47358f48-d834-4249-91f5-f6185eb3d540"
     end
 
