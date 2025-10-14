@@ -3,14 +3,14 @@
     "dataLicense": "CC0-1.0",
     "SPDXID": "SPDXRef-DOCUMENT",
     "name": "PkgToSoftwareBOM.jl Developer SBOM",
-    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-cf8a7e10-d182-4152-90b4-709f2e4b35a7",
+    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-ee222d2c-cea0-4f1f-bd9b-b3738a5a1682",
     "creationInfo": {
         "creators": [
             "Person:  Simon Avery  (savery@ieee.org)",
             "Tool:  PkgToSoftwareBOM.jl"
         ],
-        "created": "2024-11-24T00:37:14Z",
-        "comment": "Target Platform: Platform(\"aarch64\", \"macos\"; libgfortran_version = \"5.0.0\", julia_version = \"1.11.1\", cxxstring_abi = \"cxx11\")"
+        "created": "2025-10-14T05:54:09Z",
+        "comment": "Target Platform: Platform(\"aarch64\", \"macos\"; libgfortran_version = \"5.0.0\", julia_version = \"1.12.0\", cxxstring_abi = \"cxx11\")"
     },
     "comment": "Registries used for populating Package data:\nGeneral registry: https://github.com/JuliaRegistries/General.git\nOfficial general Julia package registry where people can\nregister any package they want without too much debate about\nnaming and without enforced standards on documentation or\ntesting. We nevertheless encourage documentation, testing and\nsome amount of consideration when choosing package names.\n",
     "packages": [
@@ -34,7 +34,14 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/LazilyInitializedFields@1.3.0?uuid=0e77f7df-68c5-4e49-93ce-4cd80f5598bf"
+                }
+            ]
         },
         {
             "name": "RegistryInstances",
@@ -56,18 +63,25 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/RegistryInstances@0.1.0?uuid=2792f1a3-b283-48e8-9a74-f99dce5104f3"
+                }
+            ]
         },
         {
             "name": "Preferences",
             "SPDXID": "SPDXRef-Preferences-21216c6a-2e73-6563-6e65-726566657250",
-            "versionInfo": "1.4.3",
+            "versionInfo": "1.5.0",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaPackaging/Preferences.jl.git@9306f6085165d270f7e3db02af26a400d580f5c6",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Preferences.jl.git@0f27480397253da18fe2c12a4ba4eb9eb208bf3d",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "ae41d492334f497fd074d1a966eb1662759ed5c5"
+                "packageVerificationCodeValue": "4fd8e7afd8b3559b3f8c8657e3edf659651e3b57"
             },
             "homepage": "https://github.com/JuliaPackaging/Preferences.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -78,18 +92,25 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/Preferences@1.5.0?uuid=21216c6a-2e73-6563-6e65-726566657250"
+                }
+            ]
         },
         {
             "name": "JLLWrappers",
             "SPDXID": "SPDXRef-JLLWrappers-692b3bcd-3c85-4b1f-b108-f13ce0eb3210",
-            "versionInfo": "1.6.1",
+            "versionInfo": "1.7.1",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaPackaging/JLLWrappers.jl.git@be3dc50a92e5a386872a493a10050136d4703f9b",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/JLLWrappers.jl.git@0533e564aae234aff59ab625543145446d8b6ec2",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "4c7a6222008b4b8598255edfc7efa9b80d6259a6"
+                "packageVerificationCodeValue": "77d4959450d4d13b4d1e94669956c9801acad316"
             },
             "homepage": "https://github.com/JuliaPackaging/JLLWrappers.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -100,7 +121,14 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/JLLWrappers@1.7.1?uuid=692b3bcd-3c85-4b1f-b108-f13ce0eb3210"
+                }
+            ]
         },
         {
             "name": "licensecheck_source",
@@ -163,7 +191,14 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/licensecheck_jll@0.3.101+0?uuid=4ecb348a-8b88-51ea-b912-4c460483ee91"
+                }
+            ]
         },
         {
             "name": "LicenseCheck",
@@ -186,18 +221,25 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/LicenseCheck@0.2.2?uuid=726dbf0d-6eb6-41af-b36c-cd770e0f00cc"
+                }
+            ]
         },
         {
             "name": "PrecompileTools",
             "SPDXID": "SPDXRef-PrecompileTools-aea7be01-6a6a-4083-8856-8a6e6704d82a",
-            "versionInfo": "1.2.1",
+            "versionInfo": "1.3.3",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaLang/PrecompileTools.jl.git@5aa36f7049a63a1528fe8f7c3f2113413ffd4e1f",
+            "downloadLocation": "git+https://github.com/JuliaLang/PrecompileTools.jl.git@07a921781cab75691315adc645096ed5e370cb77",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "c53702e9539ec14e6b3627ed7390e7e4bae7fae2"
+                "packageVerificationCodeValue": "9d2efd393a125041ef199d98bf3b889511f0bff6"
             },
             "homepage": "https://github.com/JuliaLang/PrecompileTools.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -208,18 +250,25 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/PrecompileTools@1.3.3?uuid=aea7be01-6a6a-4083-8856-8a6e6704d82a"
+                }
+            ]
         },
         {
             "name": "Parsers",
             "SPDXID": "SPDXRef-Parsers-69de0a69-1ddd-5017-9359-2bf0b02dc9f0",
-            "versionInfo": "2.8.1",
+            "versionInfo": "2.8.3",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaData/Parsers.jl.git@8489905bcdbcfac64d1daa51ca07c0d8f0283821",
+            "downloadLocation": "git+https://github.com/JuliaData/Parsers.jl.git@7d2f8f21da5db6a806faf7b9b292296da42b2810",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "0ff0769cf76f27a3ba0c914ada60ab1398d90180"
+                "packageVerificationCodeValue": "cc9e97ad3b67747372a8cdcc4981a3816f95f22d"
             },
             "homepage": "https://github.com/JuliaData/Parsers.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -230,7 +279,14 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/Parsers@2.8.3?uuid=69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
+                }
+            ]
         },
         {
             "name": "JSON",
@@ -252,18 +308,25 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/JSON@0.21.4?uuid=682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+                }
+            ]
         },
         {
             "name": "Compat",
             "SPDXID": "SPDXRef-Compat-34da2185-b29b-5c13-b0c7-acf172513d20",
-            "versionInfo": "4.16.0",
+            "versionInfo": "4.18.1",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaLang/Compat.jl.git@8ae8d32e09f0dcf42a36b90d4e17f5dd2e4c4215",
+            "downloadLocation": "git+https://github.com/JuliaLang/Compat.jl.git@9d8a54ce4b17aa5bdce0ea5c34bc5e7c340d16ad",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "ce595242ac64e357314d81f6c2167557826dd651"
+                "packageVerificationCodeValue": "76de5eebbf85c7543c1a18534be2a8e66abd3da2"
             },
             "homepage": "https://github.com/JuliaLang/Compat.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -274,18 +337,25 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/Compat@4.18.1?uuid=34da2185-b29b-5c13-b0c7-acf172513d20"
+                }
+            ]
         },
         {
             "name": "OrderedCollections",
             "SPDXID": "SPDXRef-OrderedCollections-bac558e1-5e72-5ebc-8fee-abe8a469f55d",
-            "versionInfo": "1.6.3",
+            "versionInfo": "1.8.1",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaCollections/OrderedCollections.jl.git@dfdf5519f235516220579f949664f1bf44e741c5",
+            "downloadLocation": "git+https://github.com/JuliaCollections/OrderedCollections.jl.git@05868e21324cede2207c6f0f466b4bfef6d5e7ee",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "79403a7d7220f108612907f5b88c1e636084e96f"
+                "packageVerificationCodeValue": "44de9ddb8dcadaa3ecfc1931229397cdd313524a"
             },
             "homepage": "https://github.com/JuliaCollections/OrderedCollections.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -296,18 +366,25 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/OrderedCollections@1.8.1?uuid=bac558e1-5e72-5ebc-8fee-abe8a469f55d"
+                }
+            ]
         },
         {
             "name": "DataStructures",
             "SPDXID": "SPDXRef-DataStructures-864edb3b-99cc-5e75-8d2d-829cb0a9cfe8",
-            "versionInfo": "0.18.20",
+            "versionInfo": "0.18.22",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaCollections/DataStructures.jl.git@1d0a14036acb104d9e89698bd408f63ab58cdc82",
+            "downloadLocation": "git+https://github.com/JuliaCollections/DataStructures.jl.git@4e1fe97fdaed23e9dc21d4d664bea76b65fc50a0",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "bc1b5520ff98b8b8fd56f93035f19295aa37b427"
+                "packageVerificationCodeValue": "1d85a8e41c624e614d6924a4c5e4bcdd14957cfb"
             },
             "homepage": "https://github.com/JuliaCollections/DataStructures.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -318,7 +395,14 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/DataStructures@0.18.22?uuid=864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
+                }
+            ]
         },
         {
             "name": "ExprTools",
@@ -326,12 +410,12 @@
             "versionInfo": "0.1.10",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/invenia/ExprTools.jl.git@27415f162e6028e81c72b82ef756bf321213b6ec",
+            "downloadLocation": "git+https://github.com/JuliaTesting/ExprTools.jl.git@27415f162e6028e81c72b82ef756bf321213b6ec",
             "filesAnalyzed": true,
             "packageVerificationCode": {
                 "packageVerificationCodeValue": "5bb45aaebe5918e568d0feac99fd4d6b507d3451"
             },
-            "homepage": "https://github.com/invenia/ExprTools.jl.git",
+            "homepage": "https://github.com/JuliaTesting/ExprTools.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
             "licenseConcluded": "NOASSERTION",
             "licenseInfoFromFiles": [
@@ -340,7 +424,14 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/ExprTools@0.1.10?uuid=e2ba6199-217a-4e67-a87a-7c52f15ade04"
+                }
+            ]
         },
         {
             "name": "Mocking",
@@ -362,22 +453,29 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/Mocking@0.8.1?uuid=78c3b35d-d492-501b-9361-3d52fe80e533"
+                }
+            ]
         },
         {
             "name": "tzjdata",
-            "SPDXID": "SPDXRef-7fdea2a12522469ca39925546d1fd93c10748180",
+            "SPDXID": "SPDXRef-a2939c302ec6f8c6eeb94e4734c96b162e1ff7b5",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "https://github.com/JuliaTime/TZJData.jl/releases/download/v1.3.0+2024b/tzjfile-v1-tzdata2024b.tar.gz",
+            "downloadLocation": "https://github.com/JuliaTime/TZJData.jl/releases/download/v1.5.0+2025b/tzjfile-v1-tzdata2025b.tar.gz",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "367ad4e5a1ebd8430f3afead69f8f71b28bbbc48"
+                "packageVerificationCodeValue": "ab98ecfa339cb2ee03783886b43674f0534fce20"
             },
             "checksums": [
                 {
                     "algorithm": "SHA256",
-                    "checksumValue": "c06440d1228ee13b137bc6264989006c2be00a4e7c0299743974f28d5512ad93"
+                    "checksumValue": "75d5f6bf78963b5362e46263a9493dc0d460a720eb5f468fdeb50a61dd63649d"
                 }
             ],
             "homepage": "NOASSERTION",
@@ -390,13 +488,13 @@
         {
             "name": "TZJData",
             "SPDXID": "SPDXRef-TZJData-dc5dba14-91b3-4cab-a142-028a31da12f7",
-            "versionInfo": "1.3.0+2024b",
+            "versionInfo": "1.5.0+2025b",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaTime/TZJData.jl.git@36b40607bf2bf856828690e097e1c799623b0602",
+            "downloadLocation": "git+https://github.com/JuliaTime/TZJData.jl.git@72df96b3a595b7aab1e101eb07d2a435963a97e2",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "32bd81ffe086c0fa050d13dc0888404ca1045788"
+                "packageVerificationCodeValue": "eca95a7b6ec9a18642dfc8b39e15cdfe0006ce6e"
             },
             "homepage": "https://github.com/JuliaTime/TZJData.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -407,18 +505,25 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/TZJData@1.5.0+2025b?uuid=dc5dba14-91b3-4cab-a142-028a31da12f7"
+                }
+            ]
         },
         {
             "name": "Scratch",
             "SPDXID": "SPDXRef-Scratch-6c6a2e73-6563-6170-7368-637461726353",
-            "versionInfo": "1.2.1",
+            "versionInfo": "1.3.0",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaPackaging/Scratch.jl.git@3bac05bc7e74a75fd9cba4295cde4045d9fe2386",
+            "downloadLocation": "git+https://github.com/JuliaPackaging/Scratch.jl.git@9b81b8393e50b7d4e6d0a9f14e192294d3b7c109",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "0f03ad467b403e04922df52dcf10d76e76b0b16e"
+                "packageVerificationCodeValue": "c5a25fb609c98601094437716a4725acbb6bd29a"
             },
             "homepage": "https://github.com/JuliaPackaging/Scratch.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -429,18 +534,25 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/Scratch@1.3.0?uuid=6c6a2e73-6563-6170-7368-637461726353"
+                }
+            ]
         },
         {
             "name": "InlineStrings",
             "SPDXID": "SPDXRef-InlineStrings-842dd82b-1e85-43dc-bf29-5d0ee9dffc48",
-            "versionInfo": "1.4.2",
+            "versionInfo": "1.4.5",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaStrings/InlineStrings.jl.git@45521d31238e87ee9f9732561bfee12d4eebd52d",
+            "downloadLocation": "git+https://github.com/JuliaStrings/InlineStrings.jl.git@8f3d257792a522b4601c24a577954b0a8cd7334d",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "b638c771091edab5e06285294456fa770d06f7f7"
+                "packageVerificationCodeValue": "3d88a5024fb6db90d14760d8fce2ef4a8ea4c900"
             },
             "homepage": "https://github.com/JuliaStrings/InlineStrings.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -451,18 +563,25 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/InlineStrings@1.4.5?uuid=842dd82b-1e85-43dc-bf29-5d0ee9dffc48"
+                }
+            ]
         },
         {
             "name": "TimeZones",
             "SPDXID": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53",
-            "versionInfo": "1.19.0",
+            "versionInfo": "1.22.1",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaTime/TimeZones.jl.git@33c771f2157712ff4c85931186a4984efbe58934",
+            "downloadLocation": "git+https://github.com/JuliaTime/TimeZones.jl.git@06f4f1f3e8ff09e42e59b043a747332e88e01aba",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "58542b955add0800438225062effe6e3163f52e5"
+                "packageVerificationCodeValue": "c46f1ebb92779534bd406c0b913a484c5f3447f6"
             },
             "homepage": "https://github.com/JuliaTime/TimeZones.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -473,7 +592,14 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/TimeZones@1.22.1?uuid=f269a46b-ccf7-5d73-abea-4c690281aa53"
+                }
+            ]
         },
         {
             "name": "SPDX",
@@ -500,7 +626,14 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/SPDX@0.4.1?uuid=47358f48-d834-4249-91f5-f6185eb3d540"
+                }
+            ]
         },
         {
             "name": "Reexport",
@@ -522,18 +655,25 @@
             "licenseDeclared": "MIT",
             "copyrightText": "NOASSERTION",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/Reexport@1.2.2?uuid=189a3867-3050-52da-a836-e630ba90ab69"
+                }
+            ]
         },
         {
             "name": "PkgToSoftwareBOM",
             "SPDXID": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6",
-            "versionInfo": "0.1.13",
+            "versionInfo": "0.1.14",
             "supplier": "NOASSERTION",
             "originator": "Person:  Simon Avery  (savery@ieee.org)",
-            "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.13",
+            "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.14",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "637bc3bc47369301c2aa5a680258d0a48224c874",
+                "packageVerificationCodeValue": "59f3454da7de3d870015f598d98efa76d99bb676",
                 "packageVerificationCodeExcludedFiles": [
                     "PkgToSoftwareBOM.spdx.json"
                 ]
@@ -544,7 +684,14 @@
             "licenseDeclared": "MIT",
             "copyrightText": "Copyright (c) 2023 Simon Avery <savery@ieee.org> and contributors",
             "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it."
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/PkgToSoftwareBOM@0.1.14?uuid=6254a0f9-6143-4104-aa2e-fd339a2830a6"
+                }
+            ]
         }
     ],
     "relationships": [
@@ -639,7 +786,7 @@
             "relatedSpdxElement": "SPDXRef-TimeZones-f269a46b-ccf7-5d73-abea-4c690281aa53"
         },
         {
-            "spdxElementId": "SPDXRef-7fdea2a12522469ca39925546d1fd93c10748180",
+            "spdxElementId": "SPDXRef-a2939c302ec6f8c6eeb94e4734c96b162e1ff7b5",
             "relationshipType": "RUNTIME_DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-TZJData-dc5dba14-91b3-4cab-a142-028a31da12f7"
         },
