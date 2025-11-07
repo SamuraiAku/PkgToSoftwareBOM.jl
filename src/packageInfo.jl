@@ -177,11 +177,11 @@ end
 ###############################
 function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any}, licenseScan::Bool)
     package.LicenseConcluded= SpdxLicenseExpressionV2("NOASSERTION")
+    artifact_src= artifact_path(Base.SHA1(artifact["git-tree-sha1"]))
 
     if false == licenseScan
         package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
-    else
-        artifact_src= artifact_path(Base.SHA1(artifact["git-tree-sha1"]))
+    elseif isdir(artifact_src)
         scanresults= scan_for_licenses(artifact_src)
         if isempty(scanresults)
             package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
@@ -201,6 +201,9 @@ function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any}
             @logmsg Logging.LogLevel(-75) "License data found in:" licenselist= [(a.license_filename, a.licenses_found) for a in scanresults]
             package.LicenseInfoFromFiles= unique(package.LicenseInfoFromFiles) # Remove duplicates
         end
+    else 
+        # Likely this is a lazy artifact that didn't get downloaded
+        package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
     end
 end
 
