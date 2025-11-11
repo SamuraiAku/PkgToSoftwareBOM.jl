@@ -110,11 +110,13 @@ function resolve_pkglicense!(package::SpdxPackageV2, packagepath::AbstractString
 
     if ismissing(packageInstructions) 
         if false == licenseScan
-            package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
+            package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+            @logmsg Logging.LogLevel(-50) "License scanning has been disabled"
         else    
             scanresults= scan_for_licenses(packagepath) # Returns an array of found license files in top level of packagepath with scanner results
             if isempty(scanresults)
                 package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+                @logmsg Logging.LogLevel(-50) "Cannot locate a license file"
             else
                 # If multiple licenses exist, pick the first one as declared and log the rest
                 # As long as it exists at the top of the pkg
@@ -180,11 +182,13 @@ function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any}
     artifact_src= artifact_path(Base.SHA1(artifact["git-tree-sha1"]))
 
     if false == licenseScan
-        package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION") 
+        package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+        @logmsg Logging.LogLevel(-50) "License scanning has been disabled"
     elseif isdir(artifact_src)
         scanresults= scan_for_licenses(artifact_src)
         if isempty(scanresults)
             package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+            @logmsg Logging.LogLevel(-50) "Cannot locate a license file"
         else
             # If multiple licenses exist, pick the first one at the top or the first one in the share/licenses directory
             declared_licenses= filter(lic -> contains(splitdir(lic.license_filename)[1], joinpath(artifact_src, "share", "licenses"))
@@ -204,6 +208,7 @@ function resolve_pkglicense!(package::SpdxPackageV2, artifact::Dict{String, Any}
     else 
         # Likely this is a lazy artifact that didn't get downloaded
         package.LicenseDeclared= SpdxLicenseExpressionV2("NOASSERTION")
+        @logmsg Logging.LogLevel(-50) "Declared License cannot be determined. Likely a lazy artifact"
     end
 end
 
