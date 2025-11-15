@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v0.1.15
+* Resolved [#40](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/40), Fails to generate SPDX in Julia 1.12 when artifacts are missing
+
 ## v0.1.14
 * Merged [#39](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/pull/39), Add purl identifiers for packages
 
