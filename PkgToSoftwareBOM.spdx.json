@@ -3,13 +3,13 @@
     "dataLicense": "CC0-1.0",
     "SPDXID": "SPDXRef-DOCUMENT",
     "name": "PkgToSoftwareBOM.jl Developer SBOM",
-    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-ee222d2c-cea0-4f1f-bd9b-b3738a5a1682",
+    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-8bdb6b5a-fd50-495b-85e4-41ae9b442df9",
     "creationInfo": {
         "creators": [
             "Person:  Simon Avery  (savery@ieee.org)",
             "Tool:  PkgToSoftwareBOM.jl"
         ],
-        "created": "2025-10-14T05:54:09Z",
+        "created": "2025-11-15T07:09:35Z",
         "comment": "Target Platform: Platform(\"aarch64\", \"macos\"; libgfortran_version = \"5.0.0\", julia_version = \"1.12.0\", cxxstring_abi = \"cxx11\")"
     },
     "comment": "Registries used for populating Package data:\nGeneral registry: https://github.com/JuliaRegistries/General.git\nOfficial general Julia package registry where people can\nregister any package they want without too much debate about\nnaming and without enforced standards on documentation or\ntesting. We nevertheless encourage documentation, testing and\nsome amount of consideration when choosing package names.\n",
@@ -318,35 +318,6 @@
             ]
         },
         {
-            "name": "Compat",
-            "SPDXID": "SPDXRef-Compat-34da2185-b29b-5c13-b0c7-acf172513d20",
-            "versionInfo": "4.18.1",
-            "supplier": "NOASSERTION",
-            "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaLang/Compat.jl.git@9d8a54ce4b17aa5bdce0ea5c34bc5e7c340d16ad",
-            "filesAnalyzed": true,
-            "packageVerificationCode": {
-                "packageVerificationCodeValue": "76de5eebbf85c7543c1a18534be2a8e66abd3da2"
-            },
-            "homepage": "https://github.com/JuliaLang/Compat.jl.git",
-            "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
-            "licenseConcluded": "NOASSERTION",
-            "licenseInfoFromFiles": [
-                "MIT"
-            ],
-            "licenseDeclared": "MIT",
-            "copyrightText": "NOASSERTION",
-            "summary": "This is a Julia package, written in the Julia language.",
-            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
-            "externalRefs": [
-                {
-                    "referenceCategory": "PACKAGE-MANAGER",
-                    "referenceType": "purl",
-                    "referenceLocator": "pkg:julia/Compat@4.18.1?uuid=34da2185-b29b-5c13-b0c7-acf172513d20"
-                }
-            ]
-        },
-        {
             "name": "OrderedCollections",
             "SPDXID": "SPDXRef-OrderedCollections-bac558e1-5e72-5ebc-8fee-abe8a469f55d",
             "versionInfo": "1.8.1",
@@ -378,13 +349,13 @@
         {
             "name": "DataStructures",
             "SPDXID": "SPDXRef-DataStructures-864edb3b-99cc-5e75-8d2d-829cb0a9cfe8",
-            "versionInfo": "0.18.22",
+            "versionInfo": "0.19.3",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaCollections/DataStructures.jl.git@4e1fe97fdaed23e9dc21d4d664bea76b65fc50a0",
+            "downloadLocation": "git+https://github.com/JuliaCollections/DataStructures.jl.git@e357641bb3e0638d353c4b29ea0e40ea644066a6",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "1d85a8e41c624e614d6924a4c5e4bcdd14957cfb"
+                "packageVerificationCodeValue": "405fad9a80e269d483e5a1a9719cce77bada4676"
             },
             "homepage": "https://github.com/JuliaCollections/DataStructures.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -400,7 +371,36 @@
                 {
                     "referenceCategory": "PACKAGE-MANAGER",
                     "referenceType": "purl",
-                    "referenceLocator": "pkg:julia/DataStructures@0.18.22?uuid=864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
+                    "referenceLocator": "pkg:julia/DataStructures@0.19.3?uuid=864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
+                }
+            ]
+        },
+        {
+            "name": "Compat",
+            "SPDXID": "SPDXRef-Compat-34da2185-b29b-5c13-b0c7-acf172513d20",
+            "versionInfo": "4.18.1",
+            "supplier": "NOASSERTION",
+            "originator": "NOASSERTION",
+            "downloadLocation": "git+https://github.com/JuliaLang/Compat.jl.git@9d8a54ce4b17aa5bdce0ea5c34bc5e7c340d16ad",
+            "filesAnalyzed": true,
+            "packageVerificationCode": {
+                "packageVerificationCodeValue": "76de5eebbf85c7543c1a18534be2a8e66abd3da2"
+            },
+            "homepage": "https://github.com/JuliaLang/Compat.jl.git",
+            "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
+            "licenseConcluded": "NOASSERTION",
+            "licenseInfoFromFiles": [
+                "MIT"
+            ],
+            "licenseDeclared": "MIT",
+            "copyrightText": "NOASSERTION",
+            "summary": "This is a Julia package, written in the Julia language.",
+            "comment": "The SPDX ID field is derived from the UUID that all Julia packages are assigned by their developer to uniquely identify it.",
+            "externalRefs": [
+                {
+                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceType": "purl",
+                    "referenceLocator": "pkg:julia/Compat@4.18.1?uuid=34da2185-b29b-5c13-b0c7-acf172513d20"
                 }
             ]
         },
@@ -604,13 +604,13 @@
         {
             "name": "SPDX",
             "SPDXID": "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540",
-            "versionInfo": "0.4.1",
+            "versionInfo": "0.4.2",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/SamuraiAku/SPDX.jl.git@de73a6f48b8efa0eeb7e0c526c6b0e38e62b981a",
+            "downloadLocation": "git+https://github.com/SamuraiAku/SPDX.jl.git@b8a683ba47344db3bf9d91c848da375c1f280c3b",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "d183807dd8043b669d76e9f75c33dbc82ea3216e",
+                "packageVerificationCodeValue": "db8ccc66a4b9148cdb5fdae8ff97da1082e3313f",
                 "packageVerificationCodeExcludedFiles": [
                     "test/test_package/dir_link",
                     "test/test_package/file_link",
@@ -631,7 +631,7 @@
                 {
                     "referenceCategory": "PACKAGE-MANAGER",
                     "referenceType": "purl",
-                    "referenceLocator": "pkg:julia/SPDX@0.4.1?uuid=47358f48-d834-4249-91f5-f6185eb3d540"
+                    "referenceLocator": "pkg:julia/SPDX@0.4.2?uuid=47358f48-d834-4249-91f5-f6185eb3d540"
                 }
             ]
         },
@@ -667,13 +667,13 @@
         {
             "name": "PkgToSoftwareBOM",
             "SPDXID": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6",
-            "versionInfo": "0.1.14",
+            "versionInfo": "0.1.15",
             "supplier": "NOASSERTION",
             "originator": "Person:  Simon Avery  (savery@ieee.org)",
-            "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.14",
+            "downloadLocation": "git+https://github.com/SamuraiAku/PkgToSoftwareBOM.jl.git@v0.1.15",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "59f3454da7de3d870015f598d98efa76d99bb676",
+                "packageVerificationCodeValue": "331883368e9653e32335225f6516c954ec3ba0fa",
                 "packageVerificationCodeExcludedFiles": [
                     "PkgToSoftwareBOM.spdx.json"
                 ]
@@ -689,7 +689,7 @@
                 {
                     "referenceCategory": "PACKAGE-MANAGER",
                     "referenceType": "purl",
-                    "referenceLocator": "pkg:julia/PkgToSoftwareBOM@0.1.14?uuid=6254a0f9-6143-4104-aa2e-fd339a2830a6"
+                    "referenceLocator": "pkg:julia/PkgToSoftwareBOM@0.1.15?uuid=6254a0f9-6143-4104-aa2e-fd339a2830a6"
                 }
             ]
         }
@@ -754,11 +754,6 @@
             "spdxElementId": "SPDXRef-JSON-682c06a0-de6a-54ab-a142-c8b1cf79cde6",
             "relationshipType": "DEPENDENCY_OF",
             "relatedSpdxElement": "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540"
-        },
-        {
-            "spdxElementId": "SPDXRef-Compat-34da2185-b29b-5c13-b0c7-acf172513d20",
-            "relationshipType": "DEPENDENCY_OF",
-            "relatedSpdxElement": "SPDXRef-DataStructures-864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
         },
         {
             "spdxElementId": "SPDXRef-OrderedCollections-bac558e1-5e72-5ebc-8fee-abe8a469f55d",
