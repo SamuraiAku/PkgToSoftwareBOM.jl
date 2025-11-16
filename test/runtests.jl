@@ -15,6 +15,8 @@ using Base.BinaryPlatforms
         return true
     end
 
+    # Add Test Registry
+    Pkg.Registry.add(RegistrySpec(url= "https://github.com/SamuraiAku/DummyRegistry.jl.git"))
 
     @testset "README.md examples: Environment" begin
 
@@ -103,9 +105,6 @@ using Base.BinaryPlatforms
         @test SPDX_pkg.ExternalReferences[1].RefType == "purl"
         @test SPDX_pkg.ExternalReferences[1].Locator == "pkg:julia/$(SPDX_pkg.Name)@$(SPDX_pkg.Version)?uuid=47358f48-d834-4249-91f5-f6185eb3d540"
     end
-
-    # Add Test Registry
-    Pkg.Registry.add(RegistrySpec(url= "https://github.com/SamuraiAku/DummyRegistry.jl.git"))
 
     # Setup environment for the next tests
     envdir= mktempdir();
