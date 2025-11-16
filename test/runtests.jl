@@ -111,8 +111,8 @@ using Base.BinaryPlatforms
     envpaths= joinpath.(envdir, ["Project.toml", "Manifest.toml"])
     cp.(["./test_environment/Project.toml", "./test_environment/Manifest.toml"], envpaths)
     Pkg.activate(envdir)
-    Pkg.instantiate()
     Pkg.resolve()
+    Pkg.instantiate()
 
 
     @testset "Repo Track + Dual registries" begin
