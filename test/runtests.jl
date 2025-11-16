@@ -111,9 +111,9 @@ using Base.BinaryPlatforms
     envpaths= joinpath.(envdir, ["Project.toml", "Manifest.toml"])
     cp.(["./test_environment/Project.toml", "./test_environment/Manifest.toml"], envpaths)
     Pkg.activate(envdir)
+    Pkg.update("Dummy4")
     Pkg.resolve()
     Pkg.instantiate()
-
 
     @testset "Repo Track + Dual registries" begin
         sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies)), ["DummyRegistry", "General"]);
