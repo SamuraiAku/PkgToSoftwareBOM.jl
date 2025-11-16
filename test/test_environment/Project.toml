@@ -1,2 +1,6 @@
 [deps]
 Dummy4 = "bd21c0da-0f63-47d8-a8d0-2a7f3678fd80"
+MWETestSBOM_LazyArtifact = "1c66bc15-73f4-4e94-8c80-c77ca7b88078"
+
+[compat]
+MWETestSBOM_LazyArtifact= "0.1.1"

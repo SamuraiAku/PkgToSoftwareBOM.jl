@@ -106,9 +106,15 @@ using Base.BinaryPlatforms
         @test SPDX_pkg.ExternalReferences[1].Locator == "pkg:julia/$(SPDX_pkg.Name)@$(SPDX_pkg.Version)?uuid=47358f48-d834-4249-91f5-f6185eb3d540"
     end
 
+    # Setup environment for the next tests
+    envdir= mktempdir();
+    envpaths= joinpath.(envdir, ["Project.toml", "Manifest.toml"])
+    cp.(["./test_environment/Project.toml", "./test_environment/Manifest.toml"], envpaths)
+    Pkg.activate(envdir)
+    Pkg.resolve()
+    Pkg.instantiate()
+
     @testset "Repo Track + Dual registries" begin
-        Pkg.activate("./test_environment")
-        Pkg.instantiate()
         sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies)), ["DummyRegistry", "General"]);
         # Dummy4 and all its dependencies were created by the author for testing purposes. They have no functional code, just the dependencies
         # Therefore we know exactly what the SBOM should look like and can test for this.
@@ -194,6 +200,27 @@ using Base.BinaryPlatforms
          # the download locations should be unchanged
         sbom2= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies), use_packageserver= true), ["DummyRegistry", "General"]);
         @test issetequal(sbom.Packages, sbom2.Packages)
+    end
+
+    @testset "Artifact Tests" begin
+        using MWETestSBOM_LazyArtifact
+        spdxid= "SPDXRef-MWETestSBOM_LazyArtifact-1c66bc15-73f4-4e94-8c80-c77ca7b88078"
+
+        download_artifact()
+        sbom_downloaded= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["MWETestSBOM_LazyArtifact"]), Pkg.project().dependencies)), ["DummyRegistry", "General"]);
+        
+        remove_artifact()
+        sbom_lazy= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["MWETestSBOM_LazyArtifact"]), Pkg.project().dependencies)), ["DummyRegistry", "General"]);
+
+        # The two SBOMS should be almost identical, except that with sbom_lazy you can't compute the verification code
+        ## Check the document properties I know have to be identical
+        @test SPDX.compare_b(sbom_downloaded, sbom_lazy; skipproperties= [:Namespace, :CreationInfo, :Packages])
+        ## Compare the Packages, excluding the verification code
+        ### If I update the test artifact later to have a license file, that will be another difference.
+        @test SPDX.compare_b(sbom_downloaded.Packages, sbom_lazy.Packages; skipproperties= [:VerificationCode])
+        ## Compare the Package verification codes
+        
+        # TODO: A testset for a JLL
     end
 
     # Remove registry
