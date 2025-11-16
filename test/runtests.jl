@@ -15,8 +15,6 @@ using Base.BinaryPlatforms
         return true
     end
 
-    # Add Test Registry
-    Pkg.Registry.add(RegistrySpec(url= "https://github.com/SamuraiAku/DummyRegistry.jl.git"))
 
     @testset "README.md examples: Environment" begin
 
@@ -106,13 +104,17 @@ using Base.BinaryPlatforms
         @test SPDX_pkg.ExternalReferences[1].Locator == "pkg:julia/$(SPDX_pkg.Name)@$(SPDX_pkg.Version)?uuid=47358f48-d834-4249-91f5-f6185eb3d540"
     end
 
+    # Add Test Registry
+    Pkg.Registry.add(RegistrySpec(url= "https://github.com/SamuraiAku/DummyRegistry.jl.git"))
+
     # Setup environment for the next tests
     envdir= mktempdir();
     envpaths= joinpath.(envdir, ["Project.toml", "Manifest.toml"])
     cp.(["./test_environment/Project.toml", "./test_environment/Manifest.toml"], envpaths)
     Pkg.activate(envdir)
-    Pkg.resolve()
     Pkg.instantiate()
+    Pkg.resolve()
+
 
     @testset "Repo Track + Dual registries" begin
         sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies)), ["DummyRegistry", "General"]);
