@@ -64,7 +64,10 @@ There are two use cases envisioned:
 - Developers: Create an SBOM to be included with your package source code. This becomes your official declaration of what your package dependencies, copyright, license, and download location.
 
 ### !!! Important note about stability and license scanning !!!
-PkgToSoftwareBOM uses [LicenseCheck.jl](https://github.com/ericphanson/LicenseCheck.jl) to scan package and artifact directories for license file information. LicenseCheck has been known to occasionally crash when run on Apple Silicon, see [Issue #11](https://github.com/ericphanson/LicenseCheck.jl/issues/11).  I have observed it happening every time when run within VSCode with the julia-vscode extension. There are some early indications this issue may be resolved in Julia 1.11 when it is released, but it is not certain yet.
+PkgToSoftwareBOM uses [LicenseCheck.jl](https://github.com/ericphanson/LicenseCheck.jl) to scan package and artifact directories for license file information. LicenseCheck has been known to occasionally crash when run on Apple Silicon, see [Issue #11](https://github.com/ericphanson/LicenseCheck.jl/issues/11).  I have observed it happening every time when run within VSCode with the julia-vscode extension. 
+
+#### Update
+If has been [reported](https://github.com/ericphanson/LicenseCheck.jl/issues/11#issuecomment-3422776290) that the stability of LicenseCheck.jl has been fixed following the merge of [PR #59878](https://github.com/JuliaLang/julia/pull/59878) into Julia v1.12.2
 
 If you wish to disable license scanning for stability reasons, use the keyword licenseScan when creating a spdxCreationData object (see examples below)
 
