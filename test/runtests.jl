@@ -220,8 +220,11 @@ using Base.BinaryPlatforms
         ### If I update the test artifact later to have a license file, that will be another difference.
         @test SPDX.compare_b(sbom_downloaded.Packages, sbom_lazy.Packages; skipproperties= [:VerificationCode])
         ## Compare the Package verification codes
-        
-        # TODO: A testset for a JLL
+        packageindex= findfirst(getproperty.(sbom_lazy.Packages, :Name).=="MWETestSBOM_LazyArtifact")
+        artifactindex= findfirst(getproperty.(sbom_lazy.Packages, :Name).=="socrates")
+        @test  ismissing(      sbom_lazy.Packages[artifactindex].VerificationCode)
+        @test !ismissing(sbom_downloaded.Packages[artifactindex].VerificationCode)
+        @test SPDX.compare_b(sbom_lazy.Packages[packageindex].VerificationCode, sbom_downloaded.Packages[packageindex].VerificationCode)
     end
 
     # Remove registry
