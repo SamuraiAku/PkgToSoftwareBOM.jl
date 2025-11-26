@@ -84,7 +84,7 @@ function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registr
 
     tree_hash= haskey(registryPkgData.version_info, package.version) ? treehash(registryPkgData, package.version) : nothing
 
-    # Verify the tree hash in the registry matches the hash in the package. This check usually (always?) fails with an stdlib, even if it is tracked in the registry.
+    # Verify the tree hash in the registry matches the hash in the package. This check usually (always?) fails with an stdlib, even if it is tracked in the registry, becuase package.tree_hash is nothing.
     if !is_stdlib(uuid)
         package.is_tracking_registry && string(tree_hash) !== package.tree_hash && error("Tree hash of $(package.name) v$(string(package.version)) does not match registry:  $(string(package.tree_hash)) (Package) vs. $(treehash(registryPkgData, package.version)) (Registry)")
     end

@@ -12,7 +12,7 @@ function resolve_pkgsource!(uuid::UUID, package::SpdxPackageV2, packagedata::Pkg
     if packagedata.is_tracking_registry && !isnothing(registrydata) && !ismissing(registrydata)
         # Simplest and most common case is if you are tracking a registered package
         # stdlibs that aren't actually in the registry tend to lie and say they are tracking, hence the additional checks
-        repo_download= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@$(packagedata.tree_hash)$(isempty(registrydata.packageSubdir) ? "" : "#"*registrydata.packageSubdir)")
+        repo_download= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@$(registrydata.packageTreeHash)$(isempty(registrydata.packageSubdir) ? "" : "#"*registrydata.packageSubdir)")
         
         if is_stdlib(uuid)
             package.SourceInfo= "This package is part of the Julia standard library.\n"
@@ -65,7 +65,7 @@ function resolve_pkgsource!(uuid::UUID, package::SpdxPackageV2, packagedata::Pkg
         package.Supplier= SpdxCreatorV2("NOASSERTION")
     elseif is_stdlib(uuid) # That's not being tracked in a registry
         package.DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/JuliaLang/julia.git@v$(string(VERSION))#stdlib/$(package.Name)")
-        package.SourceInfo= "This package is part of the Julia standard library and is located in the Julia source code tree.\n"
+        package.SourceInfo= "This package is part of the Julia standard library and is located in the Julia source code tree."
         package.HomePage= "https://julialang.org"
         package.Supplier= SpdxCreatorV2("Organization", "JuliaLang", "")
     else
