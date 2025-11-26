@@ -24,7 +24,14 @@ using Base.BinaryPlatforms
         sbom = generateSPDX(spdxCreationData(find_artifactsource= true))
         # The SBOM is too big and complex to check everything, but we can check some things
         root_relationships= filter(r -> r.RelationshipType=="DESCRIBES", sbom.Relationships)
-        @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), ["SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540", "SPDXRef-RegistryInstances-2792f1a3-b283-48e8-9a74-f99dce5104f3", "SPDXRef-Reexport-189a3867-3050-52da-a836-e630ba90ab69", "SPDXRef-LicenseCheck-726dbf0d-6eb6-41af-b36c-cd770e0f00cc"])
+        @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), 
+                           ["SPDXRef-Downloads-f43a241f-c20a-4ad4-852c-f6b1247861c6",    "SPDXRef-Pkg-44cfe95a-1eb2-52ea-b672-e2afdf69b78f", 
+                            "SPDXRef-Test-8dfed614-e22c-5e08-85e1-65c5234f0b40",         "SPDXRef-UUIDs-cf7118a7-6976-5b1a-9a39-7adc72f591a4", 
+                            "SPDXRef-Artifacts-56f22d72-fd6d-98f1-02f0-08ddc0907c33",    "SPDXRef-RegistryInstances-2792f1a3-b283-48e8-9a74-f99dce5104f3", 
+                            "SPDXRef-LicenseCheck-726dbf0d-6eb6-41af-b36c-cd770e0f00cc", "SPDXRef-Logging-56ddb016-857b-54e1-b83d-db4d58db5568", 
+                            "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540",         "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", 
+                            "SPDXRef-Reexport-189a3867-3050-52da-a836-e630ba90ab69"]
+                        )
         @test !isempty(filter(p -> p.SPDXID == "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", sbom.Packages))
         @test !isempty(filter(p -> p.SPDXID == "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540", sbom.Packages))
         @test !isempty(filter(isequal(SpdxRelationshipV2("SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540 DEPENDENCY_OF SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6")), sbom.Relationships))
