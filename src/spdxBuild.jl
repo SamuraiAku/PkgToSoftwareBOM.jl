@@ -74,15 +74,12 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     # Check if this package already exists in the SBOM
     (uuid in builddata.packagesinsbom) && (return package.SPDXID)
 
-    # Check if it's a standard library
-    is_stdlib(uuid) && return nothing
-
     @logmsg Logging.LogLevel(-50) "******* Entering package $(packagedata.name) *******"
     
     package.Name= packagedata.name
     package.Version= string(packagedata.version)
     package.Originator= ismissing(packageInstructions) ?  SpdxCreatorV2("NOASSERTION") : packageInstructions.originator  # TODO: Use the person or group that hosts the repo on Github. Is there an API to query?    
-    resolve_pkgsource!(package, packagedata, registrydata)
+    resolve_pkgsource!(uuid, package, packagedata, registrydata)
     resolve_pkglicense!(package, packagedata.source, packageInstructions, builddata.licenseScan)
     package.VerificationCode= spdxpkgverifcode(packagedata.source, packageInstructions)
     package.Copyright= ismissing(packageInstructions) ? "NOASSERTION" : packageInstructions.copyright # TODO:  Scan license files for the first line that says "Copyright"?  That would about work.

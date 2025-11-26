@@ -60,7 +60,6 @@ end
 ###############################
 function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registry::RegistryInstance, packageserver::Union{String, Nothing})
     package.is_tracking_repo && return nothing
-    is_stdlib(uuid) && return nothing
 
     if package.is_tracking_registry || package.is_tracking_path
         # Look up the package in the registry by UUID
@@ -83,9 +82,12 @@ function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registr
 
     packageSubdir= isnothing(registryPkgData.subdir) ? "" : registryPkgData.subdir
 
-    # Verify the tree hash in the registry matches the hash in the package
     tree_hash= haskey(registryPkgData.version_info, package.version) ? treehash(registryPkgData, package.version) : nothing
-    package.is_tracking_registry && string(tree_hash) !== package.tree_hash && error("Tree hash of $(package.name) v$(string(package.version)) does not match registry:  $(string(package.tree_hash)) (Package) vs. $(treehash(registryPkgData, package.version)) (Registry)")
+
+    # Verify the tree hash in the registry matches the hash in the package. This check usually (always?) fails with an stdlib, even if it is tracked in the registry.
+    if !is_stdlib(uuid)
+        package.is_tracking_registry && string(tree_hash) !== package.tree_hash && error("Tree hash of $(package.name) v$(string(package.version)) does not match registry:  $(string(package.tree_hash)) (Package) vs. $(treehash(registryPkgData, package.version)) (Registry)")
+    end
 
     packageserverURL= isnothing(packageserver) ? nothing : packageserver * "/$(uuid)/$(package.tree_hash)"
 
