@@ -1,20 +1,26 @@
 # SPDX-License-Identifier: MIT
 
 ###############################
-function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.PackageInfo, registrydata::Union{Nothing, Missing, PackageRegistryInfo})
+function resolve_pkgsource!(uuid::UUID, package::SpdxPackageV2, packagedata::Pkg.API.PackageInfo, registrydata::Union{Nothing, Missing, PackageRegistryInfo})
     # The location of the SPDX package's source code depend on whether Pkg is tracking the package via:
-    #   1) A package registry
+    #   1) A package listed in the registry; Some stdlibs are tracked in the General registry, some are not.
     #   2) Connecting directly with a git repository
     #   3) Source code on a locally accessible storage device (i.e. no source control)
-    #   4) Is the locally stored code actually a registered package or code from a repository that is under development?
+    #   4) A stdlib that is not tracked in the registry
+    #   5) Is the locally stored code actually a registered package or code from a repository that is under development?
 
-    if packagedata.is_tracking_registry
+    if packagedata.is_tracking_registry && !isnothing(registrydata) && !ismissing(registrydata)
         # Simplest and most common case is if you are tracking a registered package
-        repo_download= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@$(packagedata.tree_hash)$(isempty(registrydata.packageSubdir) ? "" : "#"*registrydata.packageSubdir)")
+        # stdlibs that aren't actually in the registry tend to lie and say they are tracking, hence the additional checks
+        repo_download= SpdxDownloadLocationV2("git+$(registrydata.packageURL)@$(registrydata.packageTreeHash)$(isempty(registrydata.packageSubdir) ? "" : "#"*registrydata.packageSubdir)")
         
+        if is_stdlib(uuid)
+            package.SourceInfo= "This package is part of the Julia standard library.\n"
+        end
+
         if isnothing(registrydata.packageserverURL)
             package.DownloadLocation= repo_download
-            package.SourceInfo= "Download Location is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
+            package.SourceInfo= package.SourceInfo * "Download Location is supplied by the $(registrydata.registryName) registry:\n$(registrydata.registryURL)"
             package.SourceInfo= package.SourceInfo * "\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>"
             package.Supplier= SpdxCreatorV2("NOASSERTION")
         else
@@ -24,9 +30,15 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
             else
                 package.Supplier= SpdxCreatorV2("NOASSERTION")
             end
-            package.SourceInfo= "Download is a compressed tarball, supplied from a package server, rather than the package source respository."
+            package.SourceInfo= package.SourceInfo * "Download is a compressed tarball, supplied from a package server, rather than the package source respository."
         end
-        package.HomePage= registrydata.packageURL
+
+        if is_stdlib(uuid)
+            package.HomePage= "https://julialang.org"
+            package.Supplier= SpdxCreatorV2("Organization", "JuliaLang", "")
+        else
+            package.HomePage= registrydata.packageURL
+        end
     elseif packagedata.is_tracking_repo
         # Next simplest case is if you are directly tracking a repository
         # TODO: Extract the subdirectory information if it exists. Can't find it in packagedata.
@@ -51,6 +63,11 @@ function resolve_pkgsource!(package::SpdxPackageV2, packagedata::Pkg.API.Package
             package.FileName= packagedata.source
         end
         package.Supplier= SpdxCreatorV2("NOASSERTION")
+    elseif is_stdlib(uuid) # That's not being tracked in a registry
+        package.DownloadLocation= SpdxDownloadLocationV2("git+https://github.com/JuliaLang/julia.git@v$(string(VERSION))#stdlib/$(package.Name)")
+        package.SourceInfo= "This package is part of the Julia standard library and is located in the Julia source code tree."
+        package.HomePage= "https://julialang.org"
+        package.Supplier= SpdxCreatorV2("Organization", "JuliaLang", "")
     else
         # This should not happen unless there has been a breaking change in Pkg
         error("PkgToSBOM.resolve_pkgsource!():  Unable to resolve. Maybe the Pkg source has changed in a breaking way?")
