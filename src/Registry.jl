@@ -77,8 +77,8 @@ function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registr
 
     # TODO: Resolve the correct Compat and Deps for this version
 
-    # If actively tracking the registry, verify that the version exists in this registry
-    package.is_tracking_registry && !haskey(registryPkgData.version_info, package.version) && return missing
+    # Verify that the version exists in this registry
+    haskey(registryPkgData.version_info, package.version) || return missing
 
     packageSubdir= isnothing(registryPkgData.subdir) ? "" : registryPkgData.subdir
 
