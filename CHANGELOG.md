@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.16
+* Resolved [#43](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/pull/43), standard libraries are included in the SBOM. Due to their special status inside of Julia, additional logic was needed to make them appear properly
+* Resolved [#42](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/42), Inform user when package data is not in available registries
+
 ## v0.1.15
 * Resolved [#40](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/40), Fails to generate SPDX in Julia 1.12 when artifacts are missing
 
