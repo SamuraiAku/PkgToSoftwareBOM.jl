@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## 0.1.16
-* Resolved [#43](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/pull/43), standard libraries are included in the SBOM. Due to their special status inside of Julia, additional logic was needed to make them appear properly
+* Resolved [#38](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/38), standard libraries are included in the SBOM. Due to their special status inside of Julia, additional logic was needed to make them appear properly
 * Resolved [#42](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/42), Inform user when package data is not in available registries
 
 ## v0.1.15
