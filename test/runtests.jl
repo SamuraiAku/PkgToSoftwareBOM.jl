@@ -208,6 +208,9 @@ using Base.BinaryPlatforms
          # the download locations should be unchanged
         sbom2= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies), use_packageserver= true), ["DummyRegistry", "General"]);
         @test issetequal(sbom.Packages, sbom2.Packages)
+
+        # If we don't specify DummyRegistry when building the SBOM we expect an error
+        @test_throws "its version cannot be found in the specified registries" sbom= generateSPDX();
     end
 
     @testset "Artifact Tests" begin
