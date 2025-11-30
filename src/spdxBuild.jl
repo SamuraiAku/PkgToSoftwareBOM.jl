@@ -19,7 +19,7 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
     # Query the registries for package information
     registry_packages= registry_packagequery(envpkgs, sbomRegistries, docData.use_packageserver)
 
-    packagebuilddata= spdxPackageData(targetplatform= docData.TargetPlatform, packages= envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions, licenseScan= docData.licenseScan, find_artifactsource= docData.find_artifactsource)
+    packagebuilddata= spdxPackageData(targetplatform= docData.TargetPlatform, packages= envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions, licenseScan= docData.licenseScan, find_artifactsource= docData.find_artifactsource, exclude_stdlib= docData.exclude_stdlib)
 
    # Create the SPDX Document
     spdxDoc= SpdxDocumentV2()
@@ -73,6 +73,11 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
 
     # Check if this package already exists in the SBOM
     (uuid in builddata.packagesinsbom) && (return package.SPDXID)
+
+    # Check if there is a directive to exclude stdlibs from the SBOM
+    if builddata.exclude_stdlib && is_stdlib(uuid)
+        return nothing
+    end
 
     @logmsg Logging.LogLevel(-50) "******* Entering package $(packagedata.name) *******"
     
