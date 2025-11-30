@@ -36,6 +36,15 @@ using Base.BinaryPlatforms
         @test !isempty(filter(p -> p.SPDXID == "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540", sbom.Packages))
         @test !isempty(filter(isequal(SpdxRelationshipV2("SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540 DEPENDENCY_OF SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6")), sbom.Relationships))
 
+        ## Now exclude stdlibs
+        sbom = generateSPDX(spdxCreationData(find_artifactsource= true, exclude_stdlib= true))
+        root_relationships= filter(r -> r.RelationshipType=="DESCRIBES", sbom.Relationships)
+        println(getproperty.(root_relationships, :RelatedSPDXID))
+        @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), 
+                           ["SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540",         "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", 
+                            "SPDXRef-Reexport-189a3867-3050-52da-a836-e630ba90ab69",     "SPDXRef-LicenseCheck-726dbf0d-6eb6-41af-b36c-cd770e0f00cc",
+                            "SPDXRef-RegistryInstances-2792f1a3-b283-48e8-9a74-f99dce5104f3"]
+                        )
 
         ## Example #2 + Check dual registries
         rootpackages = filter(p -> p.first in ["PkgToSoftwareBOM"],
