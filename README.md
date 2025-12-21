@@ -67,7 +67,7 @@ There are two use cases envisioned:
 PkgToSoftwareBOM uses [LicenseCheck.jl](https://github.com/ericphanson/LicenseCheck.jl) to scan package and artifact directories for license file information. LicenseCheck has been known to occasionally crash when run on Apple Silicon, see [Issue #11](https://github.com/ericphanson/LicenseCheck.jl/issues/11).  I have observed it happening every time when run within VSCode with the julia-vscode extension. 
 
 #### Update
-If has been [reported](https://github.com/ericphanson/LicenseCheck.jl/issues/11#issuecomment-3422776290) that the stability of LicenseCheck.jl has been fixed following the merge of [PR #59878](https://github.com/JuliaLang/julia/pull/59878) into Julia v1.12.2
+It has been [reported](https://github.com/ericphanson/LicenseCheck.jl/issues/11#issuecomment-3422776290) that the stability of LicenseCheck.jl has been fixed following the merge of [PR #59878](https://github.com/JuliaLang/julia/pull/59878) into Julia v1.12.2
 
 If you wish to disable license scanning for stability reasons, use the keyword licenseScan when creating a spdxCreationData object (see examples below)
 
@@ -193,6 +193,13 @@ One case that PkgToSoftwareBOM does not support properly today is when a previou
 
 ## Optional Modes
 PkgToSoftwareBOM has keywords that can be invoked with `spdxCreationData()`.  These keywords modify the contents of the SBOM in ways that are useful in particular situations
+
+### Exclude standard libraries from the SBOM
+Since v0.1.16, PkgToSoftwareBOM by default includes standard libraries in the SBOM. There are scenarios where a user would wish to exclude them from the SBOM. For example when getting corporate approvals for a package and its dependencies there is no point in including the stdlibs since they are part of the Julia installation and may cause confusion. Stdlibs may be excluded through the use of the keyword `exclude_stdlib` when creating a spdxCreationData object (see example below)
+
+```julia
+spdxCreationData(exclude_stdlib= true)
+```
 
 ### Use a package server as the DownloadLocation
 The package developer's GitHub (or other) repository is the canonical source for the package code. By default, this repository is used to populate the field DownloadLocation in each package description.
