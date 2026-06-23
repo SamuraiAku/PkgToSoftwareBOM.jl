@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.1.18
+* Merged [#46](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/pull/46), Replace _ with - in SPDXID
+
 ## 0.1.17
 * Resolved [#44](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/44), Give user the option to exclude stdlibs
 
