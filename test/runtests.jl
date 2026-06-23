@@ -224,7 +224,8 @@ using Base.BinaryPlatforms
 
     @testset "Artifact Tests" begin
         using MWETestSBOM_LazyArtifact
-        spdxid= "SPDXRef-MWETestSBOM_LazyArtifact-1c66bc15-73f4-4e94-8c80-c77ca7b88078"
+        # Underscores are not valid in an SPDXID, so they are replaced with dashes
+        spdxid= "SPDXRef-MWETestSBOM-LazyArtifact-1c66bc15-73f4-4e94-8c80-c77ca7b88078"
 
         download_artifact()
         sbom_downloaded= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["MWETestSBOM_LazyArtifact"]), Pkg.project().dependencies)), ["DummyRegistry", "General"]);
@@ -240,6 +241,8 @@ using Base.BinaryPlatforms
         @test SPDX.compare_b(sbom_downloaded.Packages, sbom_lazy.Packages; skipproperties= [:VerificationCode])
         ## Compare the Package verification codes
         packageindex= findfirst(getproperty.(sbom_lazy.Packages, :Name).=="MWETestSBOM_LazyArtifact")
+        @test sbom_lazy.Packages[packageindex].SPDXID == spdxid
+        @test !occursin("_", sbom_lazy.Packages[packageindex].SPDXID)
         artifactindex= findfirst(getproperty.(sbom_lazy.Packages, :Name).=="socrates")
         @test  ismissing(      sbom_lazy.Packages[artifactindex].VerificationCode)
         @test !ismissing(sbom_downloaded.Packages[artifactindex].VerificationCode)

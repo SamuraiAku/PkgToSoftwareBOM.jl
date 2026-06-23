@@ -69,7 +69,8 @@ function buildSPDXpackage!(spdxDoc::SpdxDocumentV2, uuid::UUID, builddata::spdxP
     packagedata= builddata.packages[uuid]
     registrydata= builddata.registrydata[uuid]
     packageInstructions= get(builddata.packageInstructions, uuid, missing)
-    package= SpdxPackageV2("SPDXRef-$(packagedata.name)-$(uuid)")
+    # SPDX IDs only allow [a-zA-Z0-9.-], but Julia package names (e.g. Foo_jll) may contain underscores
+    package= SpdxPackageV2("SPDXRef-$(replace(packagedata.name, "_" => "-"))-$(uuid)")
 
     # Check if this package already exists in the SBOM
     (uuid in builddata.packagesinsbom) && (return package.SPDXID)
