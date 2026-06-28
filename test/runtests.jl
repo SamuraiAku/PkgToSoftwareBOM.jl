@@ -53,10 +53,10 @@ using Base.BinaryPlatforms
         root_relationships= filter(r -> r.RelationshipType=="DESCRIBES", sbom_with_exclusions.Relationships)
         @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), ["SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"])
         @test !isnothing(filter(p -> p.SPDXID == "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", sbom.Packages))
-        # Dummy Registry, which is checked first, has only an old version of DataStructures (0.17.20) whereas SPDX needs at least 0.18
+        # Dummy Registry, which is checked first, has an old version of TimeZones (1.0.1) whereas SPDX uses the latest (1.22.2 or later)
         # Verify that the package in the SBOM did not choose that version for the SBOM
-        DataStructuresPkg= filter(p-> occursin("SPDXRef-DataStructures", p.SPDXID), sbom.Packages)
-        @test VersionNumber(DataStructuresPkg[1].Version) >= v"0.18"
+        TimeZonesPkg= filter(p-> occursin("SPDXRef-TimeZones", p.SPDXID), sbom.Packages)
+        @test VersionNumber(TimeZonesPkg[1].Version) >= v"1.1"
 
         # Use the package server for downloads
         sbom_with_packageserver = generateSPDX(spdxCreationData(use_packageserver= true))
