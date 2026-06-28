@@ -32,8 +32,14 @@ using Base.BinaryPlatforms
                             "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540",         "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", 
                             "SPDXRef-Reexport-189a3867-3050-52da-a836-e630ba90ab69"]
                         )
+        # Make sure the SPDXID is formatted as expected
         @test !isempty(filter(p -> p.SPDXID == "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", sbom.Packages))
-        @test !isempty(filter(p -> p.SPDXID == "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540", sbom.Packages))
+        # Check a few things in the SPDX package
+        pkgvector= filter(p -> p.SPDXID == "SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540", sbom.Packages)
+        @test !isempty(pkgvector)
+        SPDX_pkg= pkgvector[1]
+        @test !ismissing(SPDX_pkg.SourceInfo)
+        @test startswith(SPDX_pkg.SourceInfo, "Download Location is supplied by")
         @test !isempty(filter(isequal(SpdxRelationshipV2("SPDXRef-SPDX-47358f48-d834-4249-91f5-f6185eb3d540 DEPENDENCY_OF SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6")), sbom.Relationships))
 
         ## Now exclude stdlibs
