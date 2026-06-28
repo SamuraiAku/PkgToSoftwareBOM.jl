@@ -16,6 +16,8 @@ function resolve_pkgsource!(uuid::UUID, package::SpdxPackageV2, packagedata::Pkg
         
         if is_stdlib(uuid)
             package.SourceInfo= "This package is part of the Julia standard library.\n"
+        else
+            package.SourceInfo= ""
         end
 
         if isnothing(registrydata.packageserverURL)
