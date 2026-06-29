@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.1.19
+* PkgToSoftwareBOM now selects between SPDX.jl v0.4 and v0.5 at the package manager's discretion
+    * SPDX v0.5 uses JSON v1.x, SPDX v0.4 uses JSON.jl v0.19
+    * Previously users who were already using JSON.jl v1.x in their environment were unable to use PkgToSoftwareBOM
+* Corrected a regression where a package's SourceInfo was not being filled in for regular packages. Introduced in commit 1316b4f
+* Updated tests
+
 ## 0.1.18
 * Merged [#46](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/pull/46), Replace _ with - in SPDXID
 
