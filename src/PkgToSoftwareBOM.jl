@@ -15,6 +15,8 @@ using Downloads
 
 export spdxCreationData, spdxPackageInstructions
 
+VERSION >= v"1.11.0-DEV.469" && "public environment_rootpackages" |> Meta.parse |> eval
+
 Base.@kwdef struct PackageRegistryInfo
     registryName::String
     registryURL::String
@@ -65,7 +67,7 @@ Base.@kwdef struct spdxCreationData
     Creators::Vector{SpdxCreatorV2}= SpdxCreatorV2[SpdxCreatorV2("Tool", "PkgToSoftwareBOM.jl", "")]
     CreatorComment::Union{AbstractString, Missing}= missing
     DocumentComment::Union{AbstractString, Missing}= missing
-    rootpackages::Dict{String, Base.UUID}= Pkg.project().dependencies
+    rootpackages::Dict{String, Base.UUID}= environment_rootpackages()
     packageInstructions::Dict{UUID, spdxPackageInstructions}= Dict{UUID, spdxPackageInstructions}()
     licenseScan::Bool= true
     use_packageserver::Bool= false

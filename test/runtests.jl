@@ -255,6 +255,46 @@ using Base.BinaryPlatforms
         @test SPDX.compare_b(sbom_lazy.Packages[packageindex].VerificationCode, sbom_downloaded.Packages[packageindex].VerificationCode)
     end
 
+    if VERSION >= v"1.12"
+        @testset "Workspace environment" begin
+            # A workspace shares one manifest between the top level project and its member
+            # projects. The SBOM must describe the dependencies of every member project, not
+            # just those reachable from the top level project.
+            wsdir= mktempdir()
+            mkdir(joinpath(wsdir, "sub"))
+            write(joinpath(wsdir, "Project.toml"),
+                """
+                name = "WorkspaceRoot"
+                uuid = "11111111-1111-1111-1111-111111111111"
+                version = "0.1.0"
+
+                [deps]
+                Example = "7876af07-990d-54b4-ab0e-23690620f79a"
+
+                [workspace]
+                projects = ["sub"]
+                """)
+            write(joinpath(wsdir, "sub", "Project.toml"),
+                """
+                [deps]
+                Crayons = "a8cc5b0e-0ffa-5ad4-8c14-923d3ee1735f"
+                """)
+            Pkg.activate(wsdir)
+            Pkg.instantiate()
+
+            # Crayons is a dependency of the member project only; Example of the top level project
+            @test issetequal(keys(PkgToSoftwareBOM.environment_rootpackages()), ["Example", "Crayons"])
+            @test issetequal([d.name for d in values(PkgToSoftwareBOM.environment_dependencies())], ["Example", "Crayons"])
+
+            sbom= generateSPDX(spdxCreationData(licenseScan= false))
+            described= filter(r -> r.RelationshipType == "DESCRIBES", sbom.Relationships)
+            @test issetequal(getproperty.(described, :RelatedSPDXID),
+                ["SPDXRef-Example-7876af07-990d-54b4-ab0e-23690620f79a",
+                 "SPDXRef-Crayons-a8cc5b0e-0ffa-5ad4-8c14-923d3ee1735f"])
+            @test issetequal(getproperty.(sbom.Packages, :Name), ["Example", "Crayons"])
+        end
+    end
+
     # Remove registry
     Pkg.Registry.rm("DummyRegistry")
 end
