@@ -81,11 +81,15 @@ To create an SBOM of your entire environment type:
 
 `sbom= generateSPDX()`
 
+This also works for [Julia 1.12+ workspaces](https://pkgdocs.julialang.org/v1/toml-files/#The-%5Bworkspace%5D-section): the SBOM describes the dependencies of the top level project together with those of every workspace member project.
+
 If you wish to not include PkgToSoftwareBOM and SPDX (or some other package) in your SBOM:
 
 ```julia
-sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> !(p.first in ["PkgToSoftwareBOM", "SPDX"]), Pkg.project().dependencies)));
+sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> !(p.first in ["PkgToSoftwareBOM", "SPDX"]), PkgToSoftwareBOM.environment_rootpackages())));
 ```
+
+`PkgToSoftwareBOM.environment_rootpackages()` returns the direct dependencies of the active environment (including any workspace member projects) as a `Dict{String, UUID}`. For a single project environment it is equivalent to `Pkg.project().dependencies`.
 
 To write the SBOM to file:
 ```julia
