@@ -71,6 +71,12 @@ function resolve_pkgsource!(uuid::UUID, package::SpdxPackageV2, packagedata::Pkg
         else
             package.HomePage= registrydata.packageURL
         end
+
+        if !registrydata.versionInRegistry
+            # The version installed in the environment was not listed in the registry, so the download
+            # location was resolved from the registry's repository and the installed package's git tree hash.
+            package.SourceInfo= package.SourceInfo * "\nVersion $(string(registrydata.packageVersion)) was not found in the $(registrydata.registryName) registry; the registry copy may be out of date. The Download Location was resolved from the registry's repository and the installed package's git tree hash."
+        end
     elseif packagedata.is_tracking_repo
         # Next simplest case is if you are directly tracking a repository
         # TODO: Extract the subdirectory information if it exists. Can't find it in packagedata.
@@ -101,7 +107,16 @@ function resolve_pkgsource!(uuid::UUID, package::SpdxPackageV2, packagedata::Pkg
         package.HomePage= "https://julialang.org"
         package.Supplier= SpdxCreatorV2("Organization", "JuliaLang", "")
     elseif packagedata.is_tracking_registry && ismissing(registrydata)
-        error("Package $(packagedata.name) and/or its version cannot be found in the specified registries.\nPlease review the installed registries with Pkg and the value of parameter \'sbomRegistries\' when the function \'generateSPDX\' is called")
+        # The package tracks a registry, but the installed version was not found in any of the specified
+        # registries. This commonly happens when a package is updated in the environment while the local
+        # registry copy lags behind. Rather than aborting the whole SBOM, record what the installed package
+        # itself provides and note that the download location could not be resolved.
+        @warn "Package $(packagedata.name) v$(string(packagedata.version)) and/or its version cannot be found in the specified registries. The registry copy may be out of date. Recording the package with limited source information.\nReview the installed registries with Pkg and the value of parameter 'sbomRegistries' when the function 'generateSPDX' is called."
+        package.DownloadLocation= SpdxDownloadLocationV2("NOASSERTION")
+        package.HomePage= "NOASSERTION"
+        package.SourceInfo= "$(packagedata.name) v$(string(packagedata.version)) tracks a registry, but this version could not be found in the specified registries. The registry copy may be out of date, so a download location could not be determined."
+        isnothing(packagedata.tree_hash) || (package.SourceInfo= package.SourceInfo * "\nThe git tree hash of the installed package is $(packagedata.tree_hash).")
+        package.Supplier= SpdxCreatorV2("NOASSERTION")
     else
         # This should not happen unless there has been a breaking change in Pkg
         error("PkgToSBOM.resolve_pkgsource!():  Unable to resolve source information for $(packagedata.name). Maybe the Pkg source has changed in a breaking way?")

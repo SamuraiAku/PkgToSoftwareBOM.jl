@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.21
+* An installed package whose version is not found in the specified registries no longer aborts the whole SBOM. This commonly happens when a package is updated in the environment while the local registry copy lags behind.
+    * When the package's UUID is registered but the installed version is not, the package is described precisely from the registry's repository and the installed package's git tree hash, with a note that the version was not found in the registry.
+    * When the package is not registered at all, it is recorded with limited source information (download location NOASSERTION and a note in SourceInfo).
+    * In both cases a warning is logged.
+
 ## 0.1.20
 * Resolved [#41](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/41), PkgToSoftwareBOM now works with Julia 1.12+ workspaces. The SBOM describes the dependencies of every workspace member project, not just those reachable from the top level project
 * Added the public helper `PkgToSoftwareBOM.environment_rootpackages`, the workspace-aware replacement for `Pkg.project().dependencies`, for selecting the root packages of the SBOM

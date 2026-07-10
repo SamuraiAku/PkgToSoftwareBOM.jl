@@ -29,7 +29,8 @@ Base.@kwdef struct PackageRegistryInfo
     packageSubdir::String
     packageTreeHash::Union{String, Nothing}
     packageserverURL::Union{String, Nothing}
-    
+    versionInRegistry::Bool= true
+
     # It would be nice to add these fields, but first have to figure out how to resolve version ranges
     #packageCompatibility::Dict{String, Any}
     #PackageDependencies::Dict{String, Any}

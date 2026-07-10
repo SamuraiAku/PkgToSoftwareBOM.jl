@@ -224,8 +224,13 @@ using Base.BinaryPlatforms
         sbom2= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies), use_packageserver= true), ["DummyRegistry", "General"]);
         @test issetequal(sbom.Packages, sbom2.Packages)
 
-        # If we don't specify DummyRegistry when building the SBOM we expect an error
-        @test_throws "its version cannot be found in the specified registries" sbom= generateSPDX();
+        # If we don't specify DummyRegistry when building the SBOM, the packages cannot be found in the
+        # registry. Rather than aborting, the SBOM is still generated with limited source information and
+        # a warning is logged for each unresolved package.
+        sbom_noregistry= @test_logs (:warn,) match_mode=:any generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies)));
+        @test issetequal(getproperty.(sbom_noregistry.Packages, :Name), ["Dummy1", "Dummy2", "Dummy3", "Dummy4"])
+        @test all(isequal.(getproperty.(sbom_noregistry.Packages, :DownloadLocation), [SpdxDownloadLocationV2("NOASSERTION")]))
+        @test all(isequal.(getproperty.(sbom_noregistry.Packages, :HomePage), "NOASSERTION"))
     end
 
     @testset "Artifact Tests" begin
@@ -235,7 +240,7 @@ using Base.BinaryPlatforms
 
         download_artifact()
         sbom_downloaded= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["MWETestSBOM_LazyArtifact"]), Pkg.project().dependencies)), ["DummyRegistry", "General"]);
-        
+
         remove_artifact()
         sbom_lazy= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["MWETestSBOM_LazyArtifact"]), Pkg.project().dependencies)), ["DummyRegistry", "General"]);
 

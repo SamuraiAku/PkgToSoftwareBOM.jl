@@ -8,10 +8,6 @@ function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, regist
     else
         server_registry_info= nothing
     end
-    
-    if length(registries) == 1
-        return _registry_packagequery(packages, registries[1], server_registry_info)
-    end
 
     registry_pkg= Dict{UUID, Union{Nothing, Missing, PackageRegistryInfo}}()
     querylist= packages
@@ -21,11 +17,29 @@ function registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, regist
         emptykeys= keys(filter(p-> isnothing(p.second) || ismissing(p.second), registry_pkg))
         querylist= Dict{UUID, Pkg.API.PackageInfo}(k => packages[k] for k in emptykeys)
     end
+
+    # Second pass: a registry-tracked package whose installed version is registered in none of the
+    # registries, but whose UUID is registered, can still be described precisely from the registry's
+    # repository and the installed package's own git tree hash. This commonly happens when a package is
+    # updated in the environment while the local registry copy lags behind. The first registry (in the
+    # given order) that knows the package supplies the information.
+    stillmissing= Dict{UUID, Pkg.API.PackageInfo}(k => packages[k] for k in keys(registry_pkg) if ismissing(registry_pkg[k]))
+    for reg in registries
+        isempty(stillmissing) && break
+        reglist= _registry_packagequery(stillmissing, reg, server_registry_info, true)
+        for (k, v) in reglist
+            if v isa PackageRegistryInfo
+                registry_pkg[k]= v
+                delete!(stillmissing, k)
+            end
+        end
+    end
+
     return registry_pkg
 end
 
 ###############################
-function _registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registry::AbstractString, server_registry_info)
+function _registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, registry::AbstractString, server_registry_info, allow_missing_version::Bool= false)
     #Get the requested registry
     active_regs= reachable_registries()
     selected_registry= nothing
@@ -51,45 +65,56 @@ function _registry_packagequery(packages::Dict{UUID, Pkg.API.PackageInfo}, regis
             packageserver= nothing
         end
     end
-    
-    registry_pkg= Dict{Base.UUID, Union{Nothing, Missing, PackageRegistryInfo}}(k => populate_registryinfo(k, packages[k], selected_registry, packageserver) for k in keys(packages))
-    
+
+    registry_pkg= Dict{Base.UUID, Union{Nothing, Missing, PackageRegistryInfo}}(k => populate_registryinfo(k, packages[k], selected_registry, packageserver, allow_missing_version) for k in keys(packages))
+
     return registry_pkg
 end
 
 ###############################
-function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registry::RegistryInstance, packageserver::Union{String, Nothing})
+function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registry::RegistryInstance, packageserver::Union{String, Nothing}, allow_missing_version::Bool= false)
     package.is_tracking_repo && return nothing
 
     if package.is_tracking_registry || package.is_tracking_path
         # Look up the package in the registry by UUID
         haskey(registry.pkgs, uuid) || return missing
         registryPkg= registry.pkgs[uuid]
-    
+
         # Check package and the registry are using the same name
         (package.name == registryPkg.name) || error("Conflicting package names found: $(string(uuid))=> $(package.name)(environment) vs. $(registryPkg.name)(registry)")
     else
         println("Malformed PackageInfo:  $(string(uuid)) => $(package.name)")  # TODO: Work on this
         return nothing
     end
-    
+
     registryPkgData= registry_info(registryPkg)
 
     # TODO: Resolve the correct Compat and Deps for this version
 
-    # Verify that the version exists in this registry
-    haskey(registryPkgData.version_info, package.version) || return missing
+    # Determine whether the installed version is registered. When it is not, the registry can still supply
+    # the package's repository, and the installed package's own git tree hash identifies the exact source.
+    # This precise fallback is offered only for registry-tracked packages, and only when the caller allows it.
+    version_in_registry= haskey(registryPkgData.version_info, package.version)
+    version_in_registry || (allow_missing_version && package.is_tracking_registry) || return missing
 
     packageSubdir= isnothing(registryPkgData.subdir) ? "" : registryPkgData.subdir
 
-    tree_hash= haskey(registryPkgData.version_info, package.version) ? treehash(registryPkgData, package.version) : nothing
-
-    # Verify the tree hash in the registry matches the hash in the package. This check usually (always?) fails with an stdlib, even if it is tracked in the registry, becuase package.tree_hash is nothing.
-    if !is_stdlib(uuid)
-        package.is_tracking_registry && string(tree_hash) !== package.tree_hash && error("Tree hash of $(package.name) v$(string(package.version)) does not match registry:  $(string(package.tree_hash)) (Package) vs. $(treehash(registryPkgData, package.version)) (Registry)")
+    if version_in_registry
+        tree_hash= string(treehash(registryPkgData, package.version))
+        # Verify the tree hash in the registry matches the hash in the package. This check usually (always?) fails with an stdlib, even if it is tracked in the registry, becuase package.tree_hash is nothing.
+        if !is_stdlib(uuid)
+            package.is_tracking_registry && tree_hash !== package.tree_hash && error("Tree hash of $(package.name) v$(string(package.version)) does not match registry:  $(string(package.tree_hash)) (Package) vs. $(tree_hash) (Registry)")
+        end
+    else
+        # The registry knows this package but not the installed version. Without an installed tree hash there
+        # is nothing precise to report, so leave the package unresolved for the NOASSERTION fallback.
+        isnothing(package.tree_hash) && return missing
+        tree_hash= package.tree_hash
     end
 
-    packageserverURL= isnothing(packageserver) ? nothing : packageserver * "/$(uuid)/$(package.tree_hash)"
+    # A package server serves the versions the registry knows about, so it cannot supply an unregistered
+    # version. Fall back to the repository download in that case.
+    packageserverURL= (isnothing(packageserver) || !version_in_registry) ? nothing : packageserver * "/$(uuid)/$(package.tree_hash)"
 
     pkgRegInfo= PackageRegistryInfo(;
         registryName= registry.name,
@@ -101,17 +126,18 @@ function populate_registryinfo(uuid::UUID, package::Pkg.API.PackageInfo, registr
         packageVersion= package.version,
         packageURL= registryPkgData.repo,
         packageSubdir= packageSubdir,
-        packageTreeHash= string(tree_hash),
-        packageserverURL= packageserverURL
+        packageTreeHash= tree_hash,
+        packageserverURL= packageserverURL,
+        versionInRegistry= version_in_registry
     )
-    
+
     return pkgRegInfo
 end
 
 ################################
 ## The code below has been copied from Julia Package Manager v1.10.4 and modified as needed
 ##     https://github.com/JuliaLang/Pkg.jl/tree/v1.10.4
-#  
+#
 #  Copyright (c) 2017-2021: Stefan Karpinski, Kristoffer Carlsson, Fredrik Ekre, David Varela, Ian Butterworth, and contributors: 
 #  https://github.com/JuliaLang/Pkg.jl/graphs/contributors
 #
