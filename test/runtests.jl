@@ -229,8 +229,18 @@ using Base.BinaryPlatforms
         # a warning is logged for each unresolved package.
         sbom_noregistry= @test_logs (:warn,) match_mode=:any generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies)));
         @test issetequal(getproperty.(sbom_noregistry.Packages, :Name), ["Dummy1", "Dummy2", "Dummy3", "Dummy4"])
-        @test all(isequal.(getproperty.(sbom_noregistry.Packages, :DownloadLocation), [SpdxDownloadLocationV2("NOASSERTION")]))
-        @test all(isequal.(getproperty.(sbom_noregistry.Packages, :HomePage), "NOASSERTION"))
+        # Dummy1-3 are registered in DummyRegistry. Without that registry their source cannot be resolved,
+        # so their download location and home page fall back to NOASSERTION.
+        for name in ("Dummy1", "Dummy2", "Dummy3")
+            pkg= sbom_noregistry.Packages[findfirst(isequal(name), getproperty.(sbom_noregistry.Packages, :Name))]
+            @test pkg.DownloadLocation == SpdxDownloadLocationV2("NOASSERTION")
+            @test pkg.HomePage == "NOASSERTION"
+        end
+        # Dummy4 directly tracks its git repository, so its download location and home page are resolved
+        # from the package itself, independent of any registry.
+        dummy4_noregistry= sbom_noregistry.Packages[findfirst(isequal("Dummy4"), getproperty.(sbom_noregistry.Packages, :Name))]
+        @test dummy4_noregistry.DownloadLocation == SpdxDownloadLocationV2("git+https://github.com/SamuraiAku/Dummy4.git@v1.0.0")
+        @test dummy4_noregistry.HomePage == "https://github.com/SamuraiAku/Dummy4.git"
     end
 
     @testset "Artifact Tests" begin
