@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.20
+* Resolved [#41](https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/issues/41), PkgToSoftwareBOM now works with Julia 1.12+ workspaces. The SBOM describes the dependencies of every workspace member project, not just those reachable from the top level project
+* Added the public helper `PkgToSoftwareBOM.environment_rootpackages`, the workspace-aware replacement for `Pkg.project().dependencies`, for selecting the root packages of the SBOM
+
 ## 0.1.19
 * PkgToSoftwareBOM now selects between SPDX.jl v0.4 and v0.5 at the package manager's discretion
     * SPDX v0.5 uses JSON v1.x, SPDX v0.4 uses JSON.jl v0.19

@@ -1,6 +1,36 @@
 # SPDX-License-Identifier: MIT
 
 ###############################
+# The direct dependencies used as the root packages of the SBOM. In a Julia 1.12+ workspace this
+# combines the direct dependencies of the top level project and of every workspace member project.
+function environment_rootpackages(env::Pkg.Types.EnvCache= Pkg.Types.Context().env)
+    rootpackages= copy(env.project.deps)
+    if hasproperty(env, :workspace)
+        for project in values(env.workspace)
+            merge!(rootpackages, project.deps)
+        end
+    end
+    return rootpackages
+end
+
+###############################
+# PackageInfo for every dependency in the active environment. Workspaces exist only on Julia 1.12+,
+# where Pkg.dependencies() prunes the shared manifest down to packages reachable from the top level
+# project alone and so drops the workspace member projects' dependencies. On those versions this
+# reproduces Pkg.Operations.load_all_deps_loadable (the basis of Pkg.dependencies()): take every
+# dependency in the manifest, then keep those reachable from the root packages. Seeding the reachable
+# set from environment_rootpackages, rather than from the top level project alone, retains the
+# dependencies of every workspace member project while still excluding the projects themselves.
+# On older versions there are no workspaces, so Pkg.dependencies() is already complete.
+function environment_dependencies(env::Pkg.Types.EnvCache= Pkg.Types.Context().env)
+    hasproperty(env, :workspace) || return Pkg.dependencies(env)
+    deps= Pkg.Operations.load_all_deps(env)
+    keep= Set{UUID}(values(environment_rootpackages(env)))
+    Pkg.Operations.prune_deps(env.manifest, keep)
+    return Dict{UUID, Pkg.API.PackageInfo}(pkg.uuid => Pkg.API.package_info(env, pkg) for pkg in deps if pkg.uuid in keep)
+end
+
+###############################
 function resolve_pkgsource!(uuid::UUID, package::SpdxPackageV2, packagedata::Pkg.API.PackageInfo, registrydata::Union{Nothing, Missing, PackageRegistryInfo})
     # The location of the SPDX package's source code depend on whether Pkg is tracking the package via:
     #   1) A package listed in the registry; Some stdlibs are tracked in the General registry, some are not.
