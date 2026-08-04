@@ -3,13 +3,19 @@
 ###############################
 # The direct dependencies used as the root packages of the SBOM. In a Julia 1.12+ workspace this
 # combines the direct dependencies of the top level project and of every workspace member project.
-function environment_rootpackages(env::Pkg.Types.EnvCache= Pkg.Types.Context().env)
-    rootpackages= copy(env.project.deps)
-    if hasproperty(env, :workspace)
-        for project in values(env.workspace)
-            merge!(rootpackages, project.deps)
+function environment_rootpackages(; workspace::Bool= false)
+    if workspace # Use private Pkg APIs
+        env= Pkg.Types.Context().env
+        rootpackages= copy(env.project.deps)
+        if hasproperty(env, :workspace)
+            for project in values(env.workspace)
+                merge!(rootpackages, project.deps)
+            end
         end
+    else # Use public API
+        rootpackages= Pkg.project().dependencies
     end
+
     return rootpackages
 end
 
@@ -22,10 +28,11 @@ end
 # set from environment_rootpackages, rather than from the top level project alone, retains the
 # dependencies of every workspace member project while still excluding the projects themselves.
 # On older versions there are no workspaces, so Pkg.dependencies() is already complete.
-function environment_dependencies(env::Pkg.Types.EnvCache= Pkg.Types.Context().env)
-    hasproperty(env, :workspace) || return Pkg.dependencies(env)
+function environment_dependencies(; workspace::Bool= false)
+    workspace==true || return Pkg.dependencies() # Use public API if not using workspaces
+    env= Pkg.Types.Context().env
     deps= Pkg.Operations.load_all_deps(env)
-    keep= Set{UUID}(values(environment_rootpackages(env)))
+    keep= Set{UUID}(values(environment_rootpackages(workspace)))
     Pkg.Operations.prune_deps(env.manifest, keep)
     return Dict{UUID, Pkg.API.PackageInfo}(pkg.uuid => Pkg.API.package_info(env, pkg) for pkg in deps if pkg.uuid in keep)
 end

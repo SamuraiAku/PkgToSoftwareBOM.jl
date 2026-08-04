@@ -68,6 +68,7 @@ Base.@kwdef struct spdxCreationData
     CreatorComment::Union{AbstractString, Missing}= missing
     DocumentComment::Union{AbstractString, Missing}= missing
     rootpackages::Dict{String, Base.UUID}= environment_rootpackages()
+    envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= environment_dependencies()
     packageInstructions::Dict{UUID, spdxPackageInstructions}= Dict{UUID, spdxPackageInstructions}()
     licenseScan::Bool= true
     use_packageserver::Bool= false
