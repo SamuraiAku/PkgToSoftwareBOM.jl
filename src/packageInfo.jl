@@ -32,7 +32,7 @@ function environment_dependencies(; workspace::Bool= false)
     workspace==true || return Pkg.dependencies() # Use public API if not using workspaces
     env= Pkg.Types.Context().env
     deps= Pkg.Operations.load_all_deps(env)
-    keep= Set{UUID}(values(environment_rootpackages(workspace)))
+    keep= Set{UUID}(values(environment_rootpackages(workspace= workspace)))
     Pkg.Operations.prune_deps(env.manifest, keep)
     return Dict{UUID, Pkg.API.PackageInfo}(pkg.uuid => Pkg.API.package_info(env, pkg) for pkg in deps if pkg.uuid in keep)
 end

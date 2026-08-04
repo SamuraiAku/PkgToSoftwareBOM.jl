@@ -67,8 +67,9 @@ Base.@kwdef struct spdxCreationData
     Creators::Vector{SpdxCreatorV2}= SpdxCreatorV2[SpdxCreatorV2("Tool", "PkgToSoftwareBOM.jl", "")]
     CreatorComment::Union{AbstractString, Missing}= missing
     DocumentComment::Union{AbstractString, Missing}= missing
-    rootpackages::Dict{String, Base.UUID}= environment_rootpackages()
-    envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= environment_dependencies()
+    workspace::Bool= false
+    rootpackages::Dict{String, Base.UUID}= environment_rootpackages(; workspace= workspace)
+    envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= environment_dependencies(; workspace= workspace)
     packageInstructions::Dict{UUID, spdxPackageInstructions}= Dict{UUID, spdxPackageInstructions}()
     licenseScan::Bool= true
     use_packageserver::Bool= false
