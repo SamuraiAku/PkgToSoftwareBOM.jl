@@ -283,10 +283,10 @@ using Base.BinaryPlatforms
             Pkg.instantiate()
 
             # Crayons is a dependency of the member project only; Example of the top level project
-            @test issetequal(keys(PkgToSoftwareBOM.environment_rootpackages()), ["Example", "Crayons"])
-            @test issetequal([d.name for d in values(PkgToSoftwareBOM.environment_dependencies())], ["Example", "Crayons"])
+            @test issetequal(keys(PkgToSoftwareBOM.environment_rootpackages(workspace= true)), ["Example", "Crayons"])
+            @test issetequal([d.name for d in values(PkgToSoftwareBOM.environment_dependencies(workspace= true))], ["Example", "Crayons"])
 
-            sbom= generateSPDX(spdxCreationData(licenseScan= false))
+            sbom= generateSPDX(spdxCreationData(licenseScan= false, workspace= true))
             described= filter(r -> r.RelationshipType == "DESCRIBES", sbom.Relationships)
             @test issetequal(getproperty.(described, :RelatedSPDXID),
                 ["SPDXRef-Example-7876af07-990d-54b4-ab0e-23690620f79a",
