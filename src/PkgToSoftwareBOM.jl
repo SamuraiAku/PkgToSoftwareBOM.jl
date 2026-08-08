@@ -13,9 +13,7 @@ using Base.BinaryPlatforms
 using Logging
 using Downloads
 
-export spdxCreationData, spdxPackageInstructions
-
-VERSION >= v"1.12" && "export environment_rootpackages" |> Meta.parse |> eval
+export spdxCreationData, spdxPackageInstructions, environment_rootpackages
 
 Base.@kwdef struct PackageRegistryInfo
     registryName::String
