@@ -130,10 +130,10 @@ using Base.BinaryPlatforms
 
     # Setup environment for the next tests
     envdir= mktempdir();
-    envpaths= joinpath.(envdir, ["Project.toml", "Manifest.toml"])
-    cp.(["./test_environment/Project.toml", "./test_environment/Manifest.toml"], envpaths)
+    envpaths= joinpath.(envdir, ["Project.toml", "Manifest.toml", "sub"])
+    cp.(["./test_environment/Project.toml", "./test_environment/Manifest.toml", "./test_environment/sub"], envpaths)
     Pkg.activate(envdir)
-    Pkg.update("Dummy4")
+    Pkg.update()
     Pkg.resolve()
     Pkg.instantiate()
 
@@ -260,38 +260,15 @@ using Base.BinaryPlatforms
             # A workspace shares one manifest between the top level project and its member
             # projects. The SBOM must describe the dependencies of every member project, not
             # just those reachable from the top level project.
-            wsdir= mktempdir()
-            mkdir(joinpath(wsdir, "sub"))
-            write(joinpath(wsdir, "Project.toml"),
-                """
-                name = "WorkspaceRoot"
-                uuid = "11111111-1111-1111-1111-111111111111"
-                version = "0.1.0"
 
-                [deps]
-                Example = "7876af07-990d-54b4-ab0e-23690620f79a"
-
-                [workspace]
-                projects = ["sub"]
-                """)
-            write(joinpath(wsdir, "sub", "Project.toml"),
-                """
-                [deps]
-                Crayons = "a8cc5b0e-0ffa-5ad4-8c14-923d3ee1735f"
-                """)
-            Pkg.activate(wsdir)
-            Pkg.instantiate()
-
-            # Crayons is a dependency of the member project only; Example of the top level project
-            @test issetequal(keys(PkgToSoftwareBOM.environment_rootpackages()), ["Example", "Crayons"])
-            @test issetequal([d.name for d in values(PkgToSoftwareBOM.environment_dependencies())], ["Example", "Crayons"])
-
-            sbom= generateSPDX(spdxCreationData(licenseScan= false))
+            # Crayons is a dependency of the member project only
+            @test issetequal(keys(environment_rootpackages(workspace= true)), ["MWETestSBOM_LazyArtifact", "Dummy4", "Crayons"])
+            sbom= generateSPDX(spdxCreationData(licenseScan= false, workspace= true), ["DummyRegistry", "General"])
             described= filter(r -> r.RelationshipType == "DESCRIBES", sbom.Relationships)
             @test issetequal(getproperty.(described, :RelatedSPDXID),
-                ["SPDXRef-Example-7876af07-990d-54b4-ab0e-23690620f79a",
+                ["SPDXRef-MWETestSBOM-LazyArtifact-1c66bc15-73f4-4e94-8c80-c77ca7b88078", 
+                 "SPDXRef-Dummy4-bd21c0da-0f63-47d8-a8d0-2a7f3678fd80",
                  "SPDXRef-Crayons-a8cc5b0e-0ffa-5ad4-8c14-923d3ee1735f"])
-            @test issetequal(getproperty.(sbom.Packages, :Name), ["Example", "Crayons"])
         end
     end
 

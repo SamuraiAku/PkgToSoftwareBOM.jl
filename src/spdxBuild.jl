@@ -15,11 +15,11 @@ For example to create a User Environment SBOM using the General registry and ano
 sbom= generateSPDX(spdxCreationData(), ["PrivateRegistry", "General"]);
 ```
 """
-function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"], envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= environment_dependencies())
+function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"])
     # Query the registries for package information
-    registry_packages= registry_packagequery(envpkgs, sbomRegistries, docData.use_packageserver)
+    registry_packages= registry_packagequery(docData.envpkgs, sbomRegistries, docData.use_packageserver)
 
-    packagebuilddata= spdxPackageData(targetplatform= docData.TargetPlatform, packages= envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions, licenseScan= docData.licenseScan, find_artifactsource= docData.find_artifactsource, exclude_stdlib= docData.exclude_stdlib)
+    packagebuilddata= spdxPackageData(targetplatform= docData.TargetPlatform, packages= docData.envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions, licenseScan= docData.licenseScan, find_artifactsource= docData.find_artifactsource, exclude_stdlib= docData.exclude_stdlib)
 
    # Create the SPDX Document
     spdxDoc= SpdxDocumentV2()

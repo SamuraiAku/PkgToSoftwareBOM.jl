@@ -4,3 +4,6 @@ MWETestSBOM_LazyArtifact = "1c66bc15-73f4-4e94-8c80-c77ca7b88078"
 
 [compat]
 MWETestSBOM_LazyArtifact= "0.1.1"
+
+[workspace]
+projects = ["sub"]

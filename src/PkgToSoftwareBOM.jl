@@ -13,9 +13,7 @@ using Base.BinaryPlatforms
 using Logging
 using Downloads
 
-export spdxCreationData, spdxPackageInstructions
-
-VERSION >= v"1.11.0-DEV.469" && "public environment_rootpackages" |> Meta.parse |> eval
+export spdxCreationData, spdxPackageInstructions, environment_rootpackages
 
 Base.@kwdef struct PackageRegistryInfo
     registryName::String
@@ -67,7 +65,9 @@ Base.@kwdef struct spdxCreationData
     Creators::Vector{SpdxCreatorV2}= SpdxCreatorV2[SpdxCreatorV2("Tool", "PkgToSoftwareBOM.jl", "")]
     CreatorComment::Union{AbstractString, Missing}= missing
     DocumentComment::Union{AbstractString, Missing}= missing
-    rootpackages::Dict{String, Base.UUID}= environment_rootpackages()
+    workspace::Bool= false
+    rootpackages::Dict{String, Base.UUID}= environment_rootpackages(; workspace= workspace)
+    envpkgs::Dict{Base.UUID, Pkg.API.PackageInfo}= environment_dependencies(; workspace= workspace)
     packageInstructions::Dict{UUID, spdxPackageInstructions}= Dict{UUID, spdxPackageInstructions}()
     licenseScan::Bool= true
     use_packageserver::Bool= false
