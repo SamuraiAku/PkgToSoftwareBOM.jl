@@ -15,7 +15,7 @@ using Downloads
 
 export spdxCreationData, spdxPackageInstructions
 
-VERSION >= v"1.11.0-DEV.469" && "public environment_rootpackages" |> Meta.parse |> eval
+VERSION >= v"1.12" && "export environment_rootpackages" |> Meta.parse |> eval
 
 Base.@kwdef struct PackageRegistryInfo
     registryName::String
