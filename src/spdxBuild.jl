@@ -4,20 +4,20 @@ export generateSPDX
 
 ###############################
 """
-    generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"])
+    generateSPDX(docData::spdxCreationData= spdxCreationData())
 
 Generate a software BOM in the SPDX format. By default, the SBOM will describe all the packages and artifacts in the active environment using the General registry to retrieve download information.
 
-If you would like to use a different registry or search multiple registries, you just call `generateSPDX` with two arguments.
+If you would like to use a different registry or search multiple registries, pass in a customized spdxCreationData object
 
 For example to create a User Environment SBOM using the General registry and another registry called "PrivateRegistry", type:
 ```julia-repl
-sbom= generateSPDX(spdxCreationData(), ["PrivateRegistry", "General"]);
+sbom= generateSPDX(spdxCreationData(sbomRegistries= ["PrivateRegistry", "General"]));
 ```
 """
-function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistries::Vector{<:AbstractString}= ["General"])
+function generateSPDX(docData::spdxCreationData= spdxCreationData())
     # Query the registries for package information
-    registry_packages= registry_packagequery(docData.envpkgs, sbomRegistries, docData.use_packageserver)
+    registry_packages= registry_packagequery(docData.envpkgs, docData.sbomRegistries, docData.use_packageserver)
 
     packagebuilddata= spdxPackageData(targetplatform= docData.TargetPlatform, packages= docData.envpkgs, registrydata= registry_packages, packageInstructions= docData.packageInstructions, licenseScan= docData.licenseScan, find_artifactsource= docData.find_artifactsource, exclude_stdlib= docData.exclude_stdlib)
 
@@ -45,7 +45,7 @@ function generateSPDX(docData::spdxCreationData= spdxCreationData(), sbomRegistr
     spdxDoc.DocumentComment= (ismissing(spdxDoc.DocumentComment) ? "" : "$(spdxDoc.DocumentComment)\n\n") * "Registries used for populating Package data:"
     active_registries= reachable_registries()
     for reg in active_registries
-        if reg.name in sbomRegistries
+        if reg.name in docData.sbomRegistries
             spdxDoc.DocumentComment= spdxDoc.DocumentComment * 
                 "\n$(reg.name) registry: $(reg.repo)\n$(reg.description)"
         end
