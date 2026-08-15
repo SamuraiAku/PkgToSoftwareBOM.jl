@@ -60,41 +60,42 @@ PkgToSofwareBOM automatically exports the package [SPDX](https://github.com/Samu
 
 There are two use cases envisioned:
 
-- Users: Create an SBOM of your current environment. Submit this file to your organization
-- Developers: Create an SBOM to be included with your package source code. This becomes your official declaration of what your package dependencies, copyright, license, and download location.
+- [Users](#user-environment-sbom): Create an SBOM of your current environment. Submit this file to your organization
+- [Developers](#developer-sbom): Create an SBOM to be included with your package source code. This becomes your official declaration of what your package dependencies, copyright, license, and download location.
 
 ### !!! Important note about stability and license scanning !!!
-PkgToSoftwareBOM uses [LicenseCheck.jl](https://github.com/ericphanson/LicenseCheck.jl) to scan package and artifact directories for license file information. LicenseCheck has been known to occasionally crash when run on Apple Silicon, see [Issue #11](https://github.com/ericphanson/LicenseCheck.jl/issues/11).  I have observed it happening every time when run within VSCode with the julia-vscode extension. 
+PkgToSoftwareBOM uses [LicenseCheck.jl](https://github.com/ericphanson/LicenseCheck.jl) to scan package and artifact directories for license file information. LicenseCheck has been known to occasionally crash when run on Apple Silicon, see [Issue #11](https://github.com/ericphanson/LicenseCheck.jl/issues/11).
 
 #### Update
 It has been [reported](https://github.com/ericphanson/LicenseCheck.jl/issues/11#issuecomment-3422776290) that the stability of LicenseCheck.jl has been fixed following the merge of [PR #59878](https://github.com/JuliaLang/julia/pull/59878) into Julia v1.12.2
 
-If you wish to disable license scanning for stability reasons, use the keyword licenseScan when creating a spdxCreationData object (see examples below)
-
-```julia
-spdxCreationData(licenseScan= false)
-```
+If you wish to disable license scanning for stability reasons, see [Optional Modes - Disable License Scanning](#disable-license-scanning)
 
 ### User Environment SBOM
 
-To create an SBOM of your entire environment type:
+To create an SBOM of your entire environment using the default configuration settings type:
 
 `sbom= generateSPDX()`
 
-This also works for [Julia 1.12+ workspaces](https://pkgdocs.julialang.org/v1/toml-files/#The-%5Bworkspace%5D-section): the SBOM describes the dependencies of the top level project together with those of every workspace member project.
-
-If you wish to not include PkgToSoftwareBOM and SPDX (or some other package) in your SBOM:
-
-```julia
-sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> !(p.first in ["PkgToSoftwareBOM", "SPDX"]), PkgToSoftwareBOM.environment_rootpackages())));
-```
-
-`PkgToSoftwareBOM.environment_rootpackages()` returns the direct dependencies of the active environment (including any workspace member projects) as a `Dict{String, UUID}`. For a single project environment it is equivalent to `Pkg.project().dependencies`.
 
 To write the SBOM to file:
 ```julia
 writespdx(sbom, "myEnvironmentSBOM.spdx.json")
 ```
+
+
+If you wish to modify change the default configuration create an `spdxCreationData` structure, modify its contents, and pass it as an argument to `generateSPDX()`. The section [SBOM Configuration](#sbom-configuration) later in this README describes the available options in detail
+
+* [SBOM Configuration](#sbom-configuration)
+    1. [Specify SBOM root packages](#specify-sbom-root-packages)
+    1. [Exclude stdlibs](#exclude-standard-libraries-from-the-sbom)
+    1. [Use a package server as the DownloadLocation](#use-a-package-server-as-the-downloadlocation)
+    1. [Find the source code repository for artifacts used in JLLs](#find-the-source-code-repository-for-artifacts-used-in-jlls)
+    1. [Include Workspaces in the SBOM](#include-workspaces-in-the-sbom)
+    1. [Search Multiple Package Registries](#search-multiple-package-registries)
+    1. [Disable License Scanning](#disable-license-scanning)
+
+
 
 
 
@@ -166,7 +167,7 @@ myName= SpdxCreatorV2("Person", "John Doe", "email@loopback.com")  # email may b
 myOrg= SpdxCreatorV2("Organization", "Open-Source Org", "email2@loopback.com")
 myTool= SpdxCreatorV2("Tool", "PkgToSoftwareBOM.jl", "")
 
-devRoot= filter(p-> p.first == "MyPackageName", Pkg.project().dependencies) # A developer SBOM has a single package at its root
+devRoot= filter(p-> p.first == "MyPackageName", environment_rootpackages()) # A developer SBOM has a single package at its root
 
 # SPDX namespace provides a unique URI identifier for the SBOM. Best practice, which PkgToSoftwareBOM supports, is to
 # provide a URL to this SBOM in the package repository or to a project homepage.
@@ -195,8 +196,30 @@ writespdx(sbom, "path/to/package/source/MyPackageName.spdx.json")
 
 One case that PkgToSoftwareBOM does not support properly today is when a previous version of the developer's package does not exist in the registry. In that case, the SBOM will list the path to the local copy of the package code, instead of the URL of the repository. This may be fixed in a later version.
 
-## Optional Modes
+## SBOM Configuration
 PkgToSoftwareBOM has keywords that can be invoked with `spdxCreationData()`.  These keywords modify the contents of the SBOM in ways that are useful in particular situations
+
+### Specify SBOM root packages
+Root packages reside at the top of the SBOM dependency graph. They are marked as root packages in the SBOM by the relationship `SPDXRef-DOCUMENT  DESCRIBES  <PackageID>`.
+
+By default all packages in the active project are included in the SBOM as root packages. The user can filter this list and use the keyword `rootpackages` to reduce the number of root packages.
+
+The list of root packages is obtained by calling the function `environment_rootpackages()` which returns the package list as a `Dict{String, UUID}`. For a basic project it is equivalent to `Pkg.project().dependencies`.
+
+For example, to exclude PkgToSoftwareBOM from the SBOM:
+
+```julia
+filtered_rootpackages= filter(p-> !(p.first in ["PkgToSoftwareBOM", "SPDX"]), environment_rootpackages())
+sbom= generateSPDX(spdxCreationData(rootpackages= filtered_rootpackages));
+```
+
+If the user wishes to include packages from project [workspaces](#include-workspaces-in-the-sbom), the user must use the boolean keyword `workspace` in both `environment_rootpackages()` and `spdxCreationData()`
+
+```julia
+filtered_rootpackages= filter(p-> !(p.first in ["PkgToSoftwareBOM"]), environment_rootpackages(workspace= true))
+sbom= generateSPDX(spdxCreationData(rootpackages= filtered_rootpackages), workspace= true);
+```
+
 
 ### Exclude standard libraries from the SBOM
 Since v0.1.16, PkgToSoftwareBOM by default includes standard libraries in the SBOM. There are scenarios where a user would wish to exclude them from the SBOM. For example when getting corporate approvals for a package and its dependencies there is no point in including the stdlibs since they are part of the Julia installation and may cause confusion. Stdlibs may be excluded through the use of the keyword `exclude_stdlib` when creating a spdxCreationData object (see example below)
@@ -241,18 +264,32 @@ spdxCreationData(find_artifactsource= true)
 
 If PkgToSoftwareBOM cannot determine the source of an artifact, an entry will not be created.
 
-## How does PkgToSoftwareBOM support mulitple registries?
+### Include Workspaces in the SBOM
+Julia 1.12 introduced the [workspaces feature](https://pkgdocs.julialang.org/v1/toml-files/#The-%5Bworkspace%5D-section). Workspaces can be thought of as optional additions to the project. By default PkgToSoftwareBOM does not include the root packages and dependencies of workspace packages.
 
-The majority of users and developers only ever use the General registry and that is what PkgToSoftwareBOM defaults to to find package information.
+The user can include workspaces in the SBOM through the use of the keyword `workspace` when creating an spdxCreationData object
 
-If you would like to use a different registry or search multiple registries, you just call `generateSPDX` with two arguments.
-
-For example to create a User Environment SBOM using the General registry and another registry called "PrivateRegistry", type:
 ```julia
-sbom= generateSPDX(spdxCreationData(), ["PrivateRegistry", "General"]);
+spdxCreationData(workspace= true)
 ```
 
-The second argument is a list of all the registries you would like to use. If you have a package that exists in both registries (for example, you've cloned the respository to your local network and you want to list that as the download location), PkgToSoftwareBOM will use the information from the first registry in the list that has valid information and ignore all subsequent registries
+### Search Multiple Package Registries
+
+The majority of users and developers only ever use the [General Registry](https://github.com/JuliaRegistries/General) and PkgToSoftwareBOM defaults to it when filling in package information.
+
+The user can optionally use a different registry or search multiple registries through the use of the keyword `registries` when creating an spdxCreationData object. The keyword takes a vector of all the registries you would like to use. The registry must have already been added to the package manager via the REPL or the `Pkg.Registry.add()` command. If you have a package that exists in both registries (for example, you've cloned the package respository to your local network and you want to list that as the download location), PkgToSoftwareBOM will use the information from the first registry in the list that has valid information and ignore all subsequent registries
+
+For example to create a User Environment SBOM that first searches a registry called "PrivateRegistry" and then fallback to the General registry:
+```julia
+sbom= generateSPDX(spdxCreationData(registries= ["PrivateRegistry", "General"]));
+```
+
+### Disable License Scanning
+By default PkgToSoftwareBOM will scan package and artifact directories for valid software license files. If you wish to disable license scanning for stability reasons, use the keyword licenseScan when creating a spdxCreationData object:
+
+```julia
+spdxCreationData(licenseScan= false)
+```
 
 ## How does PkgToSoftwareBOM determine what the license of the package or artifact is?
 PkgToSoftwareBOM scans the entire julia package or artifact for license information.  If the scanning locates a file containing a recognized software license, the license is recorded in the `LicenseInfoFromFiles` property of the SBOM package description but does not record which file(s) the license was found in. The license scan follows these rules (LicenseCheck.jl, version 0.2.2)
