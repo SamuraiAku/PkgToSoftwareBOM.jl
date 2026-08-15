@@ -3,13 +3,13 @@
     "dataLicense": "CC0-1.0",
     "SPDXID": "SPDXRef-DOCUMENT",
     "name": "PkgToSoftwareBOM.jl Developer SBOM",
-    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-5afb03b0-4ab5-4090-abcc-42dd0e46e7c1",
+    "documentNamespace": "https://github.com/SamuraiAku/PkgToSoftwareBOM.jl/blob/main/PkgToSoftwareBOM.spdx.json-2c0e2356-e2f4-4969-8e6c-a076a617f160",
     "creationInfo": {
         "creators": [
             "Person:  Simon Avery  (savery@ieee.org)",
             "Tool:  PkgToSoftwareBOM.jl"
         ],
-        "created": "2026-06-28T23:06:37Z",
+        "created": "2026-08-15T16:44:42Z",
         "comment": "Target Platform: Platform(\"aarch64\", \"macos\"; libgfortran_version = \"5.0.0\", julia_version = \"1.12.6\", cxxstring_abi = \"cxx11\")"
     },
     "comment": "Registries used for populating Package data:\nGeneral registry: https://github.com/JuliaRegistries/General.git\nOfficial general Julia package registry where people can\nregister any package they want without too much debate about\nnaming and without enforced standards on documentation or\ntesting. We nevertheless encourage documentation, testing and\nsome amount of consideration when choosing package names.\n",
@@ -1099,13 +1099,13 @@
         {
             "name": "Parsers",
             "SPDXID": "SPDXRef-Parsers-69de0a69-1ddd-5017-9359-2bf0b02dc9f0",
-            "versionInfo": "2.8.6",
+            "versionInfo": "2.8.7",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaData/Parsers.jl.git@32a4e09c5f29402573d673901778a0e03b0807b9",
+            "downloadLocation": "git+https://github.com/JuliaData/Parsers.jl.git@3de8f5e6e90ebfa8d6d1f86997d6cdcd6a912ff3",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "92ec43c5548de992123fa974695da48a52f9c6d8"
+                "packageVerificationCodeValue": "417c847720ef740e6abf1a17c2e6d618cc0ea419"
             },
             "homepage": "https://github.com/JuliaData/Parsers.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -1121,20 +1121,20 @@
                 {
                     "referenceCategory": "PACKAGE-MANAGER",
                     "referenceType": "purl",
-                    "referenceLocator": "pkg:julia/Parsers@2.8.6?uuid=69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
+                    "referenceLocator": "pkg:julia/Parsers@2.8.7?uuid=69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
                 }
             ]
         },
         {
             "name": "StructUtils",
             "SPDXID": "SPDXRef-StructUtils-ec057cc2-7a8d-4b58-b3b3-92acb9f63b42",
-            "versionInfo": "2.8.2",
+            "versionInfo": "2.8.5",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaServices/StructUtils.jl.git@82bee338d650aa515f31866c460cb7e3bcef90b8",
+            "downloadLocation": "git+https://github.com/JuliaServices/StructUtils.jl.git@2d0fc55c61321ba245c47be599570d11bac50303",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "f566284a59c5d87bc7d2079c6fc101f44c53b359"
+                "packageVerificationCodeValue": "d7bfa9a3e97baf2ba02ac1ee3a29316edd122ed9"
             },
             "homepage": "https://github.com/JuliaServices/StructUtils.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -1150,20 +1150,20 @@
                 {
                     "referenceCategory": "PACKAGE-MANAGER",
                     "referenceType": "purl",
-                    "referenceLocator": "pkg:julia/StructUtils@2.8.2?uuid=ec057cc2-7a8d-4b58-b3b3-92acb9f63b42"
+                    "referenceLocator": "pkg:julia/StructUtils@2.8.5?uuid=ec057cc2-7a8d-4b58-b3b3-92acb9f63b42"
                 }
             ]
         },
         {
             "name": "JSON",
             "SPDXID": "SPDXRef-JSON-682c06a0-de6a-54ab-a142-c8b1cf79cde6",
-            "versionInfo": "1.6.1",
+            "versionInfo": "1.7.1",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaIO/JSON.jl.git@c89d196f5ffb64bfbf80985b699ea913b0d2c211",
+            "downloadLocation": "git+https://github.com/JuliaIO/JSON.jl.git@c7345ab1a7ca4dc8a02c9f6510da0d9857bbe513",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "8f88dacf5c4b55923c8e02385d3ccc49e7147d59"
+                "packageVerificationCodeValue": "f443cf0e3e90ffcdc0601209b977f0fe700b3d80"
             },
             "homepage": "https://github.com/JuliaIO/JSON.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -1179,7 +1179,7 @@
                 {
                     "referenceCategory": "PACKAGE-MANAGER",
                     "referenceType": "purl",
-                    "referenceLocator": "pkg:julia/JSON@1.6.1?uuid=682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+                    "referenceLocator": "pkg:julia/JSON@1.7.1?uuid=682c06a0-de6a-54ab-a142-c8b1cf79cde6"
                 }
             ]
         },
@@ -1215,13 +1215,13 @@
         {
             "name": "ExprTools",
             "SPDXID": "SPDXRef-ExprTools-e2ba6199-217a-4e67-a87a-7c52f15ade04",
-            "versionInfo": "0.1.10",
+            "versionInfo": "0.1.11",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaTesting/ExprTools.jl.git@27415f162e6028e81c72b82ef756bf321213b6ec",
+            "downloadLocation": "git+https://github.com/JuliaTesting/ExprTools.jl.git@d2e49e7efd29719d6f28b891b0e0e159daa9d2b4",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "5bb45aaebe5918e568d0feac99fd4d6b507d3451"
+                "packageVerificationCodeValue": "1851dcb18fcdf2f86353cb2fa8b9192bb8f2a195"
             },
             "homepage": "https://github.com/JuliaTesting/ExprTools.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -1237,7 +1237,7 @@
                 {
                     "referenceCategory": "PACKAGE-MANAGER",
                     "referenceType": "purl",
-                    "referenceLocator": "pkg:julia/ExprTools@0.1.10?uuid=e2ba6199-217a-4e67-a87a-7c52f15ade04"
+                    "referenceLocator": "pkg:julia/ExprTools@0.1.11?uuid=e2ba6199-217a-4e67-a87a-7c52f15ade04"
                 }
             ]
         },
@@ -1296,13 +1296,13 @@
         {
             "name": "TZJData",
             "SPDXID": "SPDXRef-TZJData-dc5dba14-91b3-4cab-a142-028a31da12f7",
-            "versionInfo": "1.5.0+2025b",
+            "versionInfo": "1.5.1+2025b",
             "supplier": "NOASSERTION",
             "originator": "NOASSERTION",
-            "downloadLocation": "git+https://github.com/JuliaTime/TZJData.jl.git@72df96b3a595b7aab1e101eb07d2a435963a97e2",
+            "downloadLocation": "git+https://github.com/JuliaTime/TZJData.jl.git@d3b30a9f29a898e21fb4bdf280101b7a12e1f39c",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "eca95a7b6ec9a18642dfc8b39e15cdfe0006ce6e"
+                "packageVerificationCodeValue": "0dc88a0eef4c332630f7ab2eb426ba0b4fbb48bd"
             },
             "homepage": "https://github.com/JuliaTime/TZJData.jl.git",
             "sourceInfo": "Download Location is supplied by the General registry:\nhttps://github.com/JuliaRegistries/General.git\nThe hash supplied in Download Location is not the typical git commit hash. Instead it is a git tree hash. The easiest way to retrieve this version from the cloned repository is to use the command:\ngit archive --output=path/to/archive.tar <tree hash>",
@@ -1318,7 +1318,7 @@
                 {
                     "referenceCategory": "PACKAGE-MANAGER",
                     "referenceType": "purl",
-                    "referenceLocator": "pkg:julia/TZJData@1.5.0+2025b?uuid=dc5dba14-91b3-4cab-a142-028a31da12f7"
+                    "referenceLocator": "pkg:julia/TZJData@1.5.1+2025b?uuid=dc5dba14-91b3-4cab-a142-028a31da12f7"
                 }
             ]
         },
@@ -1475,14 +1475,14 @@
         {
             "name": "PkgToSoftwareBOM",
             "SPDXID": "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6",
-            "versionInfo": "0.1.19",
+            "versionInfo": "0.2.0",
             "packageFileName": "/Users/simon/.julia/dev/PkgToSoftwareBOM",
             "supplier": "NOASSERTION",
             "originator": "Person:  Simon Avery  (savery@ieee.org)",
             "downloadLocation": "NOASSERTION",
             "filesAnalyzed": true,
             "packageVerificationCode": {
-                "packageVerificationCodeValue": "2eef3cd27f5561527ca838d0787eedf208185dad",
+                "packageVerificationCodeValue": "99a8c47d76981b3ba6b0fbdd8d012d6ec8809708",
                 "packageVerificationCodeExcludedFiles": [
                     "PkgToSoftwareBOM.spdx.json"
                 ]
@@ -1497,7 +1497,7 @@
                 {
                     "referenceCategory": "PACKAGE-MANAGER",
                     "referenceType": "purl",
-                    "referenceLocator": "pkg:julia/PkgToSoftwareBOM@0.1.19?uuid=6254a0f9-6143-4104-aa2e-fd339a2830a6"
+                    "referenceLocator": "pkg:julia/PkgToSoftwareBOM@0.2.0?uuid=6254a0f9-6143-4104-aa2e-fd339a2830a6"
                 }
             ]
         }
