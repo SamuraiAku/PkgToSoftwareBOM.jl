@@ -55,7 +55,7 @@ using Base.BinaryPlatforms
         ## Example #2 + Check dual registries
         rootpackages = filter(p -> p.first in ["PkgToSoftwareBOM"],
                               Pkg.project().dependencies)
-        sbom_with_exclusions = generateSPDX(spdxCreationData(; rootpackages, sbomRegistries= ["DummyRegistry", "General"]))
+        sbom_with_exclusions = generateSPDX(spdxCreationData(; rootpackages, registries= ["DummyRegistry", "General"]))
         root_relationships= filter(r -> r.RelationshipType=="DESCRIBES", sbom_with_exclusions.Relationships)
         @test issetequal(getproperty.(root_relationships, :RelatedSPDXID), ["SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6"])
         @test !isnothing(filter(p -> p.SPDXID == "SPDXRef-PkgToSoftwareBOM-6254a0f9-6143-4104-aa2e-fd339a2830a6", sbom.Packages))
@@ -138,7 +138,7 @@ using Base.BinaryPlatforms
     Pkg.instantiate()
 
     @testset "Repo Track + Dual registries" begin
-        sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies), sbomRegistries= ["DummyRegistry", "General"]));
+        sbom= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies), registries= ["DummyRegistry", "General"]));
         # Dummy4 and all its dependencies were created by the author for testing purposes. They have no functional code, just the dependencies
         # Therefore we know exactly what the SBOM should look like and can test for this.
         # Dummy4 is accessed by directly adding its repository, Dummy1-3 are registered in the registry DummyRegistry, also created by the author
@@ -221,7 +221,7 @@ using Base.BinaryPlatforms
 
         ## Regenerate the SBOM trying to use the package server. Since none of these packages are in the pacage server
          # the download locations should be unchanged
-        sbom2= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies), use_packageserver= true, sbomRegistries= ["DummyRegistry", "General"]));
+        sbom2= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["Dummy4"]), Pkg.project().dependencies), use_packageserver= true, registries= ["DummyRegistry", "General"]));
         @test issetequal(sbom.Packages, sbom2.Packages)
 
         # If we don't specify DummyRegistry when building the SBOM we expect an error
@@ -234,10 +234,10 @@ using Base.BinaryPlatforms
         spdxid= "SPDXRef-MWETestSBOM-LazyArtifact-1c66bc15-73f4-4e94-8c80-c77ca7b88078"
 
         download_artifact()
-        sbom_downloaded= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["MWETestSBOM_LazyArtifact"]), Pkg.project().dependencies), sbomRegistries= ["DummyRegistry", "General"]));
+        sbom_downloaded= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["MWETestSBOM_LazyArtifact"]), Pkg.project().dependencies), registries= ["DummyRegistry", "General"]));
         
         remove_artifact()
-        sbom_lazy= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["MWETestSBOM_LazyArtifact"]), Pkg.project().dependencies), sbomRegistries= ["DummyRegistry", "General"]));
+        sbom_lazy= generateSPDX(spdxCreationData(rootpackages= filter(p-> (p.first in ["MWETestSBOM_LazyArtifact"]), Pkg.project().dependencies), registries= ["DummyRegistry", "General"]));
 
         # The two SBOMS should be almost identical, except that with sbom_lazy you can't compute the verification code
         ## Check the document properties I know have to be identical
@@ -263,7 +263,7 @@ using Base.BinaryPlatforms
 
             # Crayons is a dependency of the member project only
             @test issetequal(keys(environment_rootpackages(workspace= true)), ["MWETestSBOM_LazyArtifact", "Dummy4", "Crayons"])
-            sbom= generateSPDX(spdxCreationData(licenseScan= false, workspace= true, sbomRegistries= ["DummyRegistry", "General"]))
+            sbom= generateSPDX(spdxCreationData(licenseScan= false, workspace= true, registries= ["DummyRegistry", "General"]))
             described= filter(r -> r.RelationshipType == "DESCRIBES", sbom.Relationships)
             @test issetequal(getproperty.(described, :RelatedSPDXID),
                 ["SPDXRef-MWETestSBOM-LazyArtifact-1c66bc15-73f4-4e94-8c80-c77ca7b88078", 

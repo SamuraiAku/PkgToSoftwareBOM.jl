@@ -111,7 +111,7 @@ function resolve_pkgsource!(uuid::UUID, package::SpdxPackageV2, packagedata::Pkg
         package.HomePage= "https://julialang.org"
         package.Supplier= SpdxCreatorV2("Organization", "JuliaLang", "")
     elseif packagedata.is_tracking_registry && ismissing(registrydata)
-        error("Package $(packagedata.name) and/or its version cannot be found in the specified registries.\nPlease review the installed registries with Pkg and the value of parameter \'sbomRegistries\' when the function \'generateSPDX\' is called")
+        error("Package $(packagedata.name) and/or its version cannot be found in the specified registries.\nPlease review the installed registries with Pkg and the value of keyword \'registries\' when the function \'spdxCreationData\' is called")
     else
         # This should not happen unless there has been a breaking change in Pkg
         error("PkgToSBOM.resolve_pkgsource!():  Unable to resolve source information for $(packagedata.name). Maybe the Pkg source has changed in a breaking way?")
